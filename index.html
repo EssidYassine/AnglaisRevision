@@ -1,0 +1,1660 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CCCA4 Exam - Language Study Guide</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@400;500;700&display=swap');
+
+:root {
+  --bg: #0f1117;
+  --card: #1a1d27;
+  --card-hover: #222633;
+  --accent: #6c5ce7;
+  --accent2: #00cec9;
+  --accent3: #fd79a8;
+  --accent4: #fdcb6e;
+  --text: #e8e8ef;
+  --text-dim: #8b8da3;
+  --success: #00b894;
+  --error: #e17055;
+  --border: #2d3040;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+  overflow-x: hidden;
+}
+
+.hero {
+  min-height: 40vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 60px 20px 40px;
+  background: linear-gradient(135deg, #0f1117 0%, #1a1040 50%, #0f1117 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  width: 600px;
+  height: 600px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(108,92,231,0.15) 0%, transparent 70%);
+  top: -200px;
+  right: -100px;
+}
+
+.hero h1 {
+  font-family: 'DM Serif Display', serif;
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  margin-bottom: 12px;
+  background: linear-gradient(135deg, #6c5ce7, #00cec9, #fd79a8);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.hero p {
+  color: var(--text-dim);
+  font-size: 1.1rem;
+  max-width: 500px;
+}
+
+.nav-tabs {
+  display: flex;
+  gap: 8px;
+  padding: 20px;
+  overflow-x: auto;
+  justify-content: center;
+  flex-wrap: wrap;
+  position: sticky;
+  top: 0;
+  background: var(--bg);
+  z-index: 100;
+  border-bottom: 1px solid var(--border);
+}
+
+.nav-tab {
+  padding: 10px 20px;
+  border-radius: 30px;
+  border: 1px solid var(--border);
+  background: var(--card);
+  color: var(--text-dim);
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: all 0.3s;
+  white-space: nowrap;
+}
+
+.nav-tab:hover { border-color: var(--accent); color: var(--text); }
+.nav-tab.active {
+  background: var(--accent);
+  color: white;
+  border-color: var(--accent);
+}
+
+.content { max-width: 900px; margin: 0 auto; padding: 30px 20px 80px; }
+
+.section { display: none; animation: fadeIn 0.4s ease; }
+.section.active { display: block; }
+
+@keyframes fadeIn { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
+
+.card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 28px;
+  margin-bottom: 24px;
+  transition: border-color 0.3s;
+}
+
+.card:hover { border-color: var(--accent); }
+
+.card h2 {
+  font-family: 'DM Serif Display', serif;
+  font-size: 1.6rem;
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.card h3 {
+  font-size: 1.15rem;
+  color: var(--accent2);
+  margin: 20px 0 10px;
+  font-weight: 700;
+}
+
+.badge {
+  display: inline-block;
+  padding: 3px 12px;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.badge-purple { background: rgba(108,92,231,0.2); color: #a29bfe; }
+.badge-teal { background: rgba(0,206,201,0.2); color: #00cec9; }
+.badge-pink { background: rgba(253,121,168,0.2); color: #fd79a8; }
+.badge-yellow { background: rgba(253,203,110,0.2); color: #fdcb6e; }
+
+.rule-box {
+  background: rgba(108,92,231,0.08);
+  border-left: 4px solid var(--accent);
+  padding: 16px 20px;
+  border-radius: 0 12px 12px 0;
+  margin: 14px 0;
+}
+
+.rule-box.teal {
+  background: rgba(0,206,201,0.08);
+  border-left-color: var(--accent2);
+}
+
+.rule-box.pink {
+  background: rgba(253,121,168,0.08);
+  border-left-color: var(--accent3);
+}
+
+.rule-box.yellow {
+  background: rgba(253,203,110,0.08);
+  border-left-color: var(--accent4);
+}
+
+.example {
+  background: rgba(255,255,255,0.03);
+  padding: 12px 16px;
+  border-radius: 10px;
+  margin: 8px 0;
+  font-size: 0.95rem;
+  border: 1px solid rgba(255,255,255,0.05);
+}
+
+.example strong { color: var(--accent2); }
+.example .wrong { color: var(--error); text-decoration: line-through; }
+.example .correct { color: var(--success); font-weight: 700; }
+
+.formula {
+  text-align: center;
+  font-size: 1.1rem;
+  font-weight: 700;
+  padding: 16px;
+  background: rgba(108,92,231,0.12);
+  border-radius: 12px;
+  margin: 14px 0;
+  letter-spacing: 0.5px;
+  color: #a29bfe;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 14px 0;
+  font-size: 0.92rem;
+}
+
+th {
+  background: rgba(108,92,231,0.15);
+  padding: 12px 14px;
+  text-align: left;
+  font-weight: 700;
+  color: var(--accent2);
+  border-bottom: 2px solid var(--accent);
+}
+
+td {
+  padding: 11px 14px;
+  border-bottom: 1px solid var(--border);
+}
+
+tr:hover td { background: rgba(255,255,255,0.02); }
+
+.idiom-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 14px;
+  margin: 14px 0;
+}
+
+.idiom-card {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 18px;
+  transition: all 0.3s;
+}
+
+.idiom-card:hover {
+  border-color: var(--accent3);
+  transform: translateY(-2px);
+}
+
+.idiom-card .idiom-name {
+  font-weight: 700;
+  color: var(--accent3);
+  font-size: 1rem;
+  margin-bottom: 6px;
+}
+
+.idiom-card .idiom-meaning {
+  color: var(--text-dim);
+  font-size: 0.88rem;
+}
+
+.idiom-card .idiom-example {
+  margin-top: 8px;
+  font-style: italic;
+  font-size: 0.85rem;
+  color: var(--text);
+  opacity: 0.8;
+}
+
+/* Quiz Styles */
+.quiz-container { margin-top: 20px; }
+
+.quiz-question {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 24px;
+  margin-bottom: 18px;
+  transition: border-color 0.3s;
+}
+
+.quiz-question .q-number {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--accent);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 8px;
+}
+
+.quiz-question .q-text {
+  font-size: 1.05rem;
+  font-weight: 500;
+  margin-bottom: 14px;
+}
+
+.quiz-options { display: flex; flex-direction: column; gap: 8px; }
+
+.quiz-option {
+  padding: 12px 16px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: rgba(255,255,255,0.02);
+  cursor: pointer;
+  transition: all 0.25s;
+  font-size: 0.95rem;
+}
+
+.quiz-option:hover {
+  border-color: var(--accent);
+  background: rgba(108,92,231,0.08);
+}
+
+.quiz-option.selected {
+  border-color: var(--accent);
+  background: rgba(108,92,231,0.15);
+}
+
+.quiz-option.correct-answer {
+  border-color: var(--success) !important;
+  background: rgba(0,184,148,0.15) !important;
+  color: var(--success);
+}
+
+.quiz-option.wrong-answer {
+  border-color: var(--error) !important;
+  background: rgba(225,112,85,0.15) !important;
+  color: var(--error);
+}
+
+.quiz-option.disabled { pointer-events: none; }
+
+.feedback {
+  margin-top: 10px;
+  padding: 10px 14px;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  display: none;
+}
+
+.feedback.correct-fb {
+  display: block;
+  background: rgba(0,184,148,0.1);
+  color: var(--success);
+  border: 1px solid rgba(0,184,148,0.3);
+}
+
+.feedback.wrong-fb {
+  display: block;
+  background: rgba(225,112,85,0.1);
+  color: var(--error);
+  border: 1px solid rgba(225,112,85,0.3);
+}
+
+.score-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: var(--card);
+  border-top: 1px solid var(--border);
+  padding: 14px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  z-index: 200;
+  backdrop-filter: blur(10px);
+}
+
+.score-bar .score-text {
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+
+.score-bar .score-num { color: var(--accent2); }
+
+.tip {
+  display: inline-block;
+  background: rgba(253,203,110,0.1);
+  border: 1px solid rgba(253,203,110,0.25);
+  color: var(--accent4);
+  padding: 10px 16px;
+  border-radius: 10px;
+  font-size: 0.88rem;
+  margin: 10px 0;
+}
+
+.tip::before { content: '💡 '; }
+
+.note-box {
+  background: rgba(0,206,201,0.08);
+  border: 1px solid rgba(0,206,201,0.2);
+  padding: 14px 18px;
+  border-radius: 12px;
+  margin: 12px 0;
+  font-size: 0.92rem;
+}
+
+.note-box::before { content: '⚠️ '; }
+
+@media (max-width: 600px) {
+  .nav-tabs { padding: 12px 10px; gap: 6px; justify-content: flex-start; }
+  .nav-tab { padding: 8px 14px; font-size: 0.82rem; }
+  .card { padding: 20px; }
+  .idiom-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <h1>CCCA4 Language Review</h1>
+  <p>Grammaire, Vocabulaire & Idioms — Règles complètes + Quiz interactif</p>
+</div>
+
+<div class="nav-tabs" id="navTabs">
+  <div class="nav-tab active" onclick="showSection('pp')">Present Perfect</div>
+  <div class="nav-tab" onclick="showSection('cond')">Conditionals</div>
+  <div class="nav-tab" onclick="showSection('emb')">Embedded Questions</div>
+  <div class="nav-tab" onclick="showSection('idioms')">Idioms</div>
+  <div class="nav-tab" onclick="showSection('vocab')">Vocabulary</div>
+  <div class="nav-tab" onclick="showSection('passive')">Passive Voice</div>
+  <div class="nav-tab" onclick="showSection('essays')">📝 Essays</div>
+  <div class="nav-tab" onclick="showSection('quiz')">🎯 QUIZ</div>
+</div>
+
+<div class="content">
+
+<!-- ===== PRESENT PERFECT ===== -->
+<div class="section active" id="pp">
+  <div class="card">
+    <h2>🔵 Present Perfect</h2>
+    <span class="badge badge-purple">Grammar</span>
+    
+    <div class="rule-box">
+      <strong>Quand l'utiliser :</strong> Action passée avec un lien au présent, ou action récente/expérience de vie. Souvent avec : <strong>just, already, yet, recently, ever, never, since, for</strong>.
+    </div>
+
+    <div class="formula">Subject + has/have + past participle (V3)</div>
+
+    <h3>Formes</h3>
+    <table>
+      <tr><th>Forme</th><th>Structure</th><th>Exemple</th></tr>
+      <tr><td>✅ Affirmative</td><td>S + has/have + V3</td><td>She <strong>has finished</strong> the report.</td></tr>
+      <tr><td>❌ Negative</td><td>S + has/have + not + V3</td><td>They <strong>haven't arrived</strong> yet.</td></tr>
+      <tr><td>❓ Question</td><td>Has/Have + S + V3?</td><td><strong>Have</strong> you <strong>seen</strong> this movie?</td></tr>
+    </table>
+
+    <h3>Mots-clés importants</h3>
+    <table>
+      <tr><th>Adverbe</th><th>Position</th><th>Exemple</th></tr>
+      <tr><td><strong>recently</strong></td><td>avant le V3 ou en fin</td><td>Our team <strong>has recently developed</strong> a new app.</td></tr>
+      <tr><td><strong>just</strong></td><td>entre has/have et V3</td><td>The company <strong>has just launched</strong> a product.</td></tr>
+      <tr><td><strong>already</strong></td><td>entre has/have et V3</td><td>I <strong>have already finished</strong> my work.</td></tr>
+      <tr><td><strong>yet</strong></td><td>en fin (négatif/question)</td><td>They <strong>haven't started yet</strong>.</td></tr>
+      <tr><td><strong>successfully</strong></td><td>entre has/have et V3</td><td>Engineers <strong>have successfully created</strong> a campaign.</td></tr>
+      <tr><td><strong>never / ever</strong></td><td>entre has/have et V3</td><td>I <strong>have never been</strong> to Japan.</td></tr>
+    </table>
+
+    <div class="tip">L'ordre des adverbes est clé à l'examen ! "has <strong>recently</strong> developed" — l'adverbe va ENTRE has/have et le participe passé.</div>
+
+    <h3>Exemples de l'examen</h3>
+    <div class="example">Our team <strong>has recently developed</strong> (recently / to develop) a new app.</div>
+    <div class="example">The engineers <strong>have successfully created</strong> (to create / successfully) a campaign.</div>
+    <div class="example">The company <strong>has just launched</strong> (launch / just) a groundbreaking product.</div>
+  </div>
+</div>
+
+<!-- ===== CONDITIONALS ===== -->
+<div class="section" id="cond">
+  <div class="card">
+    <h2>🟢 Conditionals (1st, 2nd, 3rd)</h2>
+    <span class="badge badge-teal">Grammar</span>
+
+    <h3>1st Conditional — Situation réelle / probable (futur)</h3>
+    <div class="formula">If + present simple → will + base verb</div>
+    <div class="rule-box teal">
+      <strong>Usage :</strong> Parler d'une situation <strong>réelle et possible</strong> dans le futur.
+    </div>
+    <div class="example">If you identify a market need accurately, the product <strong>will be</strong> more likely to succeed.</div>
+    <div class="example">If it rains, I <strong>will take</strong> an umbrella.</div>
+
+    <h3>2nd Conditional — Situation imaginaire / hypothétique (présent)</h3>
+    <div class="formula">If + past simple → would + base verb</div>
+    <div class="rule-box pink">
+      <strong>Usage :</strong> Parler d'une situation <strong>irréelle ou imaginaire</strong> au présent.
+    </div>
+    <div class="example">If you <strong>had</strong> more resources, you <strong>would be</strong> able to develop more products.</div>
+    <div class="example">If I <strong>were</strong> rich, I <strong>would travel</strong> the world.</div>
+
+    <h3>3rd Conditional — Situation irréelle dans le passé (regret)</h3>
+    <div class="formula">If + past perfect (had + V3) → would have + V3</div>
+    <div class="rule-box yellow">
+      <strong>Usage :</strong> Parler d'une situation <strong>irréelle dans le passé</strong> — quelque chose qui ne s'est PAS passé.
+    </div>
+    <div class="example">If the team <strong>had collaborated</strong> more effectively, the project <strong>would not have faced</strong> so many delays.</div>
+    <div class="example">If I <strong>had studied</strong> harder, I <strong>would have passed</strong> the exam.</div>
+
+    <h3>Résumé rapide</h3>
+    <table>
+      <tr><th>Type</th><th>If clause</th><th>Main clause</th><th>Quand ?</th></tr>
+      <tr><td><strong>1st</strong></td><td>Present Simple</td><td>will + V</td><td>Futur probable</td></tr>
+      <tr><td><strong>2nd</strong></td><td>Past Simple</td><td>would + V</td><td>Présent imaginaire</td></tr>
+      <tr><td><strong>3rd</strong></td><td>Past Perfect (had+V3)</td><td>would have + V3</td><td>Passé irréel</td></tr>
+    </table>
+
+    <div class="tip">Astuce rapide : <strong>had → would have</strong> (3rd), <strong>had → would</strong> (2nd), <strong>present → will</strong> (1st). Regarde le verbe dans la clause IF pour identifier le type !</div>
+  </div>
+</div>
+
+<!-- ===== EMBEDDED QUESTIONS ===== -->
+<div class="section" id="emb">
+  <div class="card">
+    <h2>🟣 Embedded Questions</h2>
+    <span class="badge badge-purple">Grammar</span>
+
+    <div class="rule-box">
+      <strong>Définition :</strong> Une question "cachée" à l'intérieur d'une phrase déclarative ou d'une autre question. L'ordre des mots change : on utilise l'ordre <strong>SVO (sujet + verbe)</strong> au lieu de l'ordre interrogatif.
+    </div>
+
+    <h3>Règle principale</h3>
+    <div class="formula">Introductory phrase + WH word + Subject + Verb (ordre normal)</div>
+
+    <div class="example">
+      Direct: <strong>Where is</strong> the bank? (V + S)<br>
+      Embedded: Could you tell me <strong>where the bank is</strong>? (S + V) ✅
+    </div>
+
+    <h3>Pour les questions Yes/No → utiliser IF ou WHETHER</h3>
+    <div class="formula">Introductory phrase + if/whether + Subject + Verb</div>
+    <div class="example">
+      Direct: <strong>Do</strong> you need help?<br>
+      Embedded: Could you tell me <strong>if you need</strong> help? ✅
+    </div>
+
+    <h3>5 Règles essentielles</h3>
+
+    <div class="rule-box teal">
+      <strong>1. Yes/No → if / whether</strong><br>
+      <span class="wrong">Can you tell me is it safe?</span> ❌<br>
+      Can you tell me <span class="correct">if/whether it is safe</span>? ✅
+    </div>
+
+    <div class="rule-box pink">
+      <strong>2. Pas de contraction en fin de clause</strong><br>
+      <span class="wrong">Do you know what time it's?</span> ❌<br>
+      Do you know what time <span class="correct">it is</span>? ✅
+    </div>
+
+    <div class="rule-box yellow">
+      <strong>3. Point d'interrogation si l'intro est une question</strong><br>
+      <span class="correct">Could you tell me</span> where the bank is<strong>?</strong> (intro = question → ?)<br>
+      <span class="correct">I don't know</span> where the bank is<strong>.</strong> (intro = statement → .)
+    </div>
+
+    <div class="rule-box">
+      <strong>4. Même sujet → infinitif possible</strong><br>
+      <em>I</em> don't know what <em>I</em> should do → I don't know <span class="correct">what to do</span>.<br>
+      She can't decide if she should stay → She can't decide <span class="correct">whether to stay</span>.
+    </div>
+
+    <div class="rule-box teal">
+      <strong>5. "Or not" placement</strong><br>
+      Avec <strong>whether</strong>: "whether or not" ✅ OU "whether... or not" ✅<br>
+      Avec <strong>if</strong>: seulement "if... or not" ✅ (jamais "if or not..." ❌)
+    </div>
+
+    <div class="note-box"><strong>Exception avec THINK :</strong> Pas de if/whether après "Do you think". → Do you think <strong>they will come</strong>? (pas "do you think if they will come")</div>
+
+    <h3>Phrases d'introduction courantes</h3>
+    <table>
+      <tr><th>Questions (→ ?)</th><th>Statements (→ .)</th></tr>
+      <tr><td>Do you know...</td><td>I don't know...</td></tr>
+      <tr><td>Could you tell me...</td><td>I wonder...</td></tr>
+      <tr><td>Would you mind telling me...</td><td>I want to know...</td></tr>
+      <tr><td>Do you remember...</td><td>I'm curious about...</td></tr>
+      <tr><td>Do you think...</td><td>I'm interested in knowing...</td></tr>
+    </table>
+  </div>
+</div>
+<!-- ===== PASSIVE VOICE ===== -->
+<div class="section" id="passive">
+  <div class="card">
+    <h2>🟠 Passive Voice</h2>
+    <span class="badge badge-yellow">Grammar</span>
+
+    <div class="rule-box yellow">
+      <strong>Définition :</strong> On utilise la voix passive quand l’action est plus importante que la personne qui fait l’action.
+    </div>
+
+    <div class="formula">Object + be + Past Participle (V3)</div>
+
+    <h3>📌 Active → Passive</h3>
+
+    <div class="example">
+      Active: The company launched a product.<br>
+      Passive: A product <strong>was launched</strong> by the company.
+    </div>
+
+    <div class="example">
+      Active: Engineers develop applications.<br>
+      Passive: Applications <strong>are developed</strong> by engineers.
+    </div>
+
+    <h3>🧠 Structures principales</h3>
+
+    <table>
+      <tr>
+        <th>Tense</th>
+        <th>Structure</th>
+        <th>Example</th>
+      </tr>
+
+      <tr>
+        <td><strong>Present Simple</strong></td>
+        <td>am/is/are + V3</td>
+        <td>The emails <strong>are sent</strong> every day.</td>
+      </tr>
+
+      <tr>
+        <td><strong>Past Simple</strong></td>
+        <td>was/were + V3</td>
+        <td>The report <strong>was completed</strong> yesterday.</td>
+      </tr>
+
+      <tr>
+        <td><strong>Future</strong></td>
+        <td>will be + V3</td>
+        <td>The project <strong>will be finished</strong> next week.</td>
+      </tr>
+
+      <tr>
+        <td><strong>Present Perfect</strong></td>
+        <td>has/have been + V3</td>
+        <td>A new app <strong>has been developed</strong>.</td>
+      </tr>
+
+      <tr>
+        <td><strong>Modal Verbs</strong></td>
+        <td>modal + be + V3</td>
+        <td>The form <strong>must be submitted</strong> today.</td>
+      </tr>
+    </table>
+
+    <h3>⚠️ Règles importantes</h3>
+
+    <div class="rule-box teal">
+      <strong>1. Le verbe principal devient V3</strong><br>
+      write → written<br>
+      develop → developed<br>
+      complete → completed
+    </div>
+
+    <div class="rule-box pink">
+      <strong>2. Le verbe "be" change selon le temps</strong><br>
+      is / was / has been / will be...
+    </div>
+
+    <div class="rule-box yellow">
+      <strong>3. "By + agent" est optionnel</strong><br>
+      The project was completed <strong>by the team</strong>.<br>
+      → souvent supprimé si inutile.
+    </div>
+
+    <h3>🎯 Expressions fréquentes à l'examen</h3>
+
+    <div class="example">
+      The meeting <strong>was postponed</strong>.
+    </div>
+
+    <div class="example">
+      A solution <strong>has been found</strong>.
+    </div>
+
+    <div class="example">
+      New technologies <strong>are being developed</strong>.
+    </div>
+
+    <div class="example">
+      The documents <strong>must be signed</strong>.
+    </div>
+
+    <div class="tip">
+      Astuce : repère toujours le verbe BE + participe passé (V3).  
+      Exemple : <strong>is created</strong>, <strong>was completed</strong>, <strong>has been developed</strong>.
+    </div>
+  </div>
+</div>
+
+<!-- ===== IDIOMS ===== -->
+<div class="section" id="idioms">
+  <div class="card">
+    <h2>🔴 Idioms & Expressions</h2>
+    <span class="badge badge-pink">Vocabulary</span>
+
+    <p style="color:var(--text-dim); margin-bottom: 16px;">Tous les idioms des cours (L5 Digital Nomads + L2 Project Management + Exam resit). Apprends le sens ET un exemple d'utilisation.</p>
+
+    <div class="idiom-grid">
+      <div class="idiom-card">
+        <div class="idiom-name">🔥 To burn bridges</div>
+        <div class="idiom-meaning">Détruire une relation ou une opportunité de façon irréversible.</div>
+        <div class="idiom-example">"She completely burned bridges when she stopped replying."</div>
+      </div>
+      <div class="idiom-card">
+        <div class="idiom-name">💰 To pay the piper</div>
+        <div class="idiom-meaning">Faire face aux conséquences de ses actions passées.</div>
+        <div class="idiom-example">"He ignored visa rules and now he's paying the piper."</div>
+      </div>
+      <div class="idiom-card">
+        <div class="idiom-name">⏰ To work around the clock</div>
+        <div class="idiom-meaning">Travailler jour et nuit, sans arrêt.</div>
+        <div class="idiom-example">"The team had to work around the clock to meet the deadline."</div>
+      </div>
+      <div class="idiom-card">
+        <div class="idiom-name">🧳 To live out of a suitcase</div>
+        <div class="idiom-meaning">Voyager constamment sans domicile fixe.</div>
+        <div class="idiom-example">"Digital nomads quickly get used to living out of a suitcase."</div>
+      </div>
+      <div class="idiom-card">
+        <div class="idiom-name">🐀 The rat race</div>
+        <div class="idiom-meaning">La routine stressante et compétitive du travail moderne.</div>
+        <div class="idiom-example">"Many employees want to escape the rat race."</div>
+      </div>
+      <div class="idiom-card">
+        <div class="idiom-name">🥊 To roll with the punches</div>
+        <div class="idiom-meaning">S'adapter aux situations difficiles, rester flexible.</div>
+        <div class="idiom-example">"When problems happen, nomads must learn to roll with the punches."</div>
+      </div>
+      <div class="idiom-card">
+        <div class="idiom-name">⛵ To rock the boat</div>
+        <div class="idiom-meaning">Causer des problèmes ou des conflits dans une situation stable.</div>
+        <div class="idiom-example">"She didn't want to rock the boat at her new job."</div>
+      </div>
+      <div class="idiom-card">
+        <div class="idiom-name">🍇 To hear through the grapevine</div>
+        <div class="idiom-meaning">Entendre une information de façon informelle (bouche-à-oreille).</div>
+        <div class="idiom-example">"I heard through the grapevine that layoffs are coming."</div>
+      </div>
+      <div class="idiom-card">
+        <div class="idiom-name">💔 To take a toll (on)</div>
+        <div class="idiom-meaning">Avoir des conséquences négatives importantes.</div>
+        <div class="idiom-example">"The constant stress took a heavy toll on his health."</div>
+      </div>
+      <div class="idiom-card">
+        <div class="idiom-name">🧱 Talking to a dead wall</div>
+        <div class="idiom-meaning">Parler à quelqu'un qui ne répond pas / n'écoute pas.</div>
+        <div class="idiom-example">"Getting my kids to clean is like talking to a dead wall."</div>
+      </div>
+    </div>
+
+    <div class="tip">À l'examen, on te demandera soit de matcher les idioms à leurs définitions, soit de compléter des phrases avec le bon idiom. Apprends les contextes d'utilisation !</div>
+  </div>
+</div>
+
+<!-- ===== VOCABULARY ===== -->
+<div class="section" id="vocab">
+  <div class="card">
+    <h2>🟡 Vocabulary</h2>
+    <span class="badge badge-yellow">Vocabulary</span>
+
+    <h3>📊 Types de graphiques</h3>
+    <table>
+      <tr><th>Chart</th><th>Description</th></tr>
+      <tr><td><strong>Bar chart</strong></td><td>Barres verticales/horizontales pour comparer des catégories</td></tr>
+      <tr><td><strong>Pie chart</strong></td><td>Cercle divisé en parts (pourcentages)</td></tr>
+      <tr><td><strong>Line graph</strong></td><td>Ligne pour montrer l'évolution dans le temps</td></tr>
+      <tr><td><strong>Flow chart</strong></td><td>Diagramme avec des étapes/décisions (processus)</td></tr>
+      <tr><td><strong>Funnel chart</strong></td><td>Entonnoir — montre la réduction progressive (ex: ventes)</td></tr>
+      <tr><td><strong>Histogram</strong></td><td>Similaire au bar chart mais pour la distribution de données continues</td></tr>
+    </table>
+
+    <h3>🌍 Digital Nomad Vocabulary</h3>
+    <table>
+      <tr><th>Mot</th><th>Sens</th></tr>
+      <tr><td><strong>connectivity</strong></td><td>connexion internet/réseau</td></tr>
+      <tr><td><strong>relocating</strong></td><td>déménager, changer de lieu</td></tr>
+      <tr><td><strong>independent</strong></td><td>indépendant (location-independent)</td></tr>
+      <tr><td><strong>immersion</strong></td><td>immersion (culturelle)</td></tr>
+      <tr><td><strong>mobility</strong></td><td>mobilité</td></tr>
+      <tr><td><strong>flexibility</strong></td><td>flexibilité</td></tr>
+      <tr><td><strong>freelance gigs</strong></td><td>missions en freelance</td></tr>
+      <tr><td><strong>commitments</strong></td><td>engagements</td></tr>
+      <tr><td><strong>precarious</strong> → precariousness</td><td>incertain, risqué</td></tr>
+      <tr><td><strong>blurry</strong> → blur</td><td>flou (ex: work-life blur)</td></tr>
+      <tr><td><strong>unsustainable</strong> → unsustainability</td><td>non durable</td></tr>
+      <tr><td><strong>stagnant</strong> → stagnation</td><td>qui stagne, sans progrès</td></tr>
+      <tr><td><strong>disruptive</strong> → disruption</td><td>perturbateur</td></tr>
+    </table>
+
+    <h3>📋 Project Management Vocabulary</h3>
+    <table>
+      <tr><th>Mot</th><th>Sens</th></tr>
+      <tr><td><strong>scope</strong></td><td>périmètre du projet</td></tr>
+      <tr><td><strong>deadline</strong></td><td>date limite</td></tr>
+      <tr><td><strong>stakeholder</strong></td><td>partie prenante</td></tr>
+      <tr><td><strong>budget overrun</strong></td><td>dépassement de budget</td></tr>
+      <tr><td><strong>scope creep</strong></td><td>élargissement non contrôlé du périmètre</td></tr>
+      <tr><td><strong>timeline</strong></td><td>calendrier / planning</td></tr>
+      <tr><td><strong>objective</strong></td><td>objectif (= goal)</td></tr>
+      <tr><td><strong>fall behind</strong></td><td>prendre du retard</td></tr>
+      <tr><td><strong>work overtime</strong></td><td>faire des heures supplémentaires</td></tr>
+      <tr><td><strong>procurement</strong></td><td>approvisionnement</td></tr>
+      <tr><td><strong>feasibility study</strong></td><td>étude de faisabilité</td></tr>
+      <tr><td><strong>WBS</strong> (Work Breakdown Structure)</td><td>décomposition du travail</td></tr>
+      <tr><td><strong>meet a deadline</strong></td><td>respecter une échéance</td></tr>
+      <tr><td><strong>miss a deadline</strong></td><td>rater une échéance</td></tr>
+      <tr><td><strong>tight deadline</strong></td><td>délai serré</td></tr>
+    </table>
+
+    <h3>🗣️ Leadership Collocations (from Lesson 2)</h3>
+    <table>
+      <tr><th>Verb + Noun</th><th>Sens</th></tr>
+      <tr><td>resolve a <strong>conflict</strong></td><td>résoudre un conflit</td></tr>
+      <tr><td>set <strong>goals</strong></td><td>fixer des objectifs</td></tr>
+      <tr><td>clear up a <strong>misunderstanding</strong></td><td>clarifier un malentendu</td></tr>
+      <tr><td>handle a <strong>situation</strong></td><td>gérer une situation</td></tr>
+      <tr><td>assign a <strong>task</strong></td><td>assigner une tâche</td></tr>
+      <tr><td>make a tough <strong>decision</strong></td><td>prendre une décision difficile</td></tr>
+      <tr><td>lead by <strong>example</strong></td><td>montrer l'exemple</td></tr>
+      <tr><td>think outside the <strong>box</strong></td><td>penser de façon créative</td></tr>
+      <tr><td>look at the big <strong>picture</strong></td><td>voir la vue d'ensemble</td></tr>
+      <tr><td>take the <strong>initiative</strong></td><td>prendre l'initiative</td></tr>
+    </table>
+  </div>
+</div>
+
+
+<!-- ===== ESSAYS ===== -->
+<!-- ===== ESSAYS ===== -->
+<div class="section" id="essays">
+  <div class="card">
+
+    <h2>📝 Advanced Essay Section</h2>
+    <span class="badge badge-pink">Essay Writing</span>
+
+    <div class="note-box">
+      <strong>Universal Academic Expressions:</strong><br><br>
+      <div class="note-box">
+<strong>Universal Essay Openings:</strong><br><br>
+
+Nowadays, this topic has become highly controversial.<br>
+In recent years, this issue has attracted significant attention.<br>
+Many people believe that... while others argue that...<br>
+This phenomenon has both advantages and disadvantages.<br>
+There is no doubt that technology has transformed modern life.<br>
+This issue has become increasingly common in today's society.<br>
+In the modern professional world, this topic plays a crucial role.
+</div>
+
+<div class="note-box">
+<strong>Useful Linking Words:</strong><br><br>
+
+<strong>Addition:</strong><br>
+Moreover — Furthermore — In addition — Besides — Another important point is...<br><br>
+
+<strong>Contrast:</strong><br>
+However — Nevertheless — On the other hand — Although — Whereas<br><br>
+
+<strong>Examples:</strong><br>
+For example — For instance — A good example of this is... — Such as...<br><br>
+
+<strong>Cause & Effect:</strong><br>
+Therefore — As a result — Consequently — This can lead to...<br><br>
+
+<strong>Opinion:</strong><br>
+In my opinion — From my perspective — I strongly believe that...<br><br>
+
+<strong>Conclusion:</strong><br>
+To conclude — In conclusion — Overall — To sum up
+</div>
+
+<div class="note-box">
+<strong>Universal Positive Arguments:</strong><br><br>
+
+It improves productivity and efficiency.<br>
+It helps people save time and reduce stress.<br>
+It creates new professional opportunities.<br>
+It encourages creativity and innovation.<br>
+It improves communication and collaboration.<br>
+It allows people to develop important skills.<br>
+It can increase motivation and performance.
+</div>
+
+<div class="note-box">
+<strong>Universal Negative Arguments:</strong><br><br>
+
+It may create stress and anxiety.<br>
+People may become too dependent on technology.<br>
+It can negatively affect mental health.<br>
+Communication problems may occur.<br>
+Work-life balance may become difficult.<br>
+Some individuals may feel isolated or overwhelmed.<br>
+Long-term consequences may appear later.
+</div>
+
+<div class="note-box">
+<strong>Universal Example Expressions:</strong><br><br>
+
+For example...<br>
+For instance...<br>
+A good example of this is...<br>
+This can be clearly seen in...<br>
+One real-life example is...<br>
+Many companies nowadays...<br>
+Several employees/students/professionals...
+</div>
+
+<div class="note-box">
+<strong>Universal Conclusions:</strong><br><br>
+
+To conclude, this issue has both advantages and disadvantages.<br>
+Overall, the positive aspects outweigh the negative ones.<br>
+In my opinion, balance remains the best solution.<br>
+Ultimately, success depends on how people manage these challenges.<br>
+Although this phenomenon offers many benefits, it also requires responsibility and discipline.<br>
+To sum up, this topic will continue to influence modern society in different ways.
+</div>
+
+      It is widely believed that...<br>
+      One major advantage is...<br>
+      Another important point is...<br>
+      On the other hand...<br>
+      This can lead to...<br>
+      For instance...<br>
+      As a result...<br>
+      From my perspective...<br>
+      In conclusion...<br>
+      This issue has become increasingly common nowadays.<br>
+      One possible solution would be...<br>
+      This may have both positive and negative effects.
+    </div>
+
+    <!-- DIGITAL NOMADS -->
+
+    <h3>🌍 Digital Nomad Lifestyle</h3>
+
+    <div class="example">
+      <strong>Introduction 1:</strong><br>
+      In recent years, the digital nomad lifestyle has become increasingly popular due to technological advancements and remote work opportunities.
+    </div>
+
+    <div class="example">
+      <strong>Introduction 2:</strong><br>
+      Nowadays, many professionals choose to work remotely while travelling around the world in search of freedom and flexibility.
+    </div>
+
+    <div class="rule-box teal">
+      <strong>Positive Arguments:</strong>
+      <ul>
+        <li>Digital nomads enjoy greater flexibility and independence.</li>
+        <li>Travelling allows people to discover different cultures and lifestyles.</li>
+        <li>Remote work reduces commuting stress and saves time.</li>
+        <li>Nomads often improve communication and adaptability skills.</li>
+        <li>Working online creates international career opportunities.</li>
+      </ul>
+    </div>
+
+    <div class="rule-box pink">
+      <strong>Negative Arguments:</strong>
+      <ul>
+        <li>Constant travelling may create financial instability.</li>
+        <li>Many digital nomads suffer from loneliness and isolation.</li>
+        <li>Internet connectivity problems can affect productivity.</li>
+        <li>Time zone differences complicate teamwork.</li>
+        <li>It can be difficult to separate work from personal life.</li>
+      </ul>
+    </div>
+
+    <div class="note-box">
+      flexibility — remote work — independence — productivity — connectivity — mobility — freelance
+    </div>
+
+    <div class="example">
+      <strong>Conclusion 1:</strong><br>
+      To conclude, the digital nomad lifestyle offers freedom and exciting experiences, but it also requires discipline and organization.
+    </div>
+
+    <div class="example">
+      <strong>Conclusion 2:</strong><br>
+      From my perspective, digital nomadism can be highly rewarding if individuals know how to manage their responsibilities effectively.
+    </div>
+
+    <!-- AI EDUCATION -->
+
+    <h3>🤖 AI in Education</h3>
+
+    <div class="example">
+      <strong>Introduction 1:</strong><br>
+      Artificial Intelligence is transforming modern education by making learning more interactive and personalized.
+    </div>
+
+    <div class="example">
+      <strong>Introduction 2:</strong><br>
+      Nowadays, AI tools are increasingly used by students and teachers to improve productivity and learning efficiency.
+    </div>
+
+    <div class="rule-box teal">
+      <strong>Positive Arguments:</strong>
+      <ul>
+        <li>AI provides fast access to information.</li>
+        <li>Students can receive personalized learning support.</li>
+        <li>Teachers save time when preparing lessons.</li>
+        <li>Educational platforms become more interactive.</li>
+        <li>AI improves productivity and efficiency.</li>
+      </ul>
+    </div>
+
+    <div class="rule-box pink">
+      <strong>Negative Arguments:</strong>
+      <ul>
+        <li>Students may become too dependent on AI.</li>
+        <li>AI increases the risk of cheating and plagiarism.</li>
+        <li>Critical thinking skills may decline.</li>
+        <li>Some students misuse AI tools irresponsibly.</li>
+        <li>Human interaction in education may decrease.</li>
+      </ul>
+    </div>
+
+    <div class="note-box">
+      artificial intelligence — personalized learning — productivity — efficiency — plagiarism — critical thinking
+    </div>
+
+    <div class="example">
+      <strong>Conclusion 1:</strong><br>
+      AI offers many advantages in education, but it should be used responsibly and ethically.
+    </div>
+
+    <div class="example">
+      <strong>Conclusion 2:</strong><br>
+      In my opinion, AI should support human learning rather than replace teachers and students.
+    </div>
+
+    <!-- HUSTLE CULTURE -->
+
+    <h3>🔥 Hustle Culture</h3>
+
+    <div class="example">
+      <strong>Introduction 1:</strong><br>
+      Hustle culture encourages people to work constantly in order to achieve success and financial stability.
+    </div>
+
+    <div class="example">
+      <strong>Introduction 2:</strong><br>
+      In modern society, many individuals believe that working harder leads to greater success and opportunities.
+    </div>
+
+    <div class="rule-box teal">
+      <strong>Positive Arguments:</strong>
+      <ul>
+        <li>Hard work can lead to professional success.</li>
+        <li>People become more disciplined and ambitious.</li>
+        <li>Employees may improve their productivity.</li>
+        <li>Hustle culture encourages determination.</li>
+        <li>Many successful entrepreneurs worked extremely hard.</li>
+      </ul>
+    </div>
+
+    <div class="rule-box pink">
+      <strong>Negative Arguments:</strong>
+      <ul>
+        <li>Excessive work may cause burnout and stress.</li>
+        <li>People may neglect their personal lives.</li>
+        <li>Mental health problems may increase.</li>
+        <li>Workers may become emotionally exhausted.</li>
+        <li>Work-life balance becomes difficult.</li>
+      </ul>
+    </div>
+
+    <div class="note-box">
+      burnout — productivity — ambition — discipline — stress — work-life balance
+    </div>
+
+    <div class="example">
+      <strong>Conclusion:</strong><br>
+      Although hard work is important, maintaining a healthy balance between work and personal life is essential.
+    </div>
+
+    <!-- REMOTE WORK -->
+
+    <h3>🏠 Remote Work</h3>
+
+    <div class="rule-box teal">
+      <strong>Advantages:</strong>
+      <ul>
+        <li>Employees save transportation time.</li>
+        <li>Remote work offers flexible schedules.</li>
+        <li>Many workers feel more comfortable at home.</li>
+        <li>Companies can reduce office costs.</li>
+        <li>Productivity may increase in quiet environments.</li>
+      </ul>
+    </div>
+
+    <div class="rule-box pink">
+      <strong>Disadvantages:</strong>
+      <ul>
+        <li>Some employees feel isolated.</li>
+        <li>Communication problems may occur.</li>
+        <li>Workers may lose motivation.</li>
+        <li>Home distractions can reduce efficiency.</li>
+        <li>Professional and personal life may overlap.</li>
+      </ul>
+    </div>
+
+    <!-- LEADERSHIP -->
+
+    <h3>👥 Introverted vs Extroverted Leaders</h3>
+
+    <div class="rule-box teal">
+      <strong>Introverted Leaders:</strong>
+      <ul>
+        <li>They are excellent listeners.</li>
+        <li>They think carefully before making decisions.</li>
+        <li>They encourage teamwork and collaboration.</li>
+        <li>They remain calm under pressure.</li>
+        <li>They often analyze problems deeply.</li>
+      </ul>
+    </div>
+
+    <div class="rule-box pink">
+      <strong>Extroverted Leaders:</strong>
+      <ul>
+        <li>They communicate confidently.</li>
+        <li>They motivate teams effectively.</li>
+        <li>They take quick decisions.</li>
+        <li>They are energetic and persuasive.</li>
+        <li>They enjoy public speaking and networking.</li>
+      </ul>
+    </div>
+
+    <!-- AUTHORITATIVE -->
+
+    <!-- PARADOX OF DECISION -->
+
+<h3>🧠 Paradox of Decision</h3>
+
+<div class="example">
+<strong>Introduction 1:</strong><br>
+Nowadays, people are surrounded by too many choices, which can make decision-making more stressful and complicated.
+</div>
+
+<div class="example">
+<strong>Introduction 2:</strong><br>
+Although having many options seems beneficial, excessive choices may create confusion and anxiety.
+</div>
+
+<div class="rule-box teal">
+<strong>Advantages of having many choices:</strong>
+<ul>
+<li>People can choose what suits them best.</li>
+<li>Consumers have more freedom and opportunities.</li>
+<li>Competition improves product quality.</li>
+<li>Individuals can explore different possibilities.</li>
+<li>More choices increase personal satisfaction sometimes.</li>
+</ul>
+</div>
+
+<div class="rule-box pink">
+<strong>Negative Effects:</strong>
+<ul>
+<li>Too many choices create stress and confusion.</li>
+<li>People fear making the wrong decision.</li>
+<li>Decision fatigue reduces productivity.</li>
+<li>Many individuals overthink simple situations.</li>
+<li>FOBO (Fear Of Better Options) becomes common.</li>
+</ul>
+</div>
+
+<div class="example">
+<strong>Conclusion:</strong><br>
+In conclusion, having many choices can be beneficial, but people should learn to make decisions confidently and efficiently.
+</div>
+
+<!-- SMART & QUICK FIXES -->
+
+<h3>⚡ Smart and Quick Fixes</h3>
+
+<div class="example">
+<strong>Introduction:</strong><br>
+In today's fast-paced world, companies and individuals often look for quick solutions to solve problems efficiently.
+</div>
+
+<div class="rule-box teal">
+<strong>Advantages:</strong>
+<ul>
+<li>Quick fixes save time.</li>
+<li>They increase efficiency and productivity.</li>
+<li>Businesses can react rapidly to problems.</li>
+<li>Technology simplifies daily tasks.</li>
+<li>Immediate solutions reduce pressure.</li>
+</ul>
+</div>
+
+<div class="rule-box pink">
+<strong>Disadvantages:</strong>
+<ul>
+<li>Quick solutions may ignore long-term consequences.</li>
+<li>Some problems require deeper analysis.</li>
+<li>Temporary fixes may create bigger issues later.</li>
+<li>People may become impatient.</li>
+<li>Quality may decrease when speed becomes the priority.</li>
+</ul>
+</div>
+
+<div class="example">
+<strong>Conclusion:</strong><br>
+Although smart and quick fixes can be useful, long-term planning remains essential for sustainable success.
+</div>
+
+<!-- PRO LEVEL PITCHING -->
+
+<h3>🎤 Pro Level Pitching</h3>
+
+<div class="example">
+<strong>Introduction:</strong><br>
+Professional pitching plays a crucial role in business because it helps entrepreneurs convince investors and clients.
+</div>
+
+<div class="rule-box teal">
+<strong>Advantages:</strong>
+<ul>
+<li>A good pitch attracts investors.</li>
+<li>It improves communication skills.</li>
+<li>Businesses gain credibility.</li>
+<li>Strong presentations create opportunities.</li>
+<li>Pitching increases confidence and persuasion.</li>
+</ul>
+</div>
+
+<div class="rule-box pink">
+<strong>Challenges:</strong>
+<ul>
+<li>Public speaking may create anxiety.</li>
+<li>Poor communication can ruin opportunities.</li>
+<li>Competition between startups is intense.</li>
+<li>Investors may reject projects easily.</li>
+<li>Preparing a professional pitch requires practice.</li>
+</ul>
+</div>
+
+<div class="example">
+<strong>Conclusion:</strong><br>
+To sum up, effective pitching is essential for business success because it helps transform ideas into real opportunities.
+</div>
+
+<!-- ADVERTISING -->
+
+<h3>📢 Advertising</h3>
+
+<div class="example">
+<strong>Introduction:</strong><br>
+Advertising has become an essential marketing strategy used by companies to attract customers and increase sales.
+</div>
+
+<div class="rule-box teal">
+<strong>Advantages:</strong>
+<ul>
+<li>Advertising increases brand awareness.</li>
+<li>Companies can promote new products.</li>
+<li>Businesses attract more customers.</li>
+<li>Creative campaigns influence consumers positively.</li>
+<li>Advertising boosts economic activity.</li>
+</ul>
+</div>
+
+<div class="rule-box pink">
+<strong>Disadvantages:</strong>
+<ul>
+<li>Some advertisements are misleading.</li>
+<li>Advertising encourages overconsumption.</li>
+<li>Consumers may feel manipulated.</li>
+<li>Social media ads invade privacy.</li>
+<li>Children are highly influenced by advertising.</li>
+</ul>
+</div>
+
+<div class="example">
+<strong>Conclusion:</strong><br>
+In my opinion, advertising is important for businesses, but companies should promote products ethically and responsibly.
+</div>
+
+<!-- PROFESSIONAL GHOSTING -->
+
+<h3>👻 Professional Ghosting</h3>
+
+<div class="example">
+<strong>Introduction:</strong><br>
+Professional ghosting has become increasingly common in modern workplaces and recruitment processes.
+</div>
+
+<div class="rule-box teal">
+<strong>Possible Reasons:</strong>
+<ul>
+<li>Employees avoid uncomfortable conversations.</li>
+<li>Companies receive too many applications.</li>
+<li>Remote communication reduces human interaction.</li>
+<li>People prefer ignoring messages instead of rejecting directly.</li>
+<li>Busy schedules affect communication.</li>
+</ul>
+</div>
+
+<div class="rule-box pink">
+<strong>Negative Effects:</strong>
+<ul>
+<li>Ghosting damages professional relationships.</li>
+<li>Candidates lose trust in companies.</li>
+<li>Communication becomes less respectful.</li>
+<li>Employees may feel frustrated and anxious.</li>
+<li>Professional reputation may suffer.</li>
+</ul>
+</div>
+
+<div class="example">
+<strong>Conclusion:</strong><br>
+Professional communication should remain respectful and transparent in order to build trust and healthy work relationships.
+</div>
+
+<!-- PROJECTS THAT WIN -->
+
+<h3>🏆 Projects That Win</h3>
+
+<div class="example">
+<strong>Introduction:</strong><br>
+Successful projects depend on effective planning, teamwork, communication, and leadership.
+</div>
+
+<div class="rule-box teal">
+<strong>Success Factors:</strong>
+<ul>
+<li>Clear objectives improve organization.</li>
+<li>Good teamwork increases efficiency.</li>
+<li>Strong leadership motivates employees.</li>
+<li>Planning reduces risks and delays.</li>
+<li>Communication helps solve problems quickly.</li>
+</ul>
+</div>
+
+<div class="rule-box pink">
+<strong>Challenges:</strong>
+<ul>
+<li>Budget overruns may occur.</li>
+<li>Tight deadlines create stress.</li>
+<li>Miscommunication affects productivity.</li>
+<li>Projects may suffer from poor management.</li>
+<li>Lack of collaboration slows progress.</li>
+</ul>
+</div>
+
+<div class="example">
+<strong>Conclusion:</strong><br>
+Projects become successful when teams collaborate effectively and leaders manage resources wisely.
+</div>
+
+    <h3>👑 Authoritative vs Inspirational Leadership</h3>
+
+    <div class="rule-box teal">
+      <strong>Authoritative Leadership:</strong>
+      <ul>
+        <li>Strong control and discipline.</li>
+        <li>Fast decision-making.</li>
+        <li>Clear instructions and expectations.</li>
+        <li>Efficient during emergencies.</li>
+        <li>Employees know exactly what to do.</li>
+      </ul>
+    </div>
+
+    <div class="rule-box pink">
+      <strong>Inspirational Leadership:</strong>
+      <ul>
+        <li>Motivates employees positively.</li>
+        <li>Encourages creativity and innovation.</li>
+        <li>Builds trust inside teams.</li>
+        <li>Improves employee satisfaction.</li>
+        <li>Creates a positive work environment.</li>
+      </ul>
+    </div>
+
+  </div>
+</div>
+
+<!-- ===== QUIZ ===== -->
+<div class="section" id="quiz">
+  <div class="card">
+    <h2>🎯 Quiz — Teste-toi !</h2>
+    <p style="color:var(--text-dim);">20 questions couvrant tous les sujets. Clique sur ta réponse pour vérifier.</p>
+  </div>
+
+  <div class="quiz-container" id="quizContainer"></div>
+</div>
+
+</div>
+
+<div class="score-bar" id="scoreBar" style="display:none;">
+  <span class="score-text">Score: <span class="score-num" id="scoreDisplay">0</span> / <span id="totalDisplay">20</span></span>
+</div>
+
+<script>
+// Navigation
+function showSection(id) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  const tabs = document.querySelectorAll('.nav-tab');
+const map = ['pp','cond','emb','idioms','vocab','passive','essays','quiz'];
+  tabs[map.indexOf(id)].classList.add('active');
+  if(id === 'quiz') {
+    document.getElementById('scoreBar').style.display = 'flex';
+  } else {
+    document.getElementById('scoreBar').style.display = 'none';
+  }
+  window.scrollTo({top: 0, behavior: 'smooth'});
+}
+
+// Quiz data
+const quizData = [
+  // Present Perfect (1-5)
+  {
+    q: "Complete: Our team _____ (recently / to develop) a new app.",
+    options: ["has recently developed", "have recently developed", "has recent developed", "recently has developed"],
+    correct: 0,
+    explanation: "Subject 'team' = singulier → has. Adverbe 'recently' va entre has et le participe passé."
+  },
+  {
+    q: "Complete: The engineers _____ (to create / successfully) a campaign.",
+    options: ["has successfully created", "have successfully created", "have created successfully", "successfully have created"],
+    correct: 1,
+    explanation: "'Engineers' = pluriel → have. L'adverbe 'successfully' se place entre have et le participe passé."
+  },
+  {
+    q: "Complete: The company _____ (launch / just) a groundbreaking product.",
+    options: ["has just launched", "have just launch", "has launched just", "just has launched"],
+    correct: 0,
+    explanation: "'Company' = singulier → has. 'Just' va entre has et le participe passé (launched)."
+  },
+  {
+    q: "Which sentence is correct?",
+    options: ["I have never been to Japan.", "I never have been to Japan.", "I have been never to Japan.", "I been never have to Japan."],
+    correct: 0,
+    explanation: "'Never' se place entre have/has et le participe passé: have + never + been."
+  },
+  {
+    q: "Complete: She _____ her homework yet.",
+    options: ["hasn't finished", "haven't finished", "has finished", "didn't finish"],
+    correct: 0,
+    explanation: "'She' = singulier → hasn't. 'Yet' s'utilise dans les phrases négatives au present perfect."
+  },
+  // Conditionals (6-10)
+  {
+    q: "1st Conditional: If you identify a market need, the product _____ more likely to succeed.",
+    options: ["would be", "would have been", "will be", "is being"],
+    correct: 2,
+    explanation: "1st conditional: If + present simple → will + base verb. Situation réelle et probable."
+  },
+  {
+    q: "2nd Conditional: If you _____ more resources, you would be able to develop more products.",
+    options: ["had", "have", "had had", "have had"],
+    correct: 0,
+    explanation: "2nd conditional: If + past simple (had) → would + base verb. Situation hypothétique au présent."
+  },
+  {
+    q: "3rd Conditional: If the team had collaborated more effectively, the project _____.",
+    options: ["would have faced delays", "would not have faced delays", "will not face delays", "would not face delays"],
+    correct: 1,
+    explanation: "3rd conditional: If + past perfect → would (not) have + V3. Situation irréelle dans le passé."
+  },
+  {
+    q: "Quel type ? 'If I were you, I would study harder.'",
+    options: ["1st Conditional", "2nd Conditional", "3rd Conditional", "Zero Conditional"],
+    correct: 1,
+    explanation: "If + past simple (were) → would + V. C'est un conseil hypothétique = 2nd conditional."
+  },
+  {
+    q: "Quel type ? 'If she had taken the bus, she would have arrived on time.'",
+    options: ["1st Conditional", "2nd Conditional", "3rd Conditional", "Mixed Conditional"],
+    correct: 2,
+    explanation: "If + past perfect (had taken) → would have + V3 (arrived). Regret sur le passé = 3rd conditional."
+  },
+  // Embedded Questions (11-15)
+  {
+    q: "Transforme: 'Where can I find good Wi-Fi?' → Do you know _____ ?",
+    options: ["where can I find good Wi-Fi", "where I can find good Wi-Fi", "where I find can good Wi-Fi", "where do I find good Wi-Fi"],
+    correct: 1,
+    explanation: "Embedded question = ordre SVO. 'Where I can find' (pas 'where can I find')."
+  },
+  {
+    q: "Quelle phrase est correcte ?",
+    options: [
+      "Can you tell me is it safe to travel?",
+      "Can you tell me if it is safe to travel?",
+      "Can you tell me it is safe to travel?",
+      "Can you tell me if is it safe to travel?"
+    ],
+    correct: 1,
+    explanation: "Pour les Yes/No questions, on utilise 'if' ou 'whether' + ordre SVO."
+  },
+  {
+    q: "Trouve l'erreur: 'I wonder what the cost of living in Lisbon's.'",
+    options: [
+      "Pas de 'if'",
+      "Contraction 'Lisbon's' en fin de clause",
+      "Pas de point d'interrogation",
+      "Ordre des mots incorrect"
+    ],
+    correct: 1,
+    explanation: "Jamais de contraction en fin de clause embedded. → '...what the cost of living in Lisbon is.'"
+  },
+  {
+    q: "Complète: 'She can't decide _____ stay in Bali or move to Thailand.'",
+    options: ["if she", "whether to", "if to", "that she"],
+    correct: 1,
+    explanation: "Quand le sujet est le même, on peut utiliser l'infinitif: 'whether to stay'."
+  },
+  {
+    q: "'Do you think they will come?' — Pourquoi pas 'Do you think if they will come?'",
+    options: [
+      "Parce que 'think' est au présent",
+      "Parce qu'après 'think', on n'utilise jamais 'if/whether'",
+      "Parce que c'est une question négative",
+      "Parce que 'will' est déjà un modal"
+    ],
+    correct: 1,
+    explanation: "Exception : après le verbe THINK, on ne met pas if/whether. On garde l'ordre direct."
+  },
+  // Idioms (16-18)
+  {
+    q: "Que signifie 'to pay the piper' ?",
+    options: [
+      "Payer un musicien",
+      "Faire face aux conséquences de ses actions",
+      "Gagner beaucoup d'argent",
+      "Voyager sans payer"
+    ],
+    correct: 1,
+    explanation: "'Pay the piper' = subir les conséquences de ses choix passés."
+  },
+  {
+    q: "Complète: 'Many employees want to escape _____ .'",
+    options: ["the rat race", "the dead wall", "the grapevine", "the piper"],
+    correct: 0,
+    explanation: "'The rat race' = la routine stressante et compétitive du travail de bureau."
+  },
+  {
+    q: "'She didn't want to _____ at her new job, so she kept quiet.'",
+    options: ["roll with the punches", "rock the boat", "burn bridges", "pay the piper"],
+    correct: 1,
+    explanation: "'Rock the boat' = causer des problèmes dans une situation stable."
+  },
+  // Vocab (19-20)
+  {
+    q: "Quel type de graphique montre des pourcentages dans un cercle ?",
+    options: ["Bar chart", "Line graph", "Pie chart", "Funnel chart"],
+    correct: 2,
+    explanation: "Le pie chart (camembert) divise un cercle en parts proportionnelles (%)."
+  },
+  {
+    q: "'Scope creep' en project management signifie :",
+    options: [
+      "Respecter le budget du projet",
+      "Élargissement non contrôlé du périmètre du projet",
+      "Terminer le projet en avance",
+      "Réduire le nombre de tâches"
+    ],
+    correct: 1,
+    explanation: "'Scope creep' = quand le périmètre du projet grandit de manière non contrôlée."
+  },
+  ,
+{
+  q: "Transforme en passive: 'The manager approved the project.'",
+  options: [
+    "The project was approved by the manager.",
+    "The project approved by the manager.",
+    "The project is approved by the manager.",
+    "The project has approved by the manager."
+  ],
+  correct: 0,
+  explanation: "Past simple passive = was/were + V3."
+},
+
+{
+  q: "Complete: 'A new application _____ recently.'",
+  options: [
+    "has been developed",
+    "have been developed",
+    "was developed",
+    "is develop"
+  ],
+  correct: 0,
+  explanation: "Present perfect passive = has/have been + V3."
+},
+
+{
+  q: "Choose the correct passive sentence.",
+  options: [
+    "The emails send every day.",
+    "The emails are sent every day.",
+    "The emails were sent every day.",
+    "The emails are send every day."
+  ],
+  correct: 1,
+  explanation: "Present simple passive = are + V3."
+},
+
+{
+  q: "Complete: 'The form must _____ today.'",
+  options: [
+    "be submit",
+    "submitted",
+    "be submitted",
+    "being submitted"
+  ],
+  correct: 2,
+  explanation: "Modal passive = modal + be + V3."
+}
+];
+
+// Build quiz
+let score = 0;
+let answered = 0;
+const container = document.getElementById('quizContainer');
+
+quizData.forEach((item, idx) => {
+  const div = document.createElement('div');
+  div.className = 'quiz-question';
+  div.innerHTML = `
+    <div class="q-number">Question ${idx + 1} / ${quizData.length}</div>
+    <div class="q-text">${item.q}</div>
+    <div class="quiz-options" id="opts-${idx}">
+      ${item.options.map((opt, oi) => `<div class="quiz-option" onclick="checkAnswer(${idx}, ${oi})">${opt}</div>`).join('')}
+    </div>
+    <div class="feedback" id="fb-${idx}"></div>
+  `;
+  container.appendChild(div);
+});
+
+function checkAnswer(qIdx, optIdx) {
+  const opts = document.querySelectorAll(`#opts-${qIdx} .quiz-option`);
+  if(opts[0].classList.contains('disabled')) return;
+  
+  answered++;
+  const item = quizData[qIdx];
+  const fb = document.getElementById(`fb-${qIdx}`);
+  
+  opts.forEach(o => o.classList.add('disabled'));
+  opts[item.correct].classList.add('correct-answer');
+  
+  if(optIdx === item.correct) {
+    score++;
+    opts[optIdx].classList.add('correct-answer');
+    fb.className = 'feedback correct-fb';
+    fb.textContent = '✅ Correct ! ' + item.explanation;
+  } else {
+    opts[optIdx].classList.add('wrong-answer');
+    fb.className = 'feedback wrong-fb';
+    fb.textContent = '❌ Incorrect. ' + item.explanation;
+  }
+  
+  document.getElementById('scoreDisplay').textContent = score;
+}
+</script>
+
+</body>
+</html>
