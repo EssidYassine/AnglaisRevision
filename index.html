@@ -1,0 +1,2077 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CCCA4 — Complete Study Guide</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@400;500;700&display=swap');
+:root{
+  --bg:#0f1117;--card:#1a1d27;--accent:#6c5ce7;--a2:#00cec9;
+  --a3:#fd79a8;--a4:#fdcb6e;--text:#e8e8ef;--dim:#8b8da3;
+  --ok:#00b894;--err:#e17055;--bdr:#2d3040;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);line-height:1.7;overflow-x:hidden;}
+
+/* HERO */
+.hero{min-height:30vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:50px 20px 30px;background:linear-gradient(135deg,#0f1117 0%,#1a1040 50%,#0f1117 100%);position:relative;overflow:hidden;}
+.hero::before{content:'';position:absolute;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(108,92,231,.15) 0%,transparent 70%);top:-150px;right:-80px;}
+.hero h1{font-family:'DM Serif Display',serif;font-size:clamp(1.8rem,5vw,3rem);margin-bottom:8px;background:linear-gradient(135deg,#6c5ce7,#00cec9,#fd79a8);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+.hero p{color:var(--dim);font-size:.95rem;max-width:520px;}
+.hero-tags{display:flex;gap:8px;margin-top:14px;flex-wrap:wrap;justify-content:center;}
+.htag{padding:5px 14px;border-radius:20px;font-size:.78rem;font-weight:700;}
+.htag.lang{background:rgba(108,92,231,.2);color:#a29bfe;}
+.htag.essay{background:rgba(253,121,168,.2);color:#fd79a8;}
+.htag.sim{background:rgba(225,112,85,.2);color:#fab1a0;}
+
+/* NAV */
+.nav-wrap{position:sticky;top:0;background:rgba(15,17,23,.97);backdrop-filter:blur(14px);z-index:100;border-bottom:1px solid var(--bdr);}
+.nav-group{display:flex;gap:5px;padding:10px 16px 6px;overflow-x:auto;flex-wrap:wrap;justify-content:center;align-items:center;}
+.nav-label{color:var(--dim);font-size:.65rem;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;white-space:nowrap;padding:0 4px;}
+.nav-sep{width:1px;height:20px;background:var(--bdr);margin:0 4px;}
+.ntab{padding:7px 14px;border-radius:30px;border:1px solid var(--bdr);background:var(--card);color:var(--dim);cursor:pointer;font-size:.78rem;font-weight:600;transition:all .3s;white-space:nowrap;}
+.ntab:hover{border-color:var(--accent);color:var(--text);}
+.ntab.active{background:var(--accent);color:#fff;border-color:var(--accent);}
+.ntab.etab.active{background:var(--a3);border-color:var(--a3);}
+.ntab.stab.active{background:var(--err);border-color:var(--err);}
+
+/* CONTENT */
+.content{max-width:920px;margin:0 auto;padding:24px 18px 90px;}
+.section{display:none;animation:fadeIn .4s ease;}
+.section.active{display:block;}
+@keyframes fadeIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+
+/* CARD */
+.card{background:var(--card);border:1px solid var(--bdr);border-radius:16px;padding:24px;margin-bottom:18px;transition:border-color .3s;}
+.card:hover{border-color:rgba(108,92,231,.35);}
+.card h2{font-family:'DM Serif Display',serif;font-size:1.4rem;margin-bottom:12px;display:flex;align-items:center;gap:10px;flex-wrap:wrap;}
+.card h3{font-size:1rem;color:var(--a2);margin:16px 0 8px;font-weight:700;}
+
+/* BADGES */
+.badge{display:inline-block;padding:2px 10px;border-radius:16px;font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.5px;}
+.bp{background:rgba(108,92,231,.2);color:#a29bfe;}
+.bt{background:rgba(0,206,201,.2);color:#00cec9;}
+.bpk{background:rgba(253,121,168,.2);color:#fd79a8;}
+.by{background:rgba(253,203,110,.2);color:#fdcb6e;}
+.bg{background:rgba(0,184,148,.2);color:#55efc4;}
+.br{background:rgba(225,112,85,.2);color:#fab1a0;}
+
+/* RULE BOXES */
+.rule{background:rgba(108,92,231,.08);border-left:4px solid var(--accent);padding:13px 16px;border-radius:0 10px 10px 0;margin:10px 0;font-size:.9rem;}
+.rule.t{background:rgba(0,206,201,.08);border-left-color:var(--a2);}
+.rule.p{background:rgba(253,121,168,.08);border-left-color:var(--a3);}
+.rule.y{background:rgba(253,203,110,.08);border-left-color:var(--a4);}
+.rule.g{background:rgba(0,184,148,.08);border-left-color:var(--ok);}
+.rule.r{background:rgba(225,112,85,.08);border-left-color:var(--err);}
+
+/* EX / FORMULA / TIP / NOTE */
+.ex{background:rgba(255,255,255,.03);padding:11px 15px;border-radius:9px;margin:7px 0;font-size:.9rem;border:1px solid rgba(255,255,255,.05);}
+.ex strong{color:var(--a2);}
+.wrong{color:var(--err);text-decoration:line-through;}
+.ok-text{color:var(--ok);font-weight:700;}
+.formula{text-align:center;font-size:1rem;font-weight:700;padding:13px;background:rgba(108,92,231,.12);border-radius:10px;margin:10px 0;color:#a29bfe;}
+.tip{display:block;background:rgba(253,203,110,.1);border:1px solid rgba(253,203,110,.25);color:var(--a4);padding:9px 15px;border-radius:9px;font-size:.83rem;margin:9px 0;}
+.tip::before{content:'💡 ';}
+.note{background:rgba(0,206,201,.08);border:1px solid rgba(0,206,201,.2);padding:11px 15px;border-radius:10px;margin:9px 0;font-size:.85rem;}
+.note::before{content:'⚠️ ';}
+
+/* TABLE */
+table{width:100%;border-collapse:collapse;margin:10px 0;font-size:.87rem;}
+th{background:rgba(108,92,231,.15);padding:9px 11px;text-align:left;font-weight:700;color:var(--a2);border-bottom:2px solid var(--accent);}
+td{padding:9px 11px;border-bottom:1px solid var(--bdr);}
+tr:hover td{background:rgba(255,255,255,.02);}
+
+/* IDIOMS */
+.ig{display:grid;grid-template-columns:repeat(auto-fill,minmax(255px,1fr));gap:11px;margin:11px 0;}
+.ic{background:rgba(255,255,255,.03);border:1px solid var(--bdr);border-radius:11px;padding:15px;transition:all .3s;}
+.ic:hover{border-color:var(--a3);transform:translateY(-2px);}
+.ic .in{font-weight:700;color:var(--a3);font-size:.9rem;margin-bottom:4px;}
+.ic .im{color:var(--dim);font-size:.82rem;}
+.ic .ie{margin-top:6px;font-style:italic;font-size:.8rem;opacity:.8;}
+
+/* ---- ESSAY STYLES ---- */
+/* Section banner */
+.essay-banner{background:linear-gradient(135deg,rgba(253,121,168,.12),rgba(108,92,231,.1));border:1px solid rgba(253,121,168,.25);border-radius:14px;padding:18px 22px;margin-bottom:20px;display:flex;align-items:center;gap:14px;flex-wrap:wrap;}
+.essay-banner .eb-icon{font-size:2rem;}
+.essay-banner .eb-info h2{font-family:'DM Serif Display',serif;font-size:1.3rem;margin-bottom:4px;}
+.essay-banner .eb-info p{color:var(--dim);font-size:.85rem;}
+.essay-banner .eb-pts{background:rgba(253,203,110,.2);color:var(--a4);padding:6px 14px;border-radius:10px;font-weight:700;font-size:.9rem;white-space:nowrap;margin-left:auto;}
+
+/* Type comparison */
+.type-compare{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:14px 0;}
+@media(max-width:650px){.type-compare{grid-template-columns:1fr;}}
+.type-card{border-radius:14px;padding:18px;border:2px solid;}
+.type-card.arg-type{background:rgba(108,92,231,.06);border-color:rgba(108,92,231,.25);}
+.type-card.op-type{background:rgba(253,121,168,.06);border-color:rgba(253,121,168,.25);}
+.type-card h3{margin:0 0 10px;font-size:1rem;}
+.type-card.arg-type h3{color:var(--accent);}
+.type-card.op-type h3{color:var(--a3);}
+.type-diff{background:rgba(253,203,110,.1);border:1px solid rgba(253,203,110,.2);border-radius:8px;padding:8px 12px;margin-top:10px;font-size:.82rem;color:var(--a4);}
+
+/* Structure steps */
+.steps{display:flex;flex-direction:column;gap:8px;margin:12px 0;}
+.step{display:flex;gap:12px;align-items:flex-start;}
+.sn{width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:.78rem;flex-shrink:0;}
+.sn.a{background:rgba(108,92,231,.2);color:var(--accent);}
+.sn.o{background:rgba(253,121,168,.2);color:var(--a3);}
+.stxt{font-size:.88rem;padding-top:4px;}
+.stxt strong{color:var(--a2);}
+
+/* Rubric table */
+.rubric-row{display:flex;align-items:center;gap:10px;padding:9px 12px;border-bottom:1px solid var(--bdr);font-size:.87rem;}
+.rubric-row:last-child{border:none;}
+.rubric-row .criterion{flex:1;font-weight:600;}
+.rubric-row .pts-badge{background:rgba(0,206,201,.15);color:var(--a2);padding:2px 10px;border-radius:6px;font-weight:700;font-size:.78rem;white-space:nowrap;}
+.rubric-row .strategy{flex:2;color:var(--dim);font-size:.82rem;}
+
+/* Linkers */
+.lk-section{margin:12px 0;}
+.lk-title{font-size:.82rem;font-weight:700;color:var(--a2);margin-bottom:6px;text-transform:uppercase;letter-spacing:.5px;}
+.lk-grid{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px;}
+.lk-pill{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);padding:5px 12px;border-radius:20px;font-size:.82rem;}
+
+/* Topic cards */
+.topic-wrap{margin-bottom:16px;}
+.topic-header{background:var(--card);border:1px solid var(--bdr);border-radius:14px;padding:18px 22px;cursor:pointer;transition:all .3s;display:flex;align-items:center;gap:12px;}
+.topic-header:hover{border-color:var(--a2);}
+.tn{width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:.85rem;flex-shrink:0;}
+.tn.a{background:var(--accent);color:#fff;}
+.tn.o{background:var(--a3);color:#fff;}
+.topic-title{flex:1;}
+.topic-title h3{font-size:1rem;margin:0 0 3px;font-weight:700;}
+.topic-title p{font-size:.78rem;color:var(--dim);margin:0;}
+.topic-arrow{color:var(--dim);transition:transform .3s;font-size:1rem;}
+.topic-arrow.open{transform:rotate(180deg);}
+.topic-body{max-height:0;overflow:hidden;transition:max-height .55s ease;}
+.topic-body.open{max-height:8000px;}
+.topic-content{background:rgba(255,255,255,.015);border:1px solid var(--bdr);border-top:none;border-radius:0 0 14px 14px;padding:22px;}
+
+/* Intro / Conclusion boxes */
+.intro-box{background:rgba(108,92,231,.06);border:1px solid rgba(108,92,231,.2);border-radius:11px;padding:14px 16px;margin:8px 0;font-size:.88rem;position:relative;padding-top:20px;}
+.intro-box .lbl{position:absolute;top:-8px;left:13px;background:var(--card);padding:0 7px;font-size:.67rem;font-weight:700;color:var(--accent);text-transform:uppercase;letter-spacing:.8px;}
+.conc-box{background:rgba(253,203,110,.06);border:1px solid rgba(253,203,110,.2);border-radius:11px;padding:14px 16px;margin:8px 0;font-size:.88rem;position:relative;padding-top:20px;}
+.conc-box .lbl{position:absolute;top:-8px;left:13px;background:var(--card);padding:0 7px;font-size:.67rem;font-weight:700;color:var(--a4);text-transform:uppercase;letter-spacing:.8px;}
+
+/* Arg columns */
+.arg-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:14px 0;}
+@media(max-width:660px){.arg-grid{grid-template-columns:1fr;}}
+.for-col,.ag-col{border-radius:12px;padding:16px;border:1px solid;}
+.for-col{background:rgba(0,184,148,.04);border-color:rgba(0,184,148,.2);}
+.ag-col{background:rgba(225,112,85,.04);border-color:rgba(225,112,85,.2);}
+.for-col h4{color:var(--ok);font-size:.92rem;margin-bottom:10px;}
+.ag-col h4{color:var(--err);font-size:.92rem;margin-bottom:10px;}
+.arg-item{margin-bottom:12px;padding-bottom:12px;border-bottom:1px solid rgba(255,255,255,.05);}
+.arg-item:last-child{border:none;margin:0;padding:0;}
+.arg-point{font-weight:700;font-size:.86rem;margin-bottom:3px;}
+.arg-eg{font-size:.8rem;color:var(--dim);font-style:italic;padding-left:10px;border-left:2px solid rgba(255,255,255,.08);margin-top:3px;}
+
+/* Opinion column */
+.op-col{background:rgba(108,92,231,.05);border:1px solid rgba(108,92,231,.18);border-radius:12px;padding:16px;margin:12px 0;}
+.op-col h4{color:var(--accent);font-size:.92rem;margin-bottom:10px;}
+.counter-box{background:rgba(225,112,85,.06);border:1px solid rgba(225,112,85,.2);border-radius:10px;padding:13px 15px;margin:12px 0;font-size:.87rem;}
+.counter-box strong{color:var(--err);}
+
+/* Vocab key (highlighted) */
+.vocab-key{background:rgba(253,203,110,.07);border:1px solid rgba(253,203,110,.2);border-radius:10px;padding:10px 14px;margin:10px 0;font-size:.83rem;color:var(--a4);}
+.vocab-key::before{content:'🔑 Key words: ';}
+
+/* SIMULATION */
+.sim-header{background:linear-gradient(135deg,rgba(225,112,85,.12),rgba(253,121,168,.08));border:1px solid rgba(225,112,85,.3);border-radius:14px;padding:20px;margin-bottom:20px;}
+.sim-header h2{font-family:'DM Serif Display',serif;font-size:1.4rem;margin-bottom:6px;}
+.sim-header p{color:var(--dim);font-size:.86rem;margin-bottom:12px;}
+.sim-tags{display:flex;gap:8px;flex-wrap:wrap;}
+.sim-tag{padding:4px 12px;border-radius:8px;font-size:.78rem;font-weight:700;}
+.sim-tag.l{background:rgba(253,121,168,.2);color:var(--a3);}
+.sim-tag.e{background:rgba(108,92,231,.2);color:#a29bfe;}
+.sim-section{background:var(--card);border:1px solid var(--bdr);border-radius:14px;padding:20px;margin-bottom:16px;}
+.sim-section h3{color:var(--a4);font-size:.95rem;margin-bottom:14px;border-bottom:1px solid var(--bdr);padding-bottom:10px;}
+.pts{display:inline-block;background:rgba(253,203,110,.15);color:var(--a4);padding:1px 9px;border-radius:5px;font-size:.72rem;font-weight:700;margin-left:6px;}
+.sim-q{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);border-radius:10px;padding:14px 16px;margin:10px 0;}
+.sim-q .qlbl{font-weight:700;color:var(--a2);font-size:.8rem;margin-bottom:7px;text-transform:uppercase;letter-spacing:.5px;}
+.show-ans{cursor:pointer;color:var(--accent);font-size:.8rem;font-weight:700;margin-top:9px;display:inline-block;border:1px solid rgba(108,92,231,.3);padding:3px 10px;border-radius:6px;transition:all .2s;}
+.show-ans:hover{background:rgba(108,92,231,.1);}
+.ans-box{background:rgba(0,184,148,.07);border:1px solid rgba(0,184,148,.2);border-radius:8px;padding:12px;margin-top:8px;font-size:.85rem;display:none;}
+.ans-box.show{display:block;}
+.ans-box .ok-label{color:var(--ok);font-weight:700;}
+
+/* Score target table */
+.score-table .row{display:flex;align-items:flex-start;gap:10px;padding:9px 12px;border-bottom:1px solid var(--bdr);font-size:.85rem;}
+.score-table .row:last-child{border:none;background:rgba(253,203,110,.06);border-radius:0 0 10px 10px;font-weight:700;}
+.score-table .crit{flex:1.5;}
+.score-table .target{color:var(--ok);font-weight:700;width:70px;text-align:center;}
+.score-table .how{flex:2;color:var(--dim);font-size:.8rem;}
+
+/* QUIZ */
+.qbox{background:var(--card);border:1px solid var(--bdr);border-radius:14px;padding:20px;margin-bottom:14px;}
+.qnum{font-size:.74rem;font-weight:700;color:var(--accent);text-transform:uppercase;letter-spacing:1px;margin-bottom:5px;}
+.qtxt{font-size:.97rem;font-weight:600;margin-bottom:11px;}
+.qopts{display:flex;flex-direction:column;gap:7px;}
+.qopt{padding:10px 14px;border-radius:9px;border:1px solid var(--bdr);background:rgba(255,255,255,.02);cursor:pointer;transition:all .25s;font-size:.9rem;}
+.qopt:hover{border-color:var(--accent);background:rgba(108,92,231,.08);}
+.qopt.ca{border-color:var(--ok)!important;background:rgba(0,184,148,.15)!important;color:var(--ok);}
+.qopt.wa{border-color:var(--err)!important;background:rgba(225,112,85,.15)!important;color:var(--err);}
+.qopt.dis{pointer-events:none;}
+.qfb{margin-top:9px;padding:9px 13px;border-radius:8px;font-size:.85rem;display:none;}
+.qfb.ok{display:block;background:rgba(0,184,148,.1);color:var(--ok);border:1px solid rgba(0,184,148,.3);}
+.qfb.nok{display:block;background:rgba(225,112,85,.1);color:var(--err);border:1px solid rgba(225,112,85,.3);}
+
+/* SCORE BAR */
+.scorebar{position:fixed;bottom:0;left:0;right:0;background:rgba(26,29,39,.97);backdrop-filter:blur(12px);border-top:1px solid var(--bdr);padding:11px 20px;display:flex;align-items:center;justify-content:center;gap:18px;z-index:200;}
+.scorebar .st{font-weight:700;font-size:.96rem;}
+.scorebar .sn{color:var(--a2);}
+
+/* Passive */
+.passive-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:10px;margin:12px 0;}
+.pg-card{background:rgba(255,255,255,.03);border:1px solid var(--bdr);border-radius:10px;padding:13px;}
+.pg-card .pc-tense{font-weight:700;color:var(--a4);font-size:.82rem;margin-bottom:5px;}
+.pg-card .pc-form{font-family:monospace;font-size:.9rem;color:var(--a2);margin-bottom:4px;}
+.pg-card .pc-ex{font-size:.82rem;color:var(--dim);font-style:italic;}
+
+@media(max-width:600px){
+  .nav-group{padding:8px 8px 5px;gap:4px;}
+  .ntab{padding:6px 10px;font-size:.73rem;}
+  .card{padding:16px;}
+  .ig{grid-template-columns:1fr;}
+  .arg-grid{grid-template-columns:1fr;}
+  .type-compare{grid-template-columns:1fr;}
+}
+
+/* ---- SIMULATION EXTRA STYLES ---- */
+.exam-sel-btn{padding:9px 18px;border-radius:30px;border:1px solid var(--bdr);background:var(--card);color:var(--dim);cursor:pointer;font-size:.82rem;font-weight:700;transition:all .3s;white-space:nowrap;}
+.exam-sel-btn:hover{border-color:var(--err);color:var(--text);}
+.exam-sel-btn.active{background:var(--err);color:#fff;border-color:var(--err);}
+.exam-title-bar{display:flex;align-items:flex-start;justify-content:space-between;gap:14px;background:rgba(225,112,85,.07);border:1px solid rgba(225,112,85,.2);border-radius:14px;padding:18px 22px;margin-bottom:18px;flex-wrap:wrap;}
+.exam-label{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--err);margin-bottom:4px;}
+.exam-score-badge{background:rgba(225,112,85,.15);color:var(--err);padding:8px 16px;border-radius:10px;font-weight:800;font-size:1.1rem;white-space:nowrap;}
+.sim-sub{color:var(--a2);font-size:.9rem;font-weight:700;margin:16px 0 10px;border-bottom:1px solid var(--bdr);padding-bottom:6px;}
+.q-inst{font-size:.83rem;color:var(--dim);margin-bottom:10px;font-style:italic;}
+/* Chart visuals */
+.chart-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:12px 0;}
+@media(max-width:600px){.chart-grid{grid-template-columns:repeat(2,1fr);}}
+.chart-card{background:rgba(255,255,255,.02);border:1px solid var(--bdr);border-radius:10px;padding:12px;text-align:center;}
+.chart-visual{height:80px;display:flex;align-items:center;justify-content:center;margin-bottom:8px;}
+.chart-label{font-weight:700;font-size:.82rem;color:var(--a2);}
+.funnel-viz{flex-direction:column;align-items:center;gap:3px;width:100%;}
+.fbar{height:16px;border-radius:4px;font-size:.65rem;color:white;display:flex;align-items:center;justify-content:center;transition:width .3s;}
+.pie-viz{position:relative;}
+.pie-inner{width:65px;height:65px;border-radius:50%;background:conic-gradient(#6c5ce7 0% 35%,#00cec9 35% 60%,#fd79a8 60% 80%,#fdcb6e 80% 100%);}
+.flow-viz{display:flex;flex-direction:column;align-items:center;gap:2px;font-size:.7rem;}
+.flow-box{background:rgba(108,92,231,.15);border:1px solid var(--accent);border-radius:5px;padding:3px 8px;color:var(--text);white-space:nowrap;}
+.flow-arrow{color:var(--dim);font-size:.8rem;}
+.bbar{width:20px;border-radius:3px 3px 0 0;}
+/* Match & fill */
+.match-table{margin:10px 0;}
+.match-row{display:flex;gap:10px;align-items:flex-start;padding:8px 0;border-bottom:1px solid rgba(255,255,255,.04);font-size:.88rem;}
+.match-num{width:20px;height:20px;border-radius:50%;background:var(--accent);color:#fff;display:flex;align-items:center;justify-content:center;font-size:.72rem;font-weight:700;flex-shrink:0;margin-top:2px;}
+.match-expr{flex:1;line-height:1.5;}
+.options-list{display:flex;flex-direction:column;gap:5px;margin:10px 0;}
+.opt-item{background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.05);border-radius:7px;padding:8px 12px;font-size:.85rem;}
+.fill-list{display:flex;flex-direction:column;gap:8px;margin:10px 0;}
+.fill-item{background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.05);border-radius:8px;padding:10px 14px;font-size:.87rem;line-height:1.6;}
+.fill-num{font-weight:700;color:var(--a2);margin-right:6px;}
+.word-bank{display:flex;flex-wrap:wrap;gap:7px;margin:10px 0;padding:10px;background:rgba(108,92,231,.06);border-radius:10px;border:1px solid rgba(108,92,231,.15);}
+.wb-word{background:rgba(108,92,231,.15);color:#a29bfe;padding:4px 12px;border-radius:16px;font-size:.82rem;font-weight:600;}
+/* MCQ */
+.mcq-list{display:flex;flex-direction:column;gap:14px;margin:10px 0;}
+.mcq-item{background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.05);border-radius:10px;padding:12px 14px;}
+.mcq-q{font-size:.88rem;margin-bottom:8px;font-weight:600;}
+.mcq-opts{display:flex;flex-wrap:wrap;gap:8px;}
+.mopt{background:rgba(255,255,255,.03);border:1px solid var(--bdr);border-radius:7px;padding:5px 12px;font-size:.82rem;}
+.correct-opt{background:rgba(0,184,148,.12);border-color:var(--ok);color:var(--ok);font-weight:700;}
+/* Essay choice */
+.essay-choice{background:rgba(255,255,255,.02);border:1px solid var(--bdr);border-radius:12px;padding:18px;margin:12px 0;}
+.ec-label{font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--a3);margin-bottom:6px;}
+.essay-prompt{font-size:.9rem;font-weight:600;font-style:italic;border-left:3px solid var(--a3);padding-left:12px;margin-bottom:10px;line-height:1.6;}
+/* Model essay */
+.model-essay{background:rgba(0,206,201,.04);border:1px solid rgba(0,206,201,.15);border-radius:10px;padding:16px;font-size:.86rem;line-height:1.9;white-space:pre-wrap;}
+/* Essay score breakdown */
+.essay-score-breakdown{margin-top:12px;background:rgba(255,255,255,.02);border-radius:10px;overflow:hidden;border:1px solid var(--bdr);}
+.esb-item{display:flex;align-items:center;justify-content:space-between;padding:7px 12px;border-bottom:1px solid var(--bdr);font-size:.82rem;}
+.esb-item:last-child{border:none;}
+.esb-item.total-row{background:rgba(0,184,148,.08);font-weight:700;}
+.esb-pts{color:var(--ok);font-weight:700;white-space:nowrap;margin-left:10px;}
+
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <h1>CCCA4 — Complete Study Guide</h1>
+  <p>Grammar · Vocabulary · Idioms · Essay Writing · Exam Simulation</p>
+  <div class="hero-tags">
+    <span class="htag lang">Language — 10 pts</span>
+    <span class="htag essay">Essay — 10 pts</span>
+    <span class="htag sim">Target: 14 / 20</span>
+  </div>
+</div>
+
+<div class="nav-wrap">
+  <div class="nav-group">
+    <span class="nav-label">Grammar</span>
+    <div class="ntab active" onclick="go('pp')">Present Perfect</div>
+    <div class="ntab" onclick="go('cond')">Conditionals</div>
+    <div class="ntab" onclick="go('emb')">Embedded Q.</div>
+    <div class="ntab" onclick="go('pass')">Passive Voice</div>
+    <div class="nav-sep"></div>
+    <span class="nav-label">Vocabulary</span>
+    <div class="ntab" onclick="go('idioms')">Idioms</div>
+    <div class="ntab" onclick="go('vocab')">Vocab</div>
+    <div class="nav-sep"></div>
+    <span class="nav-label">Essay</span>
+    <div class="ntab etab" onclick="go('eguide')">📝 Guide</div>
+    <div class="ntab etab" onclick="go('earg')">⚖️ Argumentative</div>
+    <div class="ntab etab" onclick="go('eop')">💭 Opinion</div>
+    <div class="nav-sep"></div>
+    <div class="ntab stab" onclick="go('sim')">🔴 Exam Simulation</div>
+    <div class="ntab" onclick="go('quiz')">🎯 Quiz</div>
+  </div>
+</div>
+
+<div class="content">
+
+<!-- ===================== PRESENT PERFECT ===================== -->
+<div class="section active" id="pp">
+  <div class="card">
+    <h2>🔵 Present Perfect <span class="badge bp">3 pts — Exam</span></h2>
+    <div class="rule"><strong>Use when:</strong> A past action connected to the present, or a recent event / life experience. Signal words: <strong>just · recently · already · yet · ever · never · since · for · successfully</strong></div>
+    <div class="formula">Subject + has / have + past participle (V3)</div>
+    <h3>Forms</h3>
+    <table>
+      <tr><th>Form</th><th>Structure</th><th>Example</th></tr>
+      <tr><td>✅ Affirmative</td><td>S + has/have + V3</td><td>She <strong>has finished</strong> the report.</td></tr>
+      <tr><td>❌ Negative</td><td>S + hasn't/haven't + V3</td><td>They <strong>haven't arrived</strong> yet.</td></tr>
+      <tr><td>❓ Question</td><td>Has/Have + S + V3?</td><td><strong>Have</strong> you <strong>seen</strong> this film?</td></tr>
+    </table>
+    <h3>Adverb Position — Critical for the Exam</h3>
+    <table>
+      <tr><th>Adverb</th><th>Position</th><th>Exact Exam Example</th></tr>
+      <tr><td><strong>recently</strong></td><td>between has/have and V3</td><td>Our team <strong>has recently developed</strong> a new app.</td></tr>
+      <tr><td><strong>just</strong></td><td>between has/have and V3</td><td>The company <strong>has just launched</strong> a product.</td></tr>
+      <tr><td><strong>successfully</strong></td><td>between has/have and V3</td><td>Engineers <strong>have successfully created</strong> a campaign.</td></tr>
+      <tr><td><strong>already</strong></td><td>between has/have and V3</td><td>I <strong>have already finished</strong> my work.</td></tr>
+      <tr><td><strong>yet</strong></td><td>END of sentence (negative)</td><td>They <strong>haven't started yet</strong>.</td></tr>
+      <tr><td><strong>never / ever</strong></td><td>between has/have and V3</td><td>I <strong>have never been</strong> to Japan.</td></tr>
+    </table>
+    <div class="tip">These 3 sentences come DIRECTLY from the resit exam — memorise them word for word.</div>
+    <div class="ex">1. Our team <strong>has recently developed</strong> (recently / to develop) a new app for customer engagement.</div>
+    <div class="ex">2. The engineers <strong>have successfully created</strong> (to create / successfully) a highly effective campaign.</div>
+    <div class="ex">3. The company <strong>has just launched</strong> (launch / just) a groundbreaking product.</div>
+  </div>
+</div>
+
+<!-- ===================== CONDITIONALS ===================== -->
+<div class="section" id="cond">
+  <div class="card">
+    <h2>🟢 Conditionals — 1st · 2nd · 3rd <span class="badge bt">3 pts — Exam</span></h2>
+    <h3>1st Conditional — Real / Probable Future</h3>
+    <div class="formula">If + Present Simple → will + base verb</div>
+    <div class="rule t"><strong>Use:</strong> A <strong>real and possible</strong> situation in the future.</div>
+    <div class="ex">If you identify a market need accurately, the product <span class="ok-text">will be</span> more likely to succeed.</div>
+    <div class="ex">If it rains, I <span class="ok-text">will take</span> an umbrella.</div>
+
+    <h3>2nd Conditional — Hypothetical Present</h3>
+    <div class="formula">If + Past Simple → would + base verb</div>
+    <div class="rule p"><strong>Use:</strong> An <strong>unreal or imaginary</strong> situation in the present.</div>
+    <div class="ex">If you <span class="ok-text">had</span> more resources, you <span class="ok-text">would be</span> able to develop more products.</div>
+    <div class="ex">If I <span class="ok-text">were</span> rich, I <span class="ok-text">would travel</span> the world.</div>
+
+    <h3>3rd Conditional — Unreal Past / Regret</h3>
+    <div class="formula">If + Past Perfect (had + V3) → would have + V3</div>
+    <div class="rule y"><strong>Use:</strong> Something that did <strong>NOT happen</strong> in the past.</div>
+    <div class="ex">If the team <span class="ok-text">had collaborated</span> more effectively, the project <span class="ok-text">would not have faced</span> so many delays.</div>
+    <div class="ex">If I <span class="ok-text">had studied</span> harder, I <span class="ok-text">would have passed</span> the exam.</div>
+
+    <h3>Quick Reference Table</h3>
+    <table>
+      <tr><th>Type</th><th>IF clause</th><th>Main clause</th><th>When?</th></tr>
+      <tr><td><strong>1st</strong></td><td>Present Simple</td><td>will + V</td><td>Probable future</td></tr>
+      <tr><td><strong>2nd</strong></td><td>Past Simple (had / were)</td><td>would + V</td><td>Imaginary present</td></tr>
+      <tr><td><strong>3rd</strong></td><td>Past Perfect (had + V3)</td><td>would have + V3</td><td>Unreal past</td></tr>
+    </table>
+    <div class="tip">Quick trick: look at the verb in IF → present = 1st · had = 2nd · had + V3 = 3rd</div>
+
+    <h3>Exact Exam Questions (Resit)</h3>
+    <div class="ex">Q1 — the product <span class="ok-text">will be</span> more likely to succeed → 1st conditional</div>
+    <div class="ex">Q2 — If you <span class="ok-text">had</span> more resources → 2nd conditional (past simple in IF)</div>
+    <div class="ex">Q3 — the project <span class="ok-text">would not have faced</span> delays → 3rd conditional</div>
+  </div>
+</div>
+
+<!-- ===================== EMBEDDED QUESTIONS ===================== -->
+<div class="section" id="emb">
+  <div class="card">
+    <h2>🟣 Embedded Questions</h2>
+    <div class="rule"><strong>Definition:</strong> A question "hidden" inside a statement or another question. Word order changes to <strong>Subject + Verb (SVO)</strong> instead of the interrogative order.</div>
+    <div class="formula">Introductory phrase + WH word + Subject + Verb (normal order)</div>
+    <div class="ex">Direct: <strong>Where is</strong> the bank? → Embedded: Could you tell me <strong>where the bank is</strong>? ✅</div>
+
+    <h3>Yes / No Questions → IF or WHETHER</h3>
+    <div class="formula">Introductory phrase + if / whether + Subject + Verb</div>
+    <div class="ex">Direct: <strong>Do</strong> you need help? → Embedded: Could you tell me <strong>if you need</strong> help? ✅</div>
+
+    <h3>5 Essential Rules</h3>
+    <div class="rule t"><strong>Rule 1 — Yes/No → if / whether</strong><br><span class="wrong">Can you tell me is it safe?</span> ❌ → Can you tell me <span class="ok-text">if it is safe</span>? ✅</div>
+    <div class="rule p"><strong>Rule 2 — No contraction at the end</strong><br><span class="wrong">Do you know what time it's?</span> ❌ → Do you know what time <span class="ok-text">it is</span>? ✅</div>
+    <div class="rule y"><strong>Rule 3 — Punctuation follows the intro</strong><br>Intro = question → ends with <strong>?</strong> | Intro = statement → ends with <strong>.</strong></div>
+    <div class="rule"><strong>Rule 4 — Same subject → infinitive</strong><br>I don't know what I should do → I don't know <span class="ok-text">what to do</span>.<br>She can't decide if she should stay → She can't decide <span class="ok-text">whether to stay</span>.</div>
+    <div class="rule t"><strong>Rule 5 — "Or not" placement</strong><br>whether or not ✅ | whether... or not ✅ | if... or not ✅ | <span class="wrong">if or not...</span> ❌</div>
+    <div class="note"><strong>THINK exception:</strong> Never use if/whether after "Do you think". → Do you think <strong>they will come</strong>? (NOT "do you think if...")</div>
+
+    <h3>Common Introductory Phrases</h3>
+    <table>
+      <tr><th>Questions (→ ?)</th><th>Statements (→ .)</th></tr>
+      <tr><td>Do you know...</td><td>I don't know...</td></tr>
+      <tr><td>Could you tell me...</td><td>I wonder...</td></tr>
+      <tr><td>Would you mind telling me...</td><td>I want to know...</td></tr>
+      <tr><td>Do you remember...</td><td>I'm curious about...</td></tr>
+      <tr><td>Do you think... (no if/whether!)</td><td>I'm interested in knowing...</td></tr>
+    </table>
+  </div>
+</div>
+
+<!-- ===================== PASSIVE VOICE ===================== -->
+<div class="section" id="pass">
+  <div class="card">
+    <h2>🟠 Passive Voice</h2>
+    <div class="rule y"><strong>Use when:</strong> The action is more important than who does it, or when the doer is unknown / obvious.</div>
+    <div class="formula">Object + be (conjugated) + Past Participle (V3)</div>
+    <div class="ex">Active: The company <strong>launched</strong> a product. → Passive: A product <strong>was launched</strong> by the company.</div>
+    <div class="ex">Active: Engineers <strong>develop</strong> applications. → Passive: Applications <strong>are developed</strong> by engineers.</div>
+
+    <h3>All Tense Forms</h3>
+    <div class="passive-grid">
+      <div class="pg-card"><div class="pc-tense">Present Simple</div><div class="pc-form">am / is / are + V3</div><div class="pc-ex">The emails <strong>are sent</strong> every day.</div></div>
+      <div class="pg-card"><div class="pc-tense">Past Simple</div><div class="pc-form">was / were + V3</div><div class="pc-ex">The report <strong>was completed</strong> yesterday.</div></div>
+      <div class="pg-card"><div class="pc-tense">Future</div><div class="pc-form">will be + V3</div><div class="pc-ex">The project <strong>will be finished</strong> next week.</div></div>
+      <div class="pg-card"><div class="pc-tense">Present Perfect</div><div class="pc-form">has / have been + V3</div><div class="pc-ex">A new app <strong>has been developed</strong>.</div></div>
+      <div class="pg-card"><div class="pc-tense">Modal Verbs</div><div class="pc-form">modal + be + V3</div><div class="pc-ex">The form <strong>must be submitted</strong> today.</div></div>
+      <div class="pg-card"><div class="pc-tense">Present Continuous</div><div class="pc-form">is / are being + V3</div><div class="pc-ex">New tools <strong>are being developed</strong>.</div></div>
+    </div>
+
+    <h3>Key Rules</h3>
+    <div class="rule t"><strong>1 — The main verb always becomes V3</strong> (write → written · develop → developed · complete → completed)</div>
+    <div class="rule p"><strong>2 — "be" changes according to the tense</strong> (is / was / has been / will be / must be...)</div>
+    <div class="rule y"><strong>3 — "by + agent" is optional</strong> — drop it when the doer is obvious or unimportant.</div>
+    <div class="tip">Spot passive voice instantly: look for <strong>be + V3</strong> → is created · was completed · has been developed · must be signed.</div>
+  </div>
+</div>
+
+<!-- ===================== IDIOMS ===================== -->
+<div class="section" id="idioms">
+  <div class="card">
+    <h2>🔴 Idioms &amp; Expressions <span class="badge bpk">4 pts — Exam Matching</span></h2>
+    <div class="note">The resit exam tested exactly these 4: <strong>rock the boat · grapevine · take a toll · talking to a dead wall</strong>. Correct answers: 1→C · 2→A · 3→E · 4→F</div>
+    <div class="ig">
+      <div class="ic"><div class="in">⛵ Rock the boat</div><div class="im">To cause trouble or conflict in a stable situation.</div><div class="ie">"She didn't want to rock the boat at her new job." ⭐ Resit Exam</div></div>
+      <div class="ic"><div class="in">🍇 Hear through the grapevine</div><div class="im">To receive information informally / word of mouth.</div><div class="ie">"I heard through the grapevine that layoffs are coming." ⭐ Resit Exam</div></div>
+      <div class="ic"><div class="in">💔 Take a heavy toll (on)</div><div class="im">To have significant negative consequences on something.</div><div class="ie">"The stress began to take a heavy toll on his health." ⭐ Resit Exam</div></div>
+      <div class="ic"><div class="in">🧱 Talk to a dead wall</div><div class="im">To try to communicate with someone who is unresponsive.</div><div class="ie">"Getting my kids to clean is like talking to a dead wall." ⭐ Resit Exam</div></div>
+      <div class="ic"><div class="in">🔥 Burn bridges</div><div class="im">To destroy a relationship or opportunity permanently.</div><div class="ie">"She burned bridges when she stopped replying."</div></div>
+      <div class="ic"><div class="in">💰 Pay the piper</div><div class="im">To face the consequences of past actions.</div><div class="ie">"He's paying the piper after ignoring visa rules."</div></div>
+      <div class="ic"><div class="in">⏰ Work around the clock</div><div class="im">To work continuously without stopping, day and night.</div><div class="ie">"The team worked around the clock to meet the deadline."</div></div>
+      <div class="ic"><div class="in">🧳 Live out of a suitcase</div><div class="im">To travel constantly with no fixed home.</div><div class="ie">"Digital nomads get used to living out of a suitcase."</div></div>
+      <div class="ic"><div class="in">🐀 The rat race</div><div class="im">The stressful, competitive routine of modern work life.</div><div class="ie">"Many employees want to escape the rat race."</div></div>
+      <div class="ic"><div class="in">🥊 Roll with the punches</div><div class="im">To adapt to difficult situations and remain flexible.</div><div class="ie">"When problems happen, you must roll with the punches."</div></div>
+    </div>
+    <div class="tip">The exam asks you to MATCH idioms to definitions. Learn the meaning AND the context of use.</div>
+  </div>
+</div>
+
+<!-- ===================== VOCABULARY ===================== -->
+<div class="section" id="vocab">
+  <div class="card">
+    <h2>🟡 Vocabulary <span class="badge by">2 pts — Charts Exact Exam</span></h2>
+
+    <h3>📊 Chart Types — Exact Resit Answers</h3>
+    <table>
+      <tr><th>Chart</th><th>Description</th><th>Resit Exam</th></tr>
+      <tr><td><strong>Funnel chart</strong></td><td>Funnel shape — shows progressive reduction (e.g. sales pipeline)</td><td>⭐ Q1 Answer 1</td></tr>
+      <tr><td><strong>Pie chart</strong></td><td>Circle divided into proportional slices (%)</td><td>⭐ Q1 Answer 2</td></tr>
+      <tr><td><strong>Flow chart</strong></td><td>Boxes + arrows showing a process or decisions</td><td>⭐ Q1 Answer 3</td></tr>
+      <tr><td><strong>Bar chart</strong></td><td>Vertical or horizontal bars to compare categories</td><td>⭐ Q1 Answer 4</td></tr>
+      <tr><td><strong>Line graph</strong></td><td>Line showing evolution over time</td><td>Extra option</td></tr>
+      <tr><td><strong>Histogram</strong></td><td>Like a bar chart but for continuous data distribution</td><td>Extra option</td></tr>
+    </table>
+
+    <h3>🌍 Digital Nomad Vocabulary</h3>
+    <table>
+      <tr><td><strong>connectivity</strong> — internet connection</td><td><strong>relocating</strong> — moving to a new place</td></tr>
+      <tr><td><strong>location-independent</strong> — not tied to a place</td><td><strong>immersion</strong> — cultural immersion</td></tr>
+      <tr><td><strong>mobility</strong> — ability to move freely</td><td><strong>flexibility</strong> — adaptable schedule</td></tr>
+      <tr><td><strong>freelance gigs</strong> — independent short-term work</td><td><strong>commitments</strong> — obligations, ties</td></tr>
+      <tr><td><strong>precarious → precariousness</strong></td><td><strong>stagnant → stagnation</strong></td></tr>
+      <tr><td><strong>unsustainable → unsustainability</strong></td><td><strong>disruptive → disruption</strong></td></tr>
+    </table>
+
+    <h3>📋 Project Management Vocabulary</h3>
+    <table>
+      <tr><td><strong>scope</strong> — project boundaries</td><td><strong>stakeholder</strong> — interested party</td></tr>
+      <tr><td><strong>scope creep</strong> — uncontrolled scope growth</td><td><strong>budget overrun</strong> — exceeding cost estimates</td></tr>
+      <tr><td><strong>timeline</strong> — project schedule</td><td><strong>objective</strong> — goal</td></tr>
+      <tr><td><strong>fall behind</strong> — to be late</td><td><strong>work overtime</strong> — extra working hours</td></tr>
+      <tr><td><strong>meet a deadline</strong> — deliver on time</td><td><strong>miss a deadline</strong> — fail to deliver on time</td></tr>
+      <tr><td><strong>tight deadline</strong> — very little time</td><td><strong>feasibility study</strong> — viability assessment</td></tr>
+    </table>
+
+    <h3>👑 Leadership Collocations</h3>
+    <table>
+      <tr><td>resolve a <strong>conflict</strong></td><td>set <strong>goals</strong></td><td>lead by <strong>example</strong></td></tr>
+      <tr><td>assign a <strong>task</strong></td><td>make a tough <strong>decision</strong></td><td>think outside the <strong>box</strong></td></tr>
+      <tr><td>handle a <strong>situation</strong></td><td>clear up a <strong>misunderstanding</strong></td><td>take the <strong>initiative</strong></td></tr>
+    </table>
+  </div>
+</div>
+
+<!-- ===================== ESSAY GUIDE ===================== -->
+<div class="section" id="eguide">
+
+  <div class="essay-banner">
+    <div class="eb-icon">📝</div>
+    <div class="eb-info">
+      <h2>Essay Writing — Complete Guide</h2>
+      <p>Structure · Connectors · Rubric · Strategy for maximum marks</p>
+    </div>
+    <div class="eb-pts">10 Points</div>
+  </div>
+
+  <!-- Rubric -->
+  <div class="card">
+    <h2>🎯 Exact Marking Rubric</h2>
+    <div class="note">This rubric comes directly from the resit exam paper.</div>
+    <div class="score-table">
+      <div class="row"><span class="crit">Introduction</span><span class="target">/ 1</span><span class="how">Clear presentation of the topic + two positions (no personal opinion yet)</span></div>
+      <div class="row"><span class="crit">Body Paragraphs</span><span class="target">/ 2</span><span class="how">At least 2 arguments per side + concrete examples</span></div>
+      <div class="row"><span class="crit">Conclusion</span><span class="target">/ 1</span><span class="how">Summarise both sides + give final opinion or stay neutral</span></div>
+      <div class="row"><span class="crit">Vocabulary Range</span><span class="target">/ 1.5</span><span class="how">Use 5+ topic-specific words: burnout · stakeholder · productivity...</span></div>
+      <div class="row"><span class="crit">Linkers / Cohesion</span><span class="target">/ 0.5</span><span class="how">Use at least 5 different connectors</span></div>
+      <div class="row"><span class="crit">Grammar &amp; Spelling</span><span class="target">/ 1.5</span><span class="how">Avoid basic tense errors. Re-read before submitting!</span></div>
+      <div class="row"><span class="crit">Layout</span><span class="target">/ 0.5</span><span class="how">Clear paragraphs, indentation, line breaks between sections</span></div>
+      <div class="row"><span class="crit">TOTAL</span><span class="target">/ 8 → 10</span><span class="how">Adjusted to 10 pts for your exam</span></div>
+    </div>
+  </div>
+
+  <!-- Type comparison -->
+  <div class="card">
+    <h2>⚖️ vs 💭 Two Essay Types — Key Differences</h2>
+    <div class="type-compare">
+      <div class="type-card arg-type">
+        <h3>⚖️ Argumentative Essay</h3>
+        <p style="font-size:.87rem;color:var(--dim);margin-bottom:10px;">Present BOTH sides fairly. You can give your opinion only in the conclusion.</p>
+        <div class="steps">
+          <div class="step"><div class="sn a">1</div><div class="stxt"><strong>Introduction</strong> — Topic + two positions (no personal opinion)</div></div>
+          <div class="step"><div class="sn a">2</div><div class="stxt"><strong>Body §1 — FOR</strong> — 2-3 arguments + examples</div></div>
+          <div class="step"><div class="sn a">3</div><div class="stxt"><strong>Body §2 — AGAINST</strong> — 2-3 arguments + examples</div></div>
+          <div class="step"><div class="sn a">4</div><div class="stxt"><strong>Conclusion</strong> — Summarise both + optional final view</div></div>
+        </div>
+        <div class="type-diff">⭐ Both resit topics were argumentative essays!</div>
+      </div>
+      <div class="type-card op-type">
+        <h3>💭 Opinion Essay</h3>
+        <p style="font-size:.87rem;color:var(--dim);margin-bottom:10px;">Defend YOUR point of view from the introduction. Refute one counter-argument.</p>
+        <div class="steps">
+          <div class="step"><div class="sn o">1</div><div class="stxt"><strong>Introduction + Thesis</strong> — Your clear opinion stated immediately</div></div>
+          <div class="step"><div class="sn o">2</div><div class="stxt"><strong>Argument 1</strong> + example</div></div>
+          <div class="step"><div class="sn o">3</div><div class="stxt"><strong>Argument 2</strong> + example</div></div>
+          <div class="step"><div class="sn o">4</div><div class="stxt"><strong>Counter-argument + Refutation</strong> "Some argue... However..."</div></div>
+          <div class="step"><div class="sn o">5</div><div class="stxt"><strong>Conclusion</strong> — Restate opinion + call to action</div></div>
+        </div>
+        <div class="type-diff" style="background:rgba(253,121,168,.1);border-color:rgba(253,121,168,.25);color:var(--a3);">Used for leadership, technology, career topics</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Linkers -->
+  <div class="card">
+    <h2>🔗 Essential Connectors</h2>
+    <div class="lk-section">
+      <div class="lk-title">Introduction</div>
+      <div class="lk-grid">
+        <div class="lk-pill">In today's world,</div>
+        <div class="lk-pill">It is widely debated whether</div>
+        <div class="lk-pill">The question of whether... has sparked debate.</div>
+        <div class="lk-pill">In recent years,</div>
+      </div>
+      <div class="lk-title">FOR Arguments</div>
+      <div class="lk-grid">
+        <div class="lk-pill">On the one hand,</div>
+        <div class="lk-pill">First and foremost,</div>
+        <div class="lk-pill">Moreover,</div>
+        <div class="lk-pill">Furthermore,</div>
+        <div class="lk-pill">In addition,</div>
+        <div class="lk-pill">For instance,</div>
+        <div class="lk-pill">For example,</div>
+      </div>
+      <div class="lk-title">AGAINST Arguments</div>
+      <div class="lk-grid">
+        <div class="lk-pill">On the other hand,</div>
+        <div class="lk-pill">However,</div>
+        <div class="lk-pill">Nevertheless,</div>
+        <div class="lk-pill">Critics argue that</div>
+        <div class="lk-pill">Despite this,</div>
+        <div class="lk-pill">Conversely,</div>
+        <div class="lk-pill">Although,</div>
+      </div>
+      <div class="lk-title">Conclusion</div>
+      <div class="lk-grid">
+        <div class="lk-pill">In conclusion,</div>
+        <div class="lk-pill">To sum up,</div>
+        <div class="lk-pill">All things considered,</div>
+        <div class="lk-pill">Ultimately,</div>
+        <div class="lk-pill">I firmly believe that</div>
+      </div>
+      <div class="lk-title">Opinion (for Opinion Essays)</div>
+      <div class="lk-grid">
+        <div class="lk-pill">In my opinion,</div>
+        <div class="lk-pill">I strongly believe that</div>
+        <div class="lk-pill">From my perspective,</div>
+        <div class="lk-pill">Some may argue... However,</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== ARGUMENTATIVE ESSAYS ===================== -->
+<div class="section" id="earg">
+
+  <div class="essay-banner">
+    <div class="eb-icon">⚖️</div>
+    <div class="eb-info">
+      <h2>Argumentative Essays — All 10 Possible Exam Topics</h2>
+      <p>Resit Exam · Lesson 5 · Lesson 2 · All module themes · Click each topic to expand</p>
+    </div>
+    <div class="eb-pts">10 Topics</div>
+  </div>
+
+  <div class="card" style="border-color:rgba(253,203,110,.25);background:rgba(253,203,110,.04);">
+    <h2 style="font-size:1.1rem;">📌 Topic Probability Map</h2>
+    <table>
+      <tr><th>Topic</th><th>Source</th><th>Probability</th></tr>
+      <tr><td>🔥 Hustle Culture</td><td>Resit Exam (exact subject)</td><td style="color:var(--ok);font-weight:700;">⭐⭐⭐ Very High</td></tr>
+      <tr><td>👑 Authoritative vs Inspirational Leadership</td><td>Resit Exam (exact subject)</td><td style="color:var(--ok);font-weight:700;">⭐⭐⭐ Very High</td></tr>
+      <tr><td>🌍 Digital Nomad Lifestyle</td><td>Lesson 5 — main topic</td><td style="color:var(--a2);font-weight:700;">⭐⭐ High</td></tr>
+      <tr><td>🤖 AI in Education</td><td>Lesson 2 PPT — mentioned</td><td style="color:var(--a2);font-weight:700;">⭐⭐ High</td></tr>
+      <tr><td>🏠 Remote Work vs Office Work</td><td>Lesson 5 — remote work statistics</td><td style="color:var(--a2);font-weight:700;">⭐⭐ High</td></tr>
+      <tr><td>🎙️ Introverted vs Extroverted Leaders</td><td>Lesson 2 — BBC leadership video</td><td style="color:var(--a4);font-weight:700;">⭐ Medium</td></tr>
+      <tr><td>🏆 Project Management — Key to Success?</td><td>Lesson 2 — main topic</td><td style="color:var(--a4);font-weight:700;">⭐ Medium</td></tr>
+      <tr><td>📢 Social Media &amp; Advertising</td><td>Lesson 2 PPT content</td><td style="color:var(--a4);font-weight:700;">⭐ Medium</td></tr>
+      <tr><td>👻 Professional Ghosting</td><td>Module communication themes</td><td style="color:var(--dim);">Possible</td></tr>
+      <tr><td>⚡ Technology &amp; Work-Life Balance</td><td>Cross-topic — all lessons</td><td style="color:var(--dim);">Possible</td></tr>
+    </table>
+  </div>
+
+  <!-- T1 -->
+  <div class="topic-wrap">
+    <div class="topic-header" onclick="tog('t1')">
+      <div class="tn a">1</div>
+      <div class="topic-title"><h3>🔥 Hustle Culture — Productivity vs Burnout</h3><p>⭐⭐⭐ Direct from Resit Exam · MOST LIKELY</p></div>
+      <span class="topic-arrow" id="ar-t1">▼</span>
+    </div>
+    <div class="topic-body" id="t1"><div class="topic-content">
+      <div class="rule p">"Some think that hustle culture occasionally fosters productivity and success, while others believe that it ultimately leads to significant negative consequences that outweigh its purported benefits."</div>
+      <h3>Introductions</h3>
+      <div class="intro-box"><div class="lbl">Introduction A</div>In today's competitive world, hustle culture — the glorification of overworking — has become a widespread phenomenon. While some argue that it drives ambition and success, others contend that its consequences on health and well-being far outweigh its benefits. This essay will examine both perspectives.</div>
+      <div class="intro-box"><div class="lbl">Introduction B</div>The rise of hustle culture has sparked intense debate in modern society. Proponents claim that working long hours is the key to success, while critics warn that this mentality leads to burnout and a diminished quality of life. This essay will discuss both sides.</div>
+      <div class="arg-grid">
+        <div class="for-col"><h4>✅ Arguments FOR</h4>
+          <div class="arg-item"><div class="arg-point">1. Drives ambition and career growth</div><div class="arg-eg">For example, many successful entrepreneurs like Elon Musk credit their achievements to an intense work ethic and long working hours.</div></div>
+          <div class="arg-item"><div class="arg-point">2. Develops discipline and resilience</div><div class="arg-eg">Employees who push through challenges develop stronger problem-solving skills and greater mental toughness over time.</div></div>
+          <div class="arg-item"><div class="arg-point">3. Accelerates financial independence</div><div class="arg-eg">Freelancers who take on extra projects can significantly increase their income and reach financial goals faster than their peers.</div></div>
+        </div>
+        <div class="ag-col"><h4>❌ Arguments AGAINST</h4>
+          <div class="arg-item"><div class="arg-point">1. Leads to burnout and serious health problems</div><div class="arg-eg">Studies show that employees working over 55 hours per week face a 35% higher risk of stroke and chronic health conditions.</div></div>
+          <div class="arg-item"><div class="arg-point">2. Damages personal relationships and social life</div><div class="arg-eg">People who work around the clock often neglect their families and friends, leading to loneliness and social disconnection.</div></div>
+          <div class="arg-item"><div class="arg-point">3. Reduces long-term productivity and creativity</div><div class="arg-eg">Research shows overworked employees become less creative and make more errors, ultimately harming their professional performance.</div></div>
+        </div>
+      </div>
+      <h3>Conclusions</h3>
+      <div class="conc-box"><div class="lbl">Conclusion A</div>In conclusion, while hustle culture can occasionally boost productivity, its long-term consequences — burnout, health issues, and damaged relationships — suggest that a more balanced approach to work is ultimately more sustainable and beneficial.</div>
+      <div class="conc-box"><div class="lbl">Conclusion B</div>To sum up, although hard work is essential for success, overworking takes a heavy toll on both physical and mental health. Striking a balance between productivity and personal well-being is the real key to lasting achievement.</div>
+      <div class="vocab-key">burnout · productivity · work-life balance · ambition · discipline · stress · mental health · overworking · resilience · exhaustion</div>
+    </div></div>
+  </div>
+
+  <!-- T2 -->
+  <div class="topic-wrap">
+    <div class="topic-header" onclick="tog('t2')">
+      <div class="tn a">2</div>
+      <div class="topic-title"><h3>👑 Authoritative vs Inspirational Leadership</h3><p>⭐⭐⭐ Direct from Resit Exam · MOST LIKELY</p></div>
+      <span class="topic-arrow" id="ar-t2">▼</span>
+    </div>
+    <div class="topic-body" id="t2"><div class="topic-content">
+      <div class="rule p">"While authoritative leadership gives clear rules and consistency, inspirational leadership tends to be more effective for project management."</div>
+      <h3>Introductions</h3>
+      <div class="intro-box"><div class="lbl">Introduction A</div>Leadership style plays a critical role in the success of any project. While authoritative leadership provides structure and discipline, inspirational leadership motivates teams through vision and empathy. This essay will explore both approaches and their effectiveness in project management.</div>
+      <div class="intro-box"><div class="lbl">Introduction B</div>The question of which leadership style leads to greater success has been widely debated. Some believe authoritative leadership ensures efficiency, while others argue that inspirational leadership yields better long-term results. This essay will examine both perspectives.</div>
+      <div class="arg-grid">
+        <div class="for-col"><h4>✅ FOR Inspirational Leadership</h4>
+          <div class="arg-item"><div class="arg-point">1. Boosts team motivation and creativity</div><div class="arg-eg">Leaders who inspire encourage employees to think outside the box and produce innovative solutions that benefit the whole project.</div></div>
+          <div class="arg-item"><div class="arg-point">2. Builds trust and stronger team bonds</div><div class="arg-eg">When leaders lead by example, team members feel valued and are more willing to go the extra mile for the project's success.</div></div>
+          <div class="arg-item"><div class="arg-point">3. Increases long-term engagement and satisfaction</div><div class="arg-eg">Studies show employees under inspirational leaders report higher job satisfaction and significantly lower turnover rates.</div></div>
+        </div>
+        <div class="ag-col"><h4>❌ FOR Authoritative Leadership</h4>
+          <div class="arg-item"><div class="arg-point">1. Provides clear structure and efficiency</div><div class="arg-eg">In projects with tight deadlines, a leader who sets clear rules ensures tasks are completed on schedule without confusion.</div></div>
+          <div class="arg-item"><div class="arg-point">2. Reduces conflicts and ambiguity in large teams</div><div class="arg-eg">Authoritative leadership defines roles clearly, eliminating misunderstandings and improving overall team coordination.</div></div>
+          <div class="arg-item"><div class="arg-point">3. Works best in crisis and high-pressure situations</div><div class="arg-eg">During emergencies, quick and decisive leadership is more effective than slow, collaborative consensus-based approaches.</div></div>
+        </div>
+      </div>
+      <h3>Conclusions</h3>
+      <div class="conc-box"><div class="lbl">Conclusion A</div>In conclusion, both leadership styles have their merits. While authoritative leadership ensures structure, inspirational leadership fosters creativity and engagement. The most effective leaders adapt their style to each project's specific needs.</div>
+      <div class="conc-box"><div class="lbl">Conclusion B</div>All things considered, a balanced combination of both styles may be the ideal approach for successful project management. Adaptability remains the true mark of a great leader.</div>
+      <div class="vocab-key">motivation · creativity · discipline · decision-making · trust · efficiency · teamwork · resolve conflict · set goals · lead by example · take initiative</div>
+    </div></div>
+  </div>
+
+  <!-- T3 -->
+  <div class="topic-wrap">
+    <div class="topic-header" onclick="tog('t3')">
+      <div class="tn a">3</div>
+      <div class="topic-title"><h3>🌍 The Digital Nomad Lifestyle</h3><p>⭐⭐ Lesson 5 — Main Topic</p></div>
+      <span class="topic-arrow" id="ar-t3">▼</span>
+    </div>
+    <div class="topic-body" id="t3"><div class="topic-content">
+      <div class="rule p">"The digital nomad lifestyle offers freedom and flexibility, but it also comes with significant challenges that can outweigh its benefits. Discuss both sides."</div>
+      <h3>Introductions</h3>
+      <div class="intro-box"><div class="lbl">Introduction A</div>With the rise of remote work and high-speed connectivity, the digital nomad lifestyle has become increasingly popular. While it offers freedom and cultural immersion, critics argue it leads to social isolation and professional instability. This essay will examine both the advantages and disadvantages.</div>
+      <div class="intro-box"><div class="lbl">Introduction B</div>The concept of working while travelling the world has attracted millions of professionals in recent years. However, the digital nomad lifestyle is not without its drawbacks. This essay will discuss both the benefits and the challenges of this modern work arrangement.</div>
+      <div class="arg-grid">
+        <div class="for-col"><h4>✅ Arguments FOR</h4>
+          <div class="arg-item"><div class="arg-point">1. Location independence and complete flexibility</div><div class="arg-eg">Nomads can set their own hours and work from anywhere — beaches, cafés, coworking spaces — as long as there is Wi-Fi connectivity.</div></div>
+          <div class="arg-item"><div class="arg-point">2. Cultural immersion and personal growth</div><div class="arg-eg">Living in different countries allows nomads to learn new languages, discover new cultures, and significantly broaden their worldview.</div></div>
+          <div class="arg-item"><div class="arg-point">3. Escape from the corporate rat race</div><div class="arg-eg">Many nomads report higher life satisfaction after leaving traditional office life and gaining full control over their daily routines and schedules.</div></div>
+        </div>
+        <div class="ag-col"><h4>❌ Arguments AGAINST</h4>
+          <div class="arg-item"><div class="arg-point">1. Social isolation and lack of deep relationships</div><div class="arg-eg">Constantly relocating makes it difficult to maintain long-term friendships, and many nomads report feeling lonely despite meeting new people.</div></div>
+          <div class="arg-item"><div class="arg-point">2. Blurry work-life balance leading to burnout</div><div class="arg-eg">Without a fixed workspace, many nomads work around the clock to meet deadlines, which leads to exhaustion and low productivity.</div></div>
+          <div class="arg-item"><div class="arg-point">3. Financial and legal precariousness</div><div class="arg-eg">Managing taxes across different countries and dealing with complex visa regulations can be stressful and unsustainable long-term.</div></div>
+        </div>
+      </div>
+      <h3>Conclusions</h3>
+      <div class="conc-box"><div class="lbl">Conclusion A</div>In conclusion, while the digital nomad lifestyle offers unparalleled freedom, it presents real challenges such as isolation, burnout, and financial uncertainty. Careful evaluation is essential before making the transition.</div>
+      <div class="conc-box"><div class="lbl">Conclusion B</div>To sum up, the digital nomad lifestyle is a double-edged sword. Success as a nomad requires careful planning, strong discipline, and the ability to roll with the punches when challenges arise.</div>
+      <div class="vocab-key">connectivity · flexibility · mobility · immersion · freelance gigs · precarious · burnout · rat race · work-life balance · relocating · stagnation</div>
+    </div></div>
+  </div>
+
+  <!-- T4 -->
+  <div class="topic-wrap">
+    <div class="topic-header" onclick="tog('t4')">
+      <div class="tn a">4</div>
+      <div class="topic-title"><h3>🤖 AI in Education — Benefits vs Risks</h3><p>⭐⭐ Lesson 2 PPT · High Probability</p></div>
+      <span class="topic-arrow" id="ar-t4">▼</span>
+    </div>
+    <div class="topic-body" id="t4"><div class="topic-content">
+      <div class="rule p">"Some believe AI-assisted tools significantly improve academic performance, while others argue they weaken independent learning and critical thinking. Discuss both views."</div>
+      <h3>Introductions</h3>
+      <div class="intro-box"><div class="lbl">Introduction A</div>Artificial intelligence is transforming education at an unprecedented pace. While supporters claim AI tools enhance learning through personalised feedback, critics worry that students may become overly dependent on technology. This essay will explore both sides.</div>
+      <div class="intro-box"><div class="lbl">Introduction B</div>The integration of AI in education has generated significant discussion among educators and students alike. Some argue AI tools boost academic performance, while others caution they hinder critical thinking. This essay will examine both perspectives.</div>
+      <div class="arg-grid">
+        <div class="for-col"><h4>✅ FOR AI in Education</h4>
+          <div class="arg-item"><div class="arg-point">1. Provides a personalised learning experience</div><div class="arg-eg">AI tools adapt to each student's level, providing targeted exercises and feedback that help weaker students progress faster.</div></div>
+          <div class="arg-item"><div class="arg-point">2. Saves teachers' time and improves efficiency</div><div class="arg-eg">AI can automate grading and administrative tasks, allowing teachers to focus on mentoring and more meaningful interactions.</div></div>
+          <div class="arg-item"><div class="arg-point">3. Makes learning accessible 24/7</div><div class="arg-eg">Students can use AI tutors at any time to clarify doubts, making learning flexible regardless of location or time zone.</div></div>
+        </div>
+        <div class="ag-col"><h4>❌ AGAINST AI in Education</h4>
+          <div class="arg-item"><div class="arg-point">1. Weakens critical thinking and deep understanding</div><div class="arg-eg">When AI provides instant answers, students skip the reasoning process entirely, leading to a superficial understanding of subjects.</div></div>
+          <div class="arg-item"><div class="arg-point">2. Creates a dangerous over-dependence on technology</div><div class="arg-eg">Students who rely heavily on AI may struggle in exams or real-world situations where technology is unavailable.</div></div>
+          <div class="arg-item"><div class="arg-point">3. Raises serious academic dishonesty concerns</div><div class="arg-eg">The ease of using AI to generate essays raises major questions about plagiarism and academic integrity across all institutions.</div></div>
+        </div>
+      </div>
+      <h3>Conclusions</h3>
+      <div class="conc-box"><div class="lbl">Conclusion A</div>In conclusion, while AI tools offer significant advantages in personalisation and efficiency, they pose real risks to independent learning. Schools should integrate AI as a supplement, not a replacement for traditional education.</div>
+      <div class="conc-box"><div class="lbl">Conclusion B</div>All things considered, AI in education is a powerful tool if used responsibly. Educators must ensure students continue developing their own critical thinking skills alongside technological assistance.</div>
+      <div class="vocab-key">artificial intelligence · personalised learning · productivity · plagiarism · critical thinking · academic integrity · over-dependence · performance</div>
+    </div></div>
+  </div>
+
+  <!-- T5 -->
+  <div class="topic-wrap">
+    <div class="topic-header" onclick="tog('t5')">
+      <div class="tn a">5</div>
+      <div class="topic-title"><h3>🏠 Remote Work vs Traditional Office Work</h3><p>⭐⭐ Lesson 5 — Remote Work Statistics</p></div>
+      <span class="topic-arrow" id="ar-t5">▼</span>
+    </div>
+    <div class="topic-body" id="t5"><div class="topic-content">
+      <div class="rule p">"Remote work has become the new norm for many companies. Some see it as the future of work, while others believe traditional office work remains more effective. Discuss both views."</div>
+      <h3>Introductions</h3>
+      <div class="intro-box"><div class="lbl">Introduction A</div>Since the tech revolution, remote work has transformed the way millions of people do their jobs. While many employees enjoy the flexibility it provides, some employers argue that in-person collaboration remains essential for productivity. This essay will explore both viewpoints.</div>
+      <div class="intro-box"><div class="lbl">Introduction B</div>The shift toward remote work has sparked a major debate about the future of the workplace. Supporters praise its flexibility and work-life balance benefits, while critics highlight issues of communication and team cohesion. This essay will discuss both sides.</div>
+      <div class="arg-grid">
+        <div class="for-col"><h4>✅ FOR Remote Work</h4>
+          <div class="arg-item"><div class="arg-point">1. Better work-life balance and greater flexibility</div><div class="arg-eg">Employees save commuting time and can organise their schedules around family needs, leading to higher overall job satisfaction.</div></div>
+          <div class="arg-item"><div class="arg-point">2. Increased productivity for focused tasks</div><div class="arg-eg">Studies show remote workers can be 13% more productive due to fewer office distractions, interruptions, and unnecessary meetings.</div></div>
+          <div class="arg-item"><div class="arg-point">3. Significant cost savings for companies and employees</div><div class="arg-eg">Companies reduce office rent expenses, while employees spend less on transportation, work clothing, and daily meals.</div></div>
+        </div>
+        <div class="ag-col"><h4>❌ FOR Office Work</h4>
+          <div class="arg-item"><div class="arg-point">1. Stronger team collaboration and communication</div><div class="arg-eg">Face-to-face interactions allow for faster brainstorming, immediate feedback, and building genuinely strong professional relationships.</div></div>
+          <div class="arg-item"><div class="arg-point">2. Clearer separation between work and personal life</div><div class="arg-eg">Working from home can blur the professional-personal boundary, causing some employees to work around the clock without rest.</div></div>
+          <div class="arg-item"><div class="arg-point">3. Easier supervision and team accountability</div><div class="arg-eg">Managers can monitor team progress more effectively in person, which helps keep projects on track and deadlines properly met.</div></div>
+        </div>
+      </div>
+      <h3>Conclusions</h3>
+      <div class="conc-box"><div class="lbl">Conclusion A</div>In conclusion, both remote and office work have distinct advantages. While remote work offers flexibility and cost savings, office work fosters collaboration and clearer professional boundaries. A hybrid model may be the most effective modern solution.</div>
+      <div class="conc-box"><div class="lbl">Conclusion B</div>To sum up, the choice between remote and office work ultimately depends on the nature of the job and the individual. Flexible policies accommodating different working styles represent the ideal approach for modern organisations.</div>
+      <div class="vocab-key">remote work · flexibility · productivity · collaboration · work-life balance · commuting · hybrid model · accountability · connectivity · teamwork</div>
+    </div></div>
+  </div>
+
+  <!-- T6 -->
+  <div class="topic-wrap">
+    <div class="topic-header" onclick="tog('t6')">
+      <div class="tn a">6</div>
+      <div class="topic-title"><h3>🎙️ Introverted vs Extroverted Leaders</h3><p>⭐ Lesson 2 — BBC Leadership Video</p></div>
+      <span class="topic-arrow" id="ar-t6">▼</span>
+    </div>
+    <div class="topic-body" id="t6"><div class="topic-content">
+      <div class="rule p">"It is commonly assumed that extroverted people make better leaders. However, some argue that introverted leaders can be equally or even more effective. Discuss both perspectives."</div>
+      <h3>Introductions</h3>
+      <div class="intro-box"><div class="lbl">Introduction A</div>Leadership is often associated with outgoing, charismatic personalities. However, it is widely debated whether extroverts are truly more effective leaders than their introverted counterparts. This essay will examine both perspectives and the unique qualities each personality type brings to leadership.</div>
+      <div class="intro-box"><div class="lbl">Introduction B</div>In today's diverse workplaces, the question of whether introverted or extroverted leaders perform better has attracted considerable attention. While extroverts are traditionally seen as natural leaders, research increasingly suggests that introverts bring equally valuable — and sometimes superior — skills.</div>
+      <div class="arg-grid">
+        <div class="for-col"><h4>✅ FOR Introverted Leaders</h4>
+          <div class="arg-item"><div class="arg-point">1. Exceptional listeners who empower their teams</div><div class="arg-eg">Introverts process ideas carefully before acting, leading to more inclusive decisions. Bill Gates, a known introvert, built Microsoft by listening carefully to his engineers.</div></div>
+          <div class="arg-item"><div class="arg-point">2. Make deliberate, well-considered decisions</div><div class="arg-eg">Unlike impulsive leaders, introverts analyse all angles before acting, which reduces costly mistakes in complex, high-stakes projects.</div></div>
+          <div class="arg-item"><div class="arg-point">3. Create calm, focused, and stable environments</div><div class="arg-eg">Introverted leaders remain composed under pressure, which helps stabilise entire teams during crises and high-stress situations.</div></div>
+        </div>
+        <div class="ag-col"><h4>❌ FOR Extroverted Leaders</h4>
+          <div class="arg-item"><div class="arg-point">1. Communicate with natural confidence and energy</div><div class="arg-eg">Extroverts naturally engage large audiences, inspire teams publicly, and build external professional networks that benefit the whole organisation.</div></div>
+          <div class="arg-item"><div class="arg-point">2. Make quick decisions in fast-moving environments</div><div class="arg-eg">In fast-paced industries, extroverted leaders' spontaneous and decisive style can be a major competitive advantage for the team.</div></div>
+          <div class="arg-item"><div class="arg-point">3. Motivate and energise teams very effectively</div><div class="arg-eg">Their natural enthusiasm is contagious — extroverted leaders often boost team morale during difficult periods or demanding product launches.</div></div>
+        </div>
+      </div>
+      <h3>Conclusions</h3>
+      <div class="conc-box"><div class="lbl">Conclusion A</div>In conclusion, both introverted and extroverted leaders bring valuable but different strengths. The most effective organisations recognise and harness both personality types rather than exclusively favouring one over the other.</div>
+      <div class="conc-box"><div class="lbl">Conclusion B</div>All things considered, effective leadership is not defined by personality type but by the ability to listen, adapt, and inspire. Both introverts and extroverts can excel when placed in the right professional contexts.</div>
+      <div class="vocab-key">introvert · extrovert · empathy · listening · charisma · decision-making · collaboration · motivation · team dynamics · leadership style · resilience</div>
+    </div></div>
+  </div>
+
+  <!-- T7 -->
+  <div class="topic-wrap">
+    <div class="topic-header" onclick="tog('t7')">
+      <div class="tn a">7</div>
+      <div class="topic-title"><h3>🏆 Project Management — Essential or Overrated?</h3><p>⭐ Lesson 2 — Main Topic</p></div>
+      <span class="topic-arrow" id="ar-t7">▼</span>
+    </div>
+    <div class="topic-body" id="t7"><div class="topic-content">
+      <div class="rule p">"Some believe rigorous project management is the key factor in delivering successful projects, while others argue that creativity and talent matter more than structured methodologies. Discuss."</div>
+      <h3>Introductions</h3>
+      <div class="intro-box"><div class="lbl">Introduction A</div>In today's competitive business world, project management has become an essential discipline. While some argue that structured planning and clear methodologies are the foundation of success, others believe that talent and adaptability matter more. This essay will examine both perspectives.</div>
+      <div class="intro-box"><div class="lbl">Introduction B</div>The question of whether formal project management guarantees success has sparked considerable debate. Supporters argue that planning, timelines, and risk management are indispensable, while critics suggest rigid processes can stifle creativity. This essay will discuss both views.</div>
+      <div class="arg-grid">
+        <div class="for-col"><h4>✅ FOR Project Management</h4>
+          <div class="arg-item"><div class="arg-point">1. Provides clear structure and reduces project risks</div><div class="arg-eg">Setting clear objectives, timelines, and responsibilities minimises scope creep and ensures every team member understands their role.</div></div>
+          <div class="arg-item"><div class="arg-point">2. Improves communication among all stakeholders</div><div class="arg-eg">Regular updates and progress reports keep all stakeholders informed, preventing misunderstandings and costly project delays.</div></div>
+          <div class="arg-item"><div class="arg-point">3. Helps control budgets and meet tight deadlines</div><div class="arg-eg">Effective cost management and scheduling tools prevent budget overruns and ensure projects are always delivered on time.</div></div>
+        </div>
+        <div class="ag-col"><h4>❌ AGAINST Rigid Project Management</h4>
+          <div class="arg-item"><div class="arg-point">1. Excessive structure can limit creativity and innovation</div><div class="arg-eg">Overly rigid methodologies like strict Waterfall processes can prevent teams from adapting quickly to new opportunities or market changes.</div></div>
+          <div class="arg-item"><div class="arg-point">2. Bureaucracy can significantly slow execution</div><div class="arg-eg">In fast-moving industries, spending too much time on planning documents and approval processes can cause teams to fall behind competitors.</div></div>
+          <div class="arg-item"><div class="arg-point">3. Project success often depends on people, not processes</div><div class="arg-eg">Many successful startups have thrived through talented, agile teams rather than through formal project management frameworks.</div></div>
+        </div>
+      </div>
+      <h3>Conclusions</h3>
+      <div class="conc-box"><div class="lbl">Conclusion A</div>In conclusion, while project management provides essential structure and risk control, it must be balanced with flexibility and creativity. The best teams combine disciplined planning with the agility to adapt when circumstances change unexpectedly.</div>
+      <div class="conc-box"><div class="lbl">Conclusion B</div>To sum up, effective project management is not about rigid control but about empowering teams to deliver results. When applied thoughtfully, it remains one of the most powerful tools for organisational success.</div>
+      <div class="vocab-key">scope creep · deadline · stakeholder · budget overrun · timeline · objective · risk management · Agile · Scrum · Kanban · Waterfall · collaboration</div>
+    </div></div>
+  </div>
+
+  <!-- T8 -->
+  <div class="topic-wrap">
+    <div class="topic-header" onclick="tog('t8')">
+      <div class="tn a">8</div>
+      <div class="topic-title"><h3>📢 Social Media &amp; Advertising</h3><p>Lesson 2 PPT Content</p></div>
+      <span class="topic-arrow" id="ar-t8">▼</span>
+    </div>
+    <div class="topic-body" id="t8"><div class="topic-content">
+      <div class="rule p">"Social media advertising has become one of the most powerful marketing tools. Some believe it benefits businesses and consumers, while others argue it manipulates and invades privacy. Discuss."</div>
+      <h3>Introductions</h3>
+      <div class="intro-box"><div class="lbl">Introduction A</div>Social media has revolutionised the advertising industry, giving businesses unprecedented access to targeted audiences. While some argue this benefits both companies and consumers, critics warn it raises serious concerns about manipulation and privacy. This essay will examine both viewpoints.</div>
+      <div class="intro-box"><div class="lbl">Introduction B</div>In today's digital age, advertising on social media platforms has become an essential business strategy. However, while it creates real economic opportunities, it also raises ethical questions about consumer manipulation and personal data privacy.</div>
+      <div class="arg-grid">
+        <div class="for-col"><h4>✅ Arguments FOR</h4>
+          <div class="arg-item"><div class="arg-point">1. Increases brand awareness and business growth</div><div class="arg-eg">Targeted advertising allows small businesses to reach specific demographics cost-effectively, creating opportunities previously unavailable to them.</div></div>
+          <div class="arg-item"><div class="arg-point">2. Provides consumers with relevant product information</div><div class="arg-eg">Well-designed ads inform consumers about products that genuinely match their interests, improving their overall shopping experience.</div></div>
+          <div class="arg-item"><div class="arg-point">3. Drives economic activity and job creation</div><div class="arg-eg">The digital advertising industry supports millions of jobs worldwide, from content creators and designers to data analysts.</div></div>
+        </div>
+        <div class="ag-col"><h4>❌ Arguments AGAINST</h4>
+          <div class="arg-item"><div class="arg-point">1. Manipulates consumer behaviour psychologically</div><div class="arg-eg">Advertising techniques exploit emotions and biases, pushing consumers toward unnecessary purchases they would not otherwise make.</div></div>
+          <div class="arg-item"><div class="arg-point">2. Raises serious privacy and data security concerns</div><div class="arg-eg">Social media platforms collect vast amounts of personal data without full user transparency, raising major ethical and legal concerns.</div></div>
+          <div class="arg-item"><div class="arg-point">3. Disproportionately affects vulnerable groups</div><div class="arg-eg">Children and teenagers are particularly susceptible to advertising influence, which can promote unrealistic standards or harmful products.</div></div>
+        </div>
+      </div>
+      <h3>Conclusions</h3>
+      <div class="conc-box"><div class="lbl">Conclusion A</div>In conclusion, while social media advertising offers real economic benefits, its potential for manipulation and privacy invasion demands stronger regulation and clearer ethical standards from businesses.</div>
+      <div class="conc-box"><div class="lbl">Conclusion B</div>To sum up, the power of social media advertising comes with significant responsibility. Businesses must prioritise transparency and ethical practices to maintain long-term consumer trust.</div>
+      <div class="vocab-key">brand awareness · targeted advertising · manipulation · data privacy · consumer behaviour · digital marketing · ethical standards · demographics</div>
+    </div></div>
+  </div>
+
+  <!-- T9 -->
+  <div class="topic-wrap">
+    <div class="topic-header" onclick="tog('t9')">
+      <div class="tn a">9</div>
+      <div class="topic-title"><h3>👻 Professional Ghosting in the Workplace</h3><p>Module Communication Themes</p></div>
+      <span class="topic-arrow" id="ar-t9">▼</span>
+    </div>
+    <div class="topic-body" id="t9"><div class="topic-content">
+      <div class="rule p">"Professional ghosting — ending workplace communication without explanation — has become increasingly common. Some see it as a necessary boundary, while others argue it is unprofessional and harmful. Discuss."</div>
+      <h3>Introductions</h3>
+      <div class="intro-box"><div class="lbl">Introduction A</div>Professional ghosting — the act of suddenly ending communication in a work context without explanation — has become a growing trend in modern recruitment and workplaces. While some consider it a practical way to avoid awkward conversations, others view it as deeply unprofessional. This essay examines both perspectives.</div>
+      <div class="intro-box"><div class="lbl">Introduction B</div>In today's fast-paced professional environment, ghosting — ignoring messages and disappearing without explanation — has become disturbingly common. This essay will explore the reasons behind this behaviour and its significant negative consequences on professional relationships and culture.</div>
+      <div class="arg-grid">
+        <div class="for-col"><h4>✅ Arguments FOR (understanding the behaviour)</h4>
+          <div class="arg-item"><div class="arg-point">1. Sometimes used to avoid difficult confrontations</div><div class="arg-eg">Some employees ghost because they lack the communication skills to handle rejection or difficult conversations professionally.</div></div>
+          <div class="arg-item"><div class="arg-point">2. Often a direct response to being ghosted first</div><div class="arg-eg">Many candidates ghost employers after experiencing the same treatment from companies that never responded to their applications.</div></div>
+          <div class="arg-item"><div class="arg-point">3. Reflects the evolving norms of digital communication</div><div class="arg-eg">In a world dominated by remote communication, traditional professional courtesy has evolved differently across generations.</div></div>
+        </div>
+        <div class="ag-col"><h4>❌ Arguments AGAINST</h4>
+          <div class="arg-item"><div class="arg-point">1. Seriously damages professional relationships permanently</div><div class="arg-eg">Ghosting burns bridges and destroys trust — the professional world is small, and reputations built on disrespect can be very hard to repair.</div></div>
+          <div class="arg-item"><div class="arg-point">2. Causes significant stress and anxiety for the other party</div><div class="arg-eg">Candidates left without feedback experience serious anxiety, which takes a heavy toll on their mental health and professional confidence.</div></div>
+          <div class="arg-item"><div class="arg-point">3. Reflects and reinforces poor communication culture</div><div class="arg-eg">When companies ghost applicants, it signals a lack of respect and seriously damages the organisation's employer brand and reputation.</div></div>
+        </div>
+      </div>
+      <h3>Conclusions</h3>
+      <div class="conc-box"><div class="lbl">Conclusion A</div>In conclusion, while professional ghosting may seem like the path of least resistance, it ultimately damages individual reputations and organisational culture. Clear, respectful communication must remain the professional standard.</div>
+      <div class="conc-box"><div class="lbl">Conclusion B</div>To sum up, although modern pressures may explain ghosting behaviour, they do not justify it. Open and transparent communication is essential for building lasting professional trust and healthy workplace relationships.</div>
+      <div class="vocab-key">professional communication · trust · reputation · burn bridges · feedback · anxiety · employer brand · transparency · workplace culture · mental health</div>
+    </div></div>
+  </div>
+
+  <!-- T10 -->
+  <div class="topic-wrap">
+    <div class="topic-header" onclick="tog('t10')">
+      <div class="tn a">10</div>
+      <div class="topic-title"><h3>⚡ Technology &amp; Work-Life Balance</h3><p>Cross-topic Theme — All Lessons</p></div>
+      <span class="topic-arrow" id="ar-t10">▼</span>
+    </div>
+    <div class="topic-body" id="t10"><div class="topic-content">
+      <div class="rule p">"Technology has transformed modern working life. While some argue it improves productivity and work-life balance, others believe it has made it harder to disconnect and has damaged personal well-being. Discuss both views."</div>
+      <h3>Introductions</h3>
+      <div class="intro-box"><div class="lbl">Introduction A</div>Technology has revolutionised the modern workplace, offering unprecedented flexibility and efficiency. However, the question of whether it genuinely improves work-life balance — or actually makes it worse — has become one of the defining debates of our time. This essay will examine both sides.</div>
+      <div class="intro-box"><div class="lbl">Introduction B</div>In today's hyper-connected world, the boundaries between work and personal life have become increasingly blurred. While technology enables greater flexibility for many workers, others argue that constant connectivity has made it impossible to truly switch off. This essay will explore both perspectives.</div>
+      <div class="arg-grid">
+        <div class="for-col"><h4>✅ FOR Technology Improving Balance</h4>
+          <div class="arg-item"><div class="arg-point">1. Enables flexible working arrangements globally</div><div class="arg-eg">Cloud technology and collaboration tools allow employees to work remotely, saving commuting time and offering greater control over their schedules.</div></div>
+          <div class="arg-item"><div class="arg-point">2. Improves efficiency and reduces unnecessary overtime</div><div class="arg-eg">Automation handles repetitive tasks, freeing employees to complete work faster and leave the office on time more consistently.</div></div>
+          <div class="arg-item"><div class="arg-point">3. Provides access to well-being tools and resources</div><div class="arg-eg">Technology now offers meditation apps, fitness trackers, and mental health platforms that actively support employee well-being and resilience.</div></div>
+        </div>
+        <div class="ag-col"><h4>❌ FOR Technology Harming Balance</h4>
+          <div class="arg-item"><div class="arg-point">1. Constant connectivity creates pressure to always be available</div><div class="arg-eg">Smartphones and messaging apps mean employees receive work notifications during evenings and weekends, making genuine rest nearly impossible.</div></div>
+          <div class="arg-item"><div class="arg-point">2. Remote work blurs all boundaries between home and office</div><div class="arg-eg">Many remote workers end up working around the clock because there is no physical separation between their workspace and personal living space.</div></div>
+          <div class="arg-item"><div class="arg-point">3. Excessive screen time seriously harms mental and physical health</div><div class="arg-eg">Studies link excessive screen use to increased stress, anxiety, sleep disorders, and eye strain — all of which significantly reduce quality of life.</div></div>
+        </div>
+      </div>
+      <h3>Conclusions</h3>
+      <div class="conc-box"><div class="lbl">Conclusion A</div>In conclusion, technology has both improved and complicated work-life balance. The key lies not in rejecting it, but in using technology mindfully and establishing clear, firm boundaries between professional and personal time.</div>
+      <div class="conc-box"><div class="lbl">Conclusion B</div>To sum up, while technology offers tremendous potential to improve how we work and live, its benefits can only be fully realised when individuals and organisations commit to healthy digital habits and genuine respect for personal time.</div>
+      <div class="vocab-key">connectivity · work-life balance · burnout · mental health · remote work · screen time · boundaries · well-being · automation · flexibility · hybrid</div>
+    </div></div>
+  </div>
+
+</div>
+
+<!-- ===================== OPINION ESSAYS ===================== -->
+<div class="section" id="eop">
+
+  <div class="essay-banner" style="background:linear-gradient(135deg,rgba(253,121,168,.12),rgba(253,203,110,.08));border-color:rgba(253,121,168,.25);">
+    <div class="eb-icon">💭</div>
+    <div class="eb-info">
+      <h2>Opinion Essays — Your Personal View</h2>
+      <p>State YOUR opinion clearly in the intro · Support with 3 arguments · Refute 1 counter-argument</p>
+    </div>
+    <div class="eb-pts" style="background:rgba(253,121,168,.2);color:var(--a3);">Personal stance</div>
+  </div>
+
+  <div class="card" style="border-color:rgba(253,121,168,.2);">
+    <h2>💡 Key Difference from Argumentative</h2>
+    <table>
+      <tr><th></th><th>Argumentative</th><th>Opinion</th></tr>
+      <tr><td>Introduction</td><td>Present the debate — no personal view</td><td>State YOUR opinion immediately</td></tr>
+      <tr><td>Body</td><td>FOR paragraph + AGAINST paragraph</td><td>Your arguments + refute counter-argument</td></tr>
+      <tr><td>Conclusion</td><td>Optional personal view</td><td>Restate + reinforce your opinion</td></tr>
+      <tr><td>Tone</td><td>Balanced and neutral</td><td>"I believe..." "I firmly think..." "In my view..."</td></tr>
+    </table>
+  </div>
+
+  <!-- OPINION 1 -->
+  <div class="topic-wrap">
+    <div class="topic-header" onclick="tog('o1')">
+      <div class="tn o">1</div>
+      <div class="topic-title">
+        <h3>🎙️ Introverts Can Be Great Leaders</h3>
+        <p>Opinion · Lesson 2</p>
+      </div>
+      <span class="topic-arrow" id="ar-o1">▼</span>
+    </div>
+    <div class="topic-body" id="o1">
+    <div class="topic-content">
+      <h3>Introductions (with clear personal opinion)</h3>
+      <div class="intro-box"><div class="lbl">Intro A — AGREE</div>It is commonly believed that only extroverted, charismatic individuals make effective leaders. However, I firmly believe that introverted people can be equally — if not more — effective in leadership roles. This essay will present the reasons behind this view.</div>
+      <div class="intro-box"><div class="lbl">Intro B — AGREE</div>In today's collaborative workplace, the assumption that great leaders must be loud and outspoken is outdated. In my opinion, introverts possess unique qualities — deep listening, thoughtful decision-making, and genuine empathy — that make them excellent leaders.</div>
+      <div class="op-col">
+        <h4>💡 Your 3 Supporting Arguments</h4>
+        <div class="arg-item"><div class="arg-point">1. Introverts are better, deeper listeners</div><div class="arg-eg">They take time to process their team's ideas before acting, leading to more inclusive decisions. Bill Gates, a known introvert, built Microsoft by listening carefully to his engineers.</div></div>
+        <div class="arg-item"><div class="arg-point">2. They make deliberate, careful decisions</div><div class="arg-eg">Unlike impulsive leaders, introverts consider all angles before acting, reducing costly mistakes in project management.</div></div>
+        <div class="arg-item"><div class="arg-point">3. They empower and credit their teams</div><div class="arg-eg">Introverted leaders are more likely to acknowledge team contributions. As Lao Tzu said: "The best leaders make their followers say — we did it ourselves."</div></div>
+      </div>
+      <div class="counter-box"><strong>Counter-argument + Refutation:</strong><br>Some may argue that introverts lack the charisma to inspire large teams. <strong>However,</strong> leadership is not about being the loudest voice — it is about making the right decisions and empowering others, qualities in which introverts excel.</div>
+      <h3>Conclusions</h3>
+      <div class="conc-box"><div class="lbl">Conclusion A</div>In conclusion, I strongly believe that introverted individuals can be highly effective leaders. Their ability to listen, reflect, and empower others makes them invaluable assets in any organisation.</div>
+      <div class="conc-box"><div class="lbl">Conclusion B</div>To sum up, while extroverts may naturally attract attention, introverts lead through wisdom and empathy. Leadership is defined by actions, not volume.</div>
+      <div class="vocab-key">introvert · empathy · listening · decision-making · collaboration · empower · reflection · charisma</div>
+    </div>
+    </div>
+  </div>
+
+  <!-- OPINION 2 -->
+  <div class="topic-wrap">
+    <div class="topic-header" onclick="tog('o2')">
+      <div class="tn o">2</div>
+      <div class="topic-title">
+        <h3>📋 Project Management is Essential for Engineers</h3>
+        <p>Opinion · Lesson 2</p>
+      </div>
+      <span class="topic-arrow" id="ar-o2">▼</span>
+    </div>
+    <div class="topic-body" id="o2">
+    <div class="topic-content">
+      <h3>Introductions</h3>
+      <div class="intro-box"><div class="lbl">Intro A</div>In the modern professional world, technical skills alone are no longer sufficient for engineers. I strongly believe that project management skills are essential because they prepare students for real challenges requiring planning, communication, and leadership.</div>
+      <div class="intro-box"><div class="lbl">Intro B</div>Many engineering students focus exclusively on technical knowledge, overlooking the critical importance of management skills. In my view, learning project management is just as important as mastering technical subjects.</div>
+      <div class="op-col">
+        <h4>💡 Your 3 Supporting Arguments</h4>
+        <div class="arg-item"><div class="arg-point">1. Engineers constantly work in project teams</div><div class="arg-eg">In most companies, engineers must manage timelines, coordinate with stakeholders, and meet tight deadlines — all core project management skills.</div></div>
+        <div class="arg-item"><div class="arg-point">2. Improves communication and collaboration</div><div class="arg-eg">PM training teaches engineers to give regular updates, resolve conflicts, and work effectively with non-technical colleagues.</div></div>
+        <div class="arg-item"><div class="arg-point">3. Provides a competitive edge</div><div class="arg-eg">Employers seek candidates with both technical and managerial abilities. Engineers with PM skills are more likely to be promoted to leadership roles.</div></div>
+      </div>
+      <div class="counter-box"><strong>Counter-argument + Refutation:</strong><br>Some argue that engineers should focus solely on technical expertise. <strong>However,</strong> even the most brilliant technical work can fail if poorly planned, delivered late, or miscommunicated to stakeholders.</div>
+      <h3>Conclusions</h3>
+      <div class="conc-box"><div class="lbl">Conclusion A</div>In conclusion, I firmly believe that project management is indispensable for engineering students. It bridges the gap between technical knowledge and real-world execution.</div>
+      <div class="conc-box"><div class="lbl">Conclusion B</div>All things considered, the ability to manage projects effectively is what transforms a good engineer into a great leader.</div>
+      <div class="vocab-key">stakeholder · deadline · timeline · scope · collaboration · leadership · communication · feasibility</div>
+    </div>
+    </div>
+  </div>
+
+  <!-- OPINION 3 -->
+  <div class="topic-wrap">
+    <div class="topic-header" onclick="tog('o3')">
+      <div class="tn o">3</div>
+      <div class="topic-title">
+        <h3>📱 Technology Harms Work-Life Balance</h3>
+        <p>Opinion · Cross-topic</p>
+      </div>
+      <span class="topic-arrow" id="ar-o3">▼</span>
+    </div>
+    <div class="topic-body" id="o3">
+    <div class="topic-content">
+      <h3>Introductions</h3>
+      <div class="intro-box"><div class="lbl">Intro A</div>While technology has made work more efficient, I believe it has also blurred the boundaries between professional and personal life. Constant connectivity means many employees struggle to truly disconnect, which ultimately takes a toll on their well-being.</div>
+      <div class="intro-box"><div class="lbl">Intro B</div>Technology has revolutionised the modern workplace, offering flexibility and efficiency. However, in my opinion, this progress comes at a serious cost: the growing difficulty of separating work from personal life.</div>
+      <div class="op-col">
+        <h4>💡 Your 3 Supporting Arguments</h4>
+        <div class="arg-item"><div class="arg-point">1. Constant connectivity creates pressure</div><div class="arg-eg">With smartphones and messaging apps, employees receive work messages on evenings and weekends, making it impossible to truly relax.</div></div>
+        <div class="arg-item"><div class="arg-point">2. Remote work blurs boundaries</div><div class="arg-eg">Digital nomads and remote workers often work around the clock because there is no physical separation between workspace and living space.</div></div>
+        <div class="arg-item"><div class="arg-point">3. Excessive screen time harms mental health</div><div class="arg-eg">Studies link excessive screen time to increased stress, anxiety, and sleep disorders, all of which harm personal well-being.</div></div>
+      </div>
+      <div class="counter-box"><strong>Counter-argument + Refutation:</strong><br>Admittedly, technology also provides time-management tools like scheduling apps. <strong>Nevertheless,</strong> these only work if individuals set clear limits — without discipline, technology will always expand into personal time.</div>
+      <h3>Conclusions</h3>
+      <div class="conc-box"><div class="lbl">Conclusion A</div>In conclusion, while technology has many positive effects, its impact on work-life balance is largely negative. Without clear boundaries, constant connectivity can lead to burnout and a diminished quality of life.</div>
+      <div class="conc-box"><div class="lbl">Conclusion B</div>To sum up, the solution lies not in rejecting technology, but in learning to use it wisely and always prioritising personal well-being alongside professional goals.</div>
+      <div class="vocab-key">connectivity · work-life balance · burnout · mental health · remote work · screen time · boundaries · well-being</div>
+    </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== SIMULATION ===================== -->
+<div class="section" id="sim">
+
+  <div class="sim-header">
+    <h2>🔴 Exam Simulations — 3 Full Papers</h2>
+    <p>Each simulation follows the exact resit format: Language (10 pts) + Essay (10 pts) · Duration: 1h30</p>
+    <div class="sim-tags">
+      <span class="sim-tag l">Language · 10 pts</span>
+      <span class="sim-tag e">Essay · 10 pts</span>
+      <span class="sim-tag" style="background:rgba(0,206,201,.15);color:var(--a2);">3 Full Papers</span>
+    </div>
+  </div>
+
+  <!-- ====== EXAM SELECTOR ====== -->
+  <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px;">
+    <div class="exam-sel-btn active" id="selbtn1" onclick="showExam(1)">📄 Exam 1 — Resit Style</div>
+    <div class="exam-sel-btn" id="selbtn2" onclick="showExam(2)">📄 Exam 2 — Nomad Theme</div>
+    <div class="exam-sel-btn" id="selbtn3" onclick="showExam(3)">📄 Exam 3 — PM Theme</div>
+    <div class="exam-sel-btn" id="selbtn4" onclick="showExam(4)">📄 Exam 4 — Technology</div>
+    <div class="exam-sel-btn" id="selbtn5" onclick="showExam(5)">📄 Exam 5 — Full Mix</div>
+  </div>
+
+  <!-- ====================================================== -->
+  <!-- EXAM 1 -->
+  <!-- ====================================================== -->
+  <div id="exam1">
+
+    <div class="exam-title-bar">
+      <div>
+        <div class="exam-label">Simulation 1</div>
+        <h2 style="font-family:'DM Serif Display',serif;font-size:1.3rem;margin:4px 0;">Resit-Style Exam — Hustle Culture &amp; Leadership</h2>
+        <p style="color:var(--dim);font-size:.83rem;">Closest to the actual exam you will sit · All questions based on real resit paper</p>
+      </div>
+      <div class="exam-score-badge">20 pts</div>
+    </div>
+
+    <!-- PART 1 -->
+    <div class="sim-section">
+      <h3>PART 1 — LANGUAGE <span class="pts">10 pts</span></h3>
+      <p class="sim-sub">Section A — Vocabulary <span class="pts">6 pts</span></p>
+
+      <div class="sim-q">
+        <div class="qlbl">Q1 · Identify each chart — choose from the list (2 pts)</div>
+        <p class="q-inst">Bar chart &nbsp;/&nbsp; Flow chart &nbsp;/&nbsp; Histogram &nbsp;/&nbsp; Pie chart &nbsp;/&nbsp; Funnel chart &nbsp;/&nbsp; Line graph &nbsp;&nbsp;<em style="color:var(--dim)">(2 extra options)</em></p>
+        <div class="chart-grid">
+          <div class="chart-card"><div class="chart-visual funnel-viz"><div class="fbar" style="width:90%;background:#6c5ce7">Level 1</div><div class="fbar" style="width:65%;background:#a29bfe">Level 2</div><div class="fbar" style="width:40%;background:#d2cfff">Level 3</div><div class="fbar" style="width:20%;background:#e8e6ff">Level 4</div></div><div class="chart-label">Chart A</div></div>
+          <div class="chart-card"><div class="chart-visual pie-viz"><div class="pie-inner"></div></div><div class="chart-label">Chart B</div></div>
+          <div class="chart-card"><div class="chart-visual flow-viz"><div class="flow-box">Start</div><div class="flow-arrow">↓</div><div class="flow-box">Decision?</div><div class="flow-arrow">↓ Yes</div><div class="flow-box">End</div></div><div class="chart-label">Chart C</div></div>
+          <div class="chart-card"><div class="chart-visual bar-viz"><div style="display:flex;align-items:flex-end;gap:6px;height:70px"><div class="bbar" style="height:80%;background:#6c5ce7"></div><div class="bbar" style="height:50%;background:#00cec9"></div><div class="bbar" style="height:95%;background:#fd79a8"></div><div class="bbar" style="height:60%;background:#fdcb6e"></div></div></div><div class="chart-label">Chart D</div></div>
+        </div>
+        <span class="show-ans" onclick="togAns('e1q1')">Show answer ▾</span>
+        <div class="ans-box" id="e1q1">
+          <span class="ok-label">✅ A = Funnel chart &nbsp;·&nbsp; B = Pie chart &nbsp;·&nbsp; C = Flow chart &nbsp;·&nbsp; D = Bar chart</span>
+        </div>
+      </div>
+
+      <div class="sim-q">
+        <div class="qlbl">Q2 · Match each idiom to its definition — 2 extra options (4 pts)</div>
+        <div class="match-table">
+          <div class="match-row"><span class="match-num">1</span><span class="match-expr">"She didn't want to <strong>rock the boat</strong> at her new job, so she kept her suggestions to herself."</span></div>
+          <div class="match-row"><span class="match-num">2</span><span class="match-expr">"I heard <strong>through the grapevine</strong> that the company is planning to lay off several employees."</span></div>
+          <div class="match-row"><span class="match-num">3</span><span class="match-expr">"The constant stress of the job began to <strong>take a heavy toll</strong> on his health."</span></div>
+          <div class="match-row"><span class="match-num">4</span><span class="match-expr">"Trying to get my kids to clean their rooms is like <strong>talking to a dead wall</strong>."</span></div>
+        </div>
+        <div class="options-list">
+          <div class="opt-item">A — To circulate information word-of-mouth rather than officially.</div>
+          <div class="opt-item">B — To keep someone updated and informed.</div>
+          <div class="opt-item">C — To cause disruption or conflict in a situation.</div>
+          <div class="opt-item">D — To delay talking about something important.</div>
+          <div class="opt-item">E — To result in significant negative consequences.</div>
+          <div class="opt-item">F — To try to communicate with someone who is unresponsive.</div>
+        </div>
+        <span class="show-ans" onclick="togAns('e1q2')">Show answer ▾</span>
+        <div class="ans-box" id="e1q2">
+          <span class="ok-label">✅ 1→C &nbsp;·&nbsp; 2→A &nbsp;·&nbsp; 3→E &nbsp;·&nbsp; 4→F</span><br>
+          <em style="color:var(--dim)">Unused: B and D</em>
+        </div>
+      </div>
+
+      <p class="sim-sub">Section B — Grammar <span class="pts">4 pts</span></p>
+
+      <div class="sim-q">
+        <div class="qlbl">Q1 · Present Perfect — Put the bracketed verbs in the correct form (3 pts)</div>
+        <div class="fill-list">
+          <div class="fill-item"><span class="fill-num">1.</span> Our team __________ (recently / to develop) a new app for customer engagement.</div>
+          <div class="fill-item"><span class="fill-num">2.</span> The engineers __________ (to create / successfully) a highly effective campaign.</div>
+          <div class="fill-item"><span class="fill-num">3.</span> The company __________ (launch / just) a groundbreaking product on the market.</div>
+        </div>
+        <span class="show-ans" onclick="togAns('e1q3')">Show answer ▾</span>
+        <div class="ans-box" id="e1q3">
+          <span class="ok-label">✅ 1. has recently developed &nbsp;·&nbsp; 2. have successfully created &nbsp;·&nbsp; 3. has just launched</span>
+        </div>
+      </div>
+
+      <div class="sim-q">
+        <div class="qlbl">Q2 · Conditionals — Circle the correct answer (1 pt each)</div>
+        <div class="mcq-list">
+          <div class="mcq-item">
+            <div class="mcq-q">1. If you identify a market need accurately, the product __________ more likely to succeed.</div>
+            <div class="mcq-opts"><span class="mopt">A. Would be</span><span class="mopt">B. Would have been</span><span class="mopt correct-opt">C. Will be ✅</span><span class="mopt">D. Is being</span></div>
+          </div>
+          <div class="mcq-item">
+            <div class="mcq-q">2. If you __________ more resources, you would be able to develop a wider range of products.</div>
+            <div class="mcq-opts"><span class="mopt correct-opt">A. Had ✅</span><span class="mopt">B. Have</span><span class="mopt">C. Had had</span><span class="mopt">D. Have had</span></div>
+          </div>
+          <div class="mcq-item">
+            <div class="mcq-q">3. If the team had collaborated more effectively, the project __________ so many delays.</div>
+            <div class="mcq-opts"><span class="mopt">A. Would have faced</span><span class="mopt correct-opt">B. Would not have faced ✅</span><span class="mopt">C. Will not face</span><span class="mopt">D. Would not face</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PART 2 ESSAY 1 -->
+    <div class="sim-section">
+      <h3>PART 2 — ESSAY <span class="pts">10 pts</span></h3>
+      <p style="color:var(--dim);font-size:.84rem;margin-bottom:14px;">Choose ONE topic. Write a full argumentative essay. Recommended time: 45 minutes.</p>
+
+      <div class="essay-choice">
+        <div class="ec-label">TOPIC 1</div>
+        <p class="essay-prompt">"Some think that hustle culture occasionally fosters productivity and success, while others believe that it ultimately leads to significant negative consequences that outweigh its purported benefits."</p>
+        <span class="show-ans" onclick="togAns('e1es1')">Show model essay ▾</span>
+        <div class="ans-box" id="e1es1">
+          <span class="ok-label">📝 Model Essay — Hustle Culture</span><br><br>
+          <div class="model-essay">
+            <strong>Introduction:</strong><br>
+            In today's competitive world, hustle culture — the glorification of overworking — has become a widespread phenomenon. While some argue that it drives ambition and professional success, others contend that its consequences on health and well-being far outweigh its benefits. This essay will examine both perspectives.<br><br>
+            <strong>Body Paragraph 1 — FOR:</strong><br>
+            On the one hand, hustle culture can foster ambition and career growth. For instance, many successful entrepreneurs credit their achievements to an intense work ethic. Moreover, working hard develops discipline and resilience, which are essential qualities in competitive professional environments. In addition, freelancers who take on extra projects can significantly accelerate their financial independence.<br><br>
+            <strong>Body Paragraph 2 — AGAINST:</strong><br>
+            On the other hand, the negative consequences of hustle culture are significant. Studies show that employees working over 55 hours per week face a 35% higher risk of stroke. Furthermore, overworking takes a heavy toll on personal relationships, often causing social isolation and loneliness. Consequently, employees who constantly work around the clock tend to become less creative and more prone to costly errors, which ultimately reduces their long-term productivity.<br><br>
+            <strong>Conclusion:</strong><br>
+            In conclusion, while hustle culture can occasionally drive short-term success, its long-term consequences — burnout, damaged health, and broken relationships — suggest that a more balanced approach to work is ultimately more sustainable. Striking a healthy work-life balance remains the most effective strategy for lasting professional achievement.
+          </div>
+          <div class="essay-score-breakdown">
+            <div class="esb-item"><span>Introduction</span><span class="esb-pts">1/1 ✅</span></div>
+            <div class="esb-item"><span>Body (FOR + AGAINST)</span><span class="esb-pts">2/2 ✅</span></div>
+            <div class="esb-item"><span>Conclusion</span><span class="esb-pts">1/1 ✅</span></div>
+            <div class="esb-item"><span>Vocabulary (burnout, resilience, productivity...)</span><span class="esb-pts">1.5/1.5 ✅</span></div>
+            <div class="esb-item"><span>Linkers (On the one hand, Moreover, Consequently...)</span><span class="esb-pts">0.5/0.5 ✅</span></div>
+            <div class="esb-item"><span>Grammar &amp; Spelling</span><span class="esb-pts">1.5/1.5 ✅</span></div>
+            <div class="esb-item"><span>Layout</span><span class="esb-pts">0.5/0.5 ✅</span></div>
+            <div class="esb-item total-row"><span>TOTAL</span><span class="esb-pts">8/8 → 10/10</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="essay-choice">
+        <div class="ec-label">TOPIC 2</div>
+        <p class="essay-prompt">"While authoritative leadership gives clear rules and consistency, inspirational leadership tends to be more effective for project management."</p>
+        <span class="show-ans" onclick="togAns('e1es2')">Show model essay ▾</span>
+        <div class="ans-box" id="e1es2">
+          <span class="ok-label">📝 Model Essay — Leadership Styles</span><br><br>
+          <div class="model-essay">
+            <strong>Introduction:</strong><br>
+            Leadership style plays a critical role in the success of any project. While authoritative leadership provides clear structure and discipline, inspirational leadership motivates teams through vision and empathy. This essay will explore both approaches and their effectiveness in project management contexts.<br><br>
+            <strong>Body Paragraph 1 — FOR Inspirational Leadership:</strong><br>
+            On the one hand, inspirational leadership offers significant advantages. First and foremost, it boosts team motivation and encourages employees to think outside the box, generating creative solutions that benefit the project. Furthermore, when leaders lead by example and show genuine empathy, team members feel valued and are more willing to go the extra mile. As a result, studies show that employees under inspirational leaders report higher job satisfaction and lower turnover rates.<br><br>
+            <strong>Body Paragraph 2 — FOR Authoritative Leadership:</strong><br>
+            On the other hand, authoritative leadership has undeniable merits. For instance, in projects with tight deadlines, a leader who sets clear rules ensures tasks are completed on schedule without confusion. Moreover, in large teams, authoritative leadership clearly defines roles and responsibilities, eliminating costly misunderstandings. In addition, during crisis situations, quick and decisive leadership is often more effective than slow, collaborative approaches.<br><br>
+            <strong>Conclusion:</strong><br>
+            All things considered, both leadership styles have their merits. While authoritative leadership ensures structure and efficiency, inspirational leadership fosters creativity and long-term team engagement. Ultimately, the most effective leaders are those who can adapt their style to the specific needs of each project and situation.
+          </div>
+          <div class="essay-score-breakdown">
+            <div class="esb-item"><span>Introduction</span><span class="esb-pts">1/1 ✅</span></div>
+            <div class="esb-item"><span>Body (FOR + FOR)</span><span class="esb-pts">2/2 ✅</span></div>
+            <div class="esb-item"><span>Conclusion</span><span class="esb-pts">1/1 ✅</span></div>
+            <div class="esb-item"><span>Vocabulary (motivation, efficiency, empathy...)</span><span class="esb-pts">1.5/1.5 ✅</span></div>
+            <div class="esb-item"><span>Linkers (On the one hand, Moreover, As a result...)</span><span class="esb-pts">0.5/0.5 ✅</span></div>
+            <div class="esb-item"><span>Grammar &amp; Spelling</span><span class="esb-pts">1.5/1.5 ✅</span></div>
+            <div class="esb-item"><span>Layout</span><span class="esb-pts">0.5/0.5 ✅</span></div>
+            <div class="esb-item total-row"><span>TOTAL</span><span class="esb-pts">8/8 → 10/10</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ====================================================== -->
+  <!-- EXAM 2 -->
+  <!-- ====================================================== -->
+  <div id="exam2" style="display:none;">
+
+    <div class="exam-title-bar">
+      <div>
+        <div class="exam-label">Simulation 2</div>
+        <h2 style="font-family:'DM Serif Display',serif;font-size:1.3rem;margin:4px 0;">Digital Nomad &amp; Remote Work Theme</h2>
+        <p style="color:var(--dim);font-size:.83rem;">Lesson 5 vocabulary · Embedded questions grammar · Digital nomad essay</p>
+      </div>
+      <div class="exam-score-badge">20 pts</div>
+    </div>
+
+    <div class="sim-section">
+      <h3>PART 1 — LANGUAGE <span class="pts">10 pts</span></h3>
+      <p class="sim-sub">Section A — Vocabulary <span class="pts">6 pts</span></p>
+
+      <div class="sim-q">
+        <div class="qlbl">Q1 · Choose the correct chart name for each description (2 pts)</div>
+        <div class="fill-list">
+          <div class="fill-item"><span class="fill-num">1.</span> A graph that uses a line to show how data changes <strong>over time</strong>. → __________</div>
+          <div class="fill-item"><span class="fill-num">2.</span> A chart shaped like a <strong>funnel</strong> showing stages of reduction. → __________</div>
+          <div class="fill-item"><span class="fill-num">3.</span> A circular chart divided into <strong>proportional slices</strong>. → __________</div>
+          <div class="fill-item"><span class="fill-num">4.</span> A diagram with <strong>boxes and arrows</strong> representing a decision process. → __________</div>
+        </div>
+        <span class="show-ans" onclick="togAns('e2q1')">Show answer ▾</span>
+        <div class="ans-box" id="e2q1">
+          <span class="ok-label">✅ 1. Line graph &nbsp;·&nbsp; 2. Funnel chart &nbsp;·&nbsp; 3. Pie chart &nbsp;·&nbsp; 4. Flow chart</span>
+        </div>
+      </div>
+
+      <div class="sim-q">
+        <div class="qlbl">Q2 · Fill in the blanks with the correct idiom from the box (4 pts)</div>
+        <div class="word-bank">
+          <span class="wb-word">work around the clock</span>
+          <span class="wb-word">live out of a suitcase</span>
+          <span class="wb-word">the rat race</span>
+          <span class="wb-word">roll with the punches</span>
+          <span class="wb-word">burn bridges</span>
+          <span class="wb-word">pay the piper</span>
+        </div>
+        <div class="fill-list">
+          <div class="fill-item"><span class="fill-num">A.</span> During the product launch, the team had deadlines for clients in multiple time zones and had to <strong>__________</strong> to complete everything on time.</div>
+          <div class="fill-item"><span class="fill-num">B.</span> Travelling constantly between cities, a digital nomad quickly gets used to <strong>__________</strong>, never really unpacking or settling down.</div>
+          <div class="fill-item"><span class="fill-num">C.</span> Many office employees leave their jobs because they are tired of the stress and competition — they simply want to escape <strong>__________</strong>.</div>
+          <div class="fill-item"><span class="fill-num">D.</span> When technical problems or flight delays happen during work, digital nomads must learn to <strong>__________</strong> and adapt without getting frustrated.</div>
+        </div>
+        <span class="show-ans" onclick="togAns('e2q2')">Show answer ▾</span>
+        <div class="ans-box" id="e2q2">
+          <span class="ok-label">✅ A. work around the clock &nbsp;·&nbsp; B. live out of a suitcase &nbsp;·&nbsp; C. the rat race &nbsp;·&nbsp; D. roll with the punches</span>
+        </div>
+      </div>
+
+      <p class="sim-sub">Section B — Grammar <span class="pts">4 pts</span></p>
+
+      <div class="sim-q">
+        <div class="qlbl">Q1 · Present Perfect — Complete the sentences (2 pts)</div>
+        <div class="fill-list">
+          <div class="fill-item"><span class="fill-num">1.</span> Since 2005, the number of remote workers __________ (increase / dramatically) worldwide.</div>
+          <div class="fill-item"><span class="fill-num">2.</span> Many digital nomads __________ (already / discover) affordable destinations in Southeast Asia.</div>
+          <div class="fill-item"><span class="fill-num">3.</span> The company __________ (just / launch) a new policy allowing employees to work from anywhere.</div>
+        </div>
+        <span class="show-ans" onclick="togAns('e2q3')">Show answer ▾</span>
+        <div class="ans-box" id="e2q3">
+          <span class="ok-label">✅ 1. has dramatically increased &nbsp;·&nbsp; 2. have already discovered &nbsp;·&nbsp; 3. has just launched</span>
+        </div>
+      </div>
+
+      <div class="sim-q">
+        <div class="qlbl">Q2 · Embedded Questions — Rewrite each question as an embedded question (2 pts)</div>
+        <div class="fill-list">
+          <div class="fill-item"><span class="fill-num">1.</span> "Where can I find reliable coworking spaces?" → I wonder __________</div>
+          <div class="fill-item"><span class="fill-num">2.</span> "Is it expensive to live as a digital nomad?" → Could you tell me __________</div>
+          <div class="fill-item"><span class="fill-num">3.</span> "What is the best city for digital nomads?" → Would you mind telling me __________</div>
+          <div class="fill-item"><span class="fill-num">4.</span> "Do digital nomads pay taxes in multiple countries?" → I want to know __________</div>
+        </div>
+        <span class="show-ans" onclick="togAns('e2q4')">Show answer ▾</span>
+        <div class="ans-box" id="e2q4">
+          <span class="ok-label">✅ Correct answers:</span><br>
+          1. I wonder <strong>where I can find reliable coworking spaces.</strong><br>
+          2. Could you tell me <strong>if/whether it is expensive to live as a digital nomad?</strong><br>
+          3. Would you mind telling me <strong>what the best city for digital nomads is?</strong><br>
+          4. I want to know <strong>whether/if digital nomads pay taxes in multiple countries.</strong>
+        </div>
+      </div>
+    </div>
+
+    <div class="sim-section">
+      <h3>PART 2 — ESSAY <span class="pts">10 pts</span></h3>
+      <p style="color:var(--dim);font-size:.84rem;margin-bottom:14px;">Choose ONE topic and write a full argumentative essay.</p>
+
+      <div class="essay-choice">
+        <div class="ec-label">TOPIC 1</div>
+        <p class="essay-prompt">"The digital nomad lifestyle offers freedom and flexibility, but it also comes with significant challenges that can outweigh its benefits. Discuss both sides of this argument, providing relevant examples."</p>
+        <span class="show-ans" onclick="togAns('e2es1')">Show model essay ▾</span>
+        <div class="ans-box" id="e2es1">
+          <span class="ok-label">📝 Model Essay — Digital Nomad Lifestyle</span><br><br>
+          <div class="model-essay">
+            <strong>Introduction:</strong><br>
+            With the rise of remote work and high-speed connectivity, the digital nomad lifestyle has become increasingly popular among professionals worldwide. While it offers unparalleled freedom and cultural immersion, critics argue that it leads to social isolation and professional instability. This essay will examine both the advantages and disadvantages of this modern way of living.<br><br>
+            <strong>Body Paragraph 1 — Benefits:</strong><br>
+            On the one hand, the digital nomad lifestyle provides numerous compelling benefits. First and foremost, nomads enjoy complete location independence — they can work from exotic beaches, bustling cities, or quiet mountain retreats, as long as there is reliable connectivity. Moreover, living in different countries enables cultural immersion and significant personal growth, allowing nomads to learn new languages and broaden their worldview. In addition, many professionals report a much higher level of life satisfaction after escaping the corporate rat race and gaining full control over their daily schedules.<br><br>
+            <strong>Body Paragraph 2 — Drawbacks:</strong><br>
+            On the other hand, this lifestyle comes with serious challenges. Constantly relocating makes it extremely difficult to build and maintain deep, long-term relationships, and many nomads report feeling isolated despite meeting many new people. Furthermore, without a fixed workspace, the work-life balance becomes blurry — many nomads end up working around the clock to meet deadlines, which leads to burnout and reduced productivity. Consequently, managing taxes across multiple countries and navigating complex visa regulations adds significant financial and legal precariousness to this already demanding lifestyle.<br><br>
+            <strong>Conclusion:</strong><br>
+            In conclusion, while the digital nomad lifestyle offers extraordinary freedom and enriching experiences, it also presents very real challenges including loneliness, burnout, and financial instability. Those considering this path should carefully weigh the advantages and disadvantages before making the transition, ensuring they have the discipline and planning skills required to sustain it long-term.
+          </div>
+          <div class="essay-score-breakdown">
+            <div class="esb-item"><span>Introduction</span><span class="esb-pts">1/1 ✅</span></div>
+            <div class="esb-item"><span>Body Paragraphs</span><span class="esb-pts">2/2 ✅</span></div>
+            <div class="esb-item"><span>Conclusion</span><span class="esb-pts">1/1 ✅</span></div>
+            <div class="esb-item"><span>Vocabulary (connectivity, immersion, burnout, precariousness...)</span><span class="esb-pts">1.5/1.5 ✅</span></div>
+            <div class="esb-item"><span>Linkers (On the one hand, Moreover, Furthermore, Consequently...)</span><span class="esb-pts">0.5/0.5 ✅</span></div>
+            <div class="esb-item"><span>Grammar &amp; Spelling</span><span class="esb-pts">1.5/1.5 ✅</span></div>
+            <div class="esb-item"><span>Layout</span><span class="esb-pts">0.5/0.5 ✅</span></div>
+            <div class="esb-item total-row"><span>TOTAL</span><span class="esb-pts">8/8 → 10/10</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="essay-choice">
+        <div class="ec-label">TOPIC 2</div>
+        <p class="essay-prompt">"Remote work has become the new norm. Some see it as the future of work, while others believe traditional office work remains more effective. Discuss both views and give your own opinion."</p>
+        <span class="show-ans" onclick="togAns('e2es2')">Show model essay ▾</span>
+        <div class="ans-box" id="e2es2">
+          <span class="ok-label">📝 Model Essay — Remote Work vs Office Work</span><br><br>
+          <div class="model-essay">
+            <strong>Introduction:</strong><br>
+            Since the tech revolution accelerated remote working possibilities, the debate over whether working from home or the office is more effective has intensified. While remote work offers undeniable flexibility and cost benefits, traditional office environments provide collaboration and structure that many professionals still value highly. This essay will explore both perspectives before presenting my own view.<br><br>
+            <strong>Body Paragraph 1 — FOR Remote Work:</strong><br>
+            On the one hand, remote work offers several compelling advantages. Employees save significant commuting time and can organise their schedules more freely around personal commitments, leading to a better work-life balance. Furthermore, studies suggest that remote workers can be up to 13% more productive when working on focused tasks, due to fewer office distractions and interruptions. In addition, companies benefit from reduced operational costs, while employees spend less on transportation and daily meals.<br><br>
+            <strong>Body Paragraph 2 — FOR Office Work:</strong><br>
+            On the other hand, working in a physical office environment maintains important professional advantages. Face-to-face interactions enable faster brainstorming, immediate feedback, and the building of genuine team relationships that are much harder to replicate online. Moreover, the office provides a clear physical boundary between professional and personal life, preventing employees from working around the clock without rest. Consequently, managers can also monitor team progress more effectively in person, keeping projects on track and deadlines met consistently.<br><br>
+            <strong>Conclusion:</strong><br>
+            All things considered, both remote and office work have distinct advantages depending on the role and individual preferences. In my opinion, a hybrid model — combining the flexibility of remote work with the collaborative benefits of the office — represents the most balanced and effective solution for modern organisations.
+          </div>
+          <div class="essay-score-breakdown">
+            <div class="esb-item"><span>Introduction</span><span class="esb-pts">1/1 ✅</span></div>
+            <div class="esb-item"><span>Body Paragraphs</span><span class="esb-pts">2/2 ✅</span></div>
+            <div class="esb-item"><span>Conclusion</span><span class="esb-pts">1/1 ✅</span></div>
+            <div class="esb-item"><span>Vocabulary (hybrid, productivity, collaboration, flexibility...)</span><span class="esb-pts">1.5/1.5 ✅</span></div>
+            <div class="esb-item"><span>Linkers</span><span class="esb-pts">0.5/0.5 ✅</span></div>
+            <div class="esb-item total-row"><span>TOTAL</span><span class="esb-pts">8/8 → 10/10</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ====================================================== -->
+  <!-- EXAM 3 -->
+  <!-- ====================================================== -->
+  <div id="exam3" style="display:none;">
+
+    <div class="exam-title-bar">
+      <div>
+        <div class="exam-label">Simulation 3</div>
+        <h2 style="font-family:'DM Serif Display',serif;font-size:1.3rem;margin:4px 0;">Project Management &amp; Leadership Theme</h2>
+        <p style="color:var(--dim);font-size:.83rem;">Lesson 2 vocabulary · Passive voice grammar · Leadership &amp; AI essays</p>
+      </div>
+      <div class="exam-score-badge">20 pts</div>
+    </div>
+
+    <div class="sim-section">
+      <h3>PART 1 — LANGUAGE <span class="pts">10 pts</span></h3>
+      <p class="sim-sub">Section A — Vocabulary <span class="pts">6 pts</span></p>
+
+      <div class="sim-q">
+        <div class="qlbl">Q1 · Match each Project Management term to its definition (2 pts)</div>
+        <div class="match-table">
+          <div class="match-row"><span class="match-num">1</span><span class="match-expr"><strong>Scope creep</strong></span></div>
+          <div class="match-row"><span class="match-num">2</span><span class="match-expr"><strong>Stakeholder</strong></span></div>
+          <div class="match-row"><span class="match-num">3</span><span class="match-expr"><strong>Budget overrun</strong></span></div>
+          <div class="match-row"><span class="match-num">4</span><span class="match-expr"><strong>Feasibility study</strong></span></div>
+        </div>
+        <div class="options-list">
+          <div class="opt-item">A — An individual or group with an interest in the outcome of a project.</div>
+          <div class="opt-item">B — An assessment of whether a project is realistic and achievable.</div>
+          <div class="opt-item">C — The uncontrolled expansion of a project beyond its original boundaries.</div>
+          <div class="opt-item">D — A situation where project costs exceed the original budget estimate.</div>
+          <div class="opt-item">E — The planned sequence of project activities and their completion dates.</div>
+        </div>
+        <span class="show-ans" onclick="togAns('e3q1')">Show answer ▾</span>
+        <div class="ans-box" id="e3q1">
+          <span class="ok-label">✅ 1→C &nbsp;·&nbsp; 2→A &nbsp;·&nbsp; 3→D &nbsp;·&nbsp; 4→B</span><br>
+          <em style="color:var(--dim)">Unused: E (timeline)</em>
+        </div>
+      </div>
+
+      <div class="sim-q">
+        <div class="qlbl">Q2 · Match each leadership idiom/expression to its meaning (4 pts)</div>
+        <div class="match-table">
+          <div class="match-row"><span class="match-num">1</span><span class="match-expr">"A great manager always <strong>leads by example</strong> rather than simply issuing orders to the team."</span></div>
+          <div class="match-row"><span class="match-num">2</span><span class="match-expr">"She <strong>burned bridges</strong> with her previous employer after leaving without notice."</span></div>
+          <div class="match-row"><span class="match-num">3</span><span class="match-expr">"The project manager asked the team to <strong>think outside the box</strong> to find a creative solution."</span></div>
+          <div class="match-row"><span class="match-num">4</span><span class="match-expr">"Despite the budget cuts, the team had to <strong>roll with the punches</strong> and deliver on time."</span></div>
+        </div>
+        <div class="options-list">
+          <div class="opt-item">A — To behave in a way that sets a positive standard for others to follow.</div>
+          <div class="opt-item">B — To think creatively and unconventionally to solve a problem.</div>
+          <div class="opt-item">C — To permanently destroy a professional relationship or opportunity.</div>
+          <div class="opt-item">D — To adapt flexibly to difficulties and setbacks without losing composure.</div>
+          <div class="opt-item">E — To delay making an important decision or taking action.</div>
+          <div class="opt-item">F — To assign specific responsibilities to team members.</div>
+        </div>
+        <span class="show-ans" onclick="togAns('e3q2')">Show answer ▾</span>
+        <div class="ans-box" id="e3q2">
+          <span class="ok-label">✅ 1→A &nbsp;·&nbsp; 2→C &nbsp;·&nbsp; 3→B &nbsp;·&nbsp; 4→D</span><br>
+          <em style="color:var(--dim)">Unused: E and F</em>
+        </div>
+      </div>
+
+      <p class="sim-sub">Section B — Grammar <span class="pts">4 pts</span></p>
+
+      <div class="sim-q">
+        <div class="qlbl">Q1 · Passive Voice — Transform each sentence into the passive (2 pts)</div>
+        <div class="fill-list">
+          <div class="fill-item"><span class="fill-num">1.</span> The project manager approved the final budget. → The final budget __________</div>
+          <div class="fill-item"><span class="fill-num">2.</span> The team has already completed all the deliverables. → All the deliverables __________</div>
+          <div class="fill-item"><span class="fill-num">3.</span> Engineers develop new applications every year. → New applications __________</div>
+          <div class="fill-item"><span class="fill-num">4.</span> The manager must sign all contracts before the deadline. → All contracts __________</div>
+        </div>
+        <span class="show-ans" onclick="togAns('e3q3')">Show answer ▾</span>
+        <div class="ans-box" id="e3q3">
+          <span class="ok-label">✅ Answers:</span><br>
+          1. The final budget <strong>was approved</strong> by the project manager.<br>
+          2. All the deliverables <strong>have already been completed</strong> by the team.<br>
+          3. New applications <strong>are developed</strong> by engineers every year.<br>
+          4. All contracts <strong>must be signed</strong> by the manager before the deadline.
+        </div>
+      </div>
+
+      <div class="sim-q">
+        <div class="qlbl">Q2 · Conditionals — Choose the correct form (2 pts)</div>
+        <div class="mcq-list">
+          <div class="mcq-item">
+            <div class="mcq-q">1. If the team <strong>sets</strong> clear objectives at the start, the project __________ more likely to succeed.</div>
+            <div class="mcq-opts"><span class="mopt correct-opt">A. Will be ✅</span><span class="mopt">B. Would be</span><span class="mopt">C. Would have been</span><span class="mopt">D. Has been</span></div>
+          </div>
+          <div class="mcq-item">
+            <div class="mcq-q">2. If the manager __________ the team's ideas more carefully, they would feel more valued.</div>
+            <div class="mcq-opts"><span class="mopt">A. listens</span><span class="mopt correct-opt">B. listened ✅</span><span class="mopt">C. had listened</span><span class="mopt">D. will listen</span></div>
+          </div>
+          <div class="mcq-item">
+            <div class="mcq-q">3. If the stakeholders had been consulted earlier, the project __________ so many delays.</div>
+            <div class="mcq-opts"><span class="mopt">A. would avoid</span><span class="mopt">B. will have avoided</span><span class="mopt correct-opt">C. would have avoided ✅</span><span class="mopt">D. avoided</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sim-section">
+      <h3>PART 2 — ESSAY <span class="pts">10 pts</span></h3>
+      <p style="color:var(--dim);font-size:.84rem;margin-bottom:14px;">Choose ONE topic and write a full argumentative essay.</p>
+
+      <div class="essay-choice">
+        <div class="ec-label">TOPIC 1</div>
+        <p class="essay-prompt">"Some people believe that introverted leaders are more effective than extroverted ones in professional environments. Others disagree. Discuss both views and give examples to support your arguments."</p>
+        <span class="show-ans" onclick="togAns('e3es1')">Show model essay ▾</span>
+        <div class="ans-box" id="e3es1">
+          <span class="ok-label">📝 Model Essay — Introverted vs Extroverted Leaders</span><br><br>
+          <div class="model-essay">
+            <strong>Introduction:</strong><br>
+            It is widely debated whether introverted or extroverted individuals make more effective leaders in professional settings. While extroverts are traditionally seen as natural, charismatic leaders, a growing body of research suggests that introverts bring equally valuable — and sometimes superior — qualities to leadership roles. This essay will examine both perspectives.<br><br>
+            <strong>Body Paragraph 1 — FOR Introverted Leaders:</strong><br>
+            On the one hand, introverted leaders possess several qualities that make them highly effective. First and foremost, they are exceptional listeners — they take time to process their team's ideas before acting, which leads to more thoughtful and inclusive decision-making. Moreover, by carefully considering all angles before making decisions, introverts tend to reduce costly mistakes in complex, high-stakes projects. For example, Bill Gates, a well-known introvert, built one of the world's most successful companies by listening carefully to his team and empowering them to innovate freely.<br><br>
+            <strong>Body Paragraph 2 — FOR Extroverted Leaders:</strong><br>
+            On the other hand, extroverted leaders bring equally compelling strengths to the table. For instance, their natural confidence and energy allow them to communicate powerfully with large audiences, inspire teams publicly, and build strong external professional networks. Furthermore, in fast-moving industries where quick decisions are required, extroverts' spontaneous and decisive leadership style can be a significant competitive advantage. Consequently, their contagious enthusiasm often boosts overall team morale, particularly during demanding periods or high-pressure product launches.<br><br>
+            <strong>Conclusion:</strong><br>
+            All things considered, both introverted and extroverted leaders bring genuinely valuable but different strengths to professional environments. The most successful organisations are those that recognise and harness both personality types, understanding that effective leadership is not defined by how loud or quiet a person is, but by their ability to listen, adapt, and inspire their teams toward a shared goal.
+          </div>
+          <div class="essay-score-breakdown">
+            <div class="esb-item"><span>Introduction</span><span class="esb-pts">1/1 ✅</span></div>
+            <div class="esb-item"><span>Body Paragraphs</span><span class="esb-pts">2/2 ✅</span></div>
+            <div class="esb-item"><span>Conclusion</span><span class="esb-pts">1/1 ✅</span></div>
+            <div class="esb-item"><span>Vocabulary (inclusive, charisma, empowering, spontaneous...)</span><span class="esb-pts">1.5/1.5 ✅</span></div>
+            <div class="esb-item"><span>Linkers</span><span class="esb-pts">0.5/0.5 ✅</span></div>
+            <div class="esb-item total-row"><span>TOTAL</span><span class="esb-pts">8/8 → 10/10</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="essay-choice">
+        <div class="ec-label">TOPIC 2</div>
+        <p class="essay-prompt">"Artificial intelligence is increasingly used in education. While some argue it significantly improves student performance, others believe it weakens independent thinking and academic integrity. Discuss both sides."</p>
+        <span class="show-ans" onclick="togAns('e3es2')">Show model essay ▾</span>
+        <div class="ans-box" id="e3es2">
+          <span class="ok-label">📝 Model Essay — AI in Education</span><br><br>
+          <div class="model-essay">
+            <strong>Introduction:</strong><br>
+            Artificial intelligence is transforming education at an unprecedented pace, sparking intense debate among educators and students worldwide. While proponents argue that AI tools dramatically improve learning outcomes through personalisation and efficiency, critics warn that they pose serious risks to independent thinking and academic integrity. This essay will examine both perspectives thoroughly.<br><br>
+            <strong>Body Paragraph 1 — FOR AI in Education:</strong><br>
+            On the one hand, AI offers compelling educational benefits. First and foremost, AI-powered tools adapt to each individual student's level, providing targeted feedback and personalised exercises that help struggling students progress significantly faster than in traditional classroom settings. Moreover, AI automates time-consuming administrative tasks like grading, freeing teachers to invest more time in meaningful mentoring and interactive teaching. In addition, AI tutors are available around the clock, making quality learning accessible to students regardless of their location or time zone.<br><br>
+            <strong>Body Paragraph 2 — AGAINST AI in Education:</strong><br>
+            On the other hand, the risks of AI in education should not be underestimated. For instance, when AI provides instant, ready-made answers, students are tempted to skip the critical reasoning process entirely, leading to a dangerously superficial understanding of the subject matter. Furthermore, students who become overly dependent on AI tools often struggle when technology is unavailable, such as during traditional written exams. Consequently, the widespread use of AI has significantly increased the risk of plagiarism, raising serious questions about academic honesty and the true value of qualifications.<br><br>
+            <strong>Conclusion:</strong><br>
+            In conclusion, while AI offers extraordinary potential to improve educational efficiency and personalisation, it also poses real and serious risks to independent learning and academic integrity. Schools and universities should integrate AI tools thoughtfully and responsibly, using them as a supplement to — rather than a replacement for — traditional human-centred education.
+          </div>
+          <div class="essay-score-breakdown">
+            <div class="esb-item"><span>Introduction</span><span class="esb-pts">1/1 ✅</span></div>
+            <div class="esb-item"><span>Body Paragraphs</span><span class="esb-pts">2/2 ✅</span></div>
+            <div class="esb-item"><span>Conclusion</span><span class="esb-pts">1/1 ✅</span></div>
+            <div class="esb-item"><span>Vocabulary (personalised, plagiarism, academic integrity, critical reasoning...)</span><span class="esb-pts">1.5/1.5 ✅</span></div>
+            <div class="esb-item"><span>Linkers</span><span class="esb-pts">0.5/0.5 ✅</span></div>
+            <div class="esb-item total-row"><span>TOTAL</span><span class="esb-pts">8/8 → 10/10</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ====================================================== -->
+  <!-- EXAM 4 -->
+  <!-- ====================================================== -->
+  <div id="exam4" style="display:none;">
+
+    <div class="exam-title-bar">
+      <div>
+        <div class="exam-label">Simulation 4</div>
+        <h2 style="font-family:'DM Serif Display',serif;font-size:1.3rem;margin:4px 0;">Technology &amp; Communication Theme</h2>
+        <p style="color:var(--dim);font-size:.83rem;">Cross-topic vocabulary · Passive Voice &amp; Present Perfect · Technology &amp; ghosting essays</p>
+      </div>
+      <div class="exam-score-badge">20 pts</div>
+    </div>
+
+    <!-- PART 1 -->
+    <div class="sim-section">
+      <h3>PART 1 — LANGUAGE <span class="pts">10 pts</span></h3>
+      <p class="sim-sub">Section A — Vocabulary <span class="pts">6 pts</span></p>
+
+      <div class="sim-q">
+        <div class="qlbl">Q1 · Identify each chart — choose from the list below (2 pts)</div>
+        <p class="q-inst">Bar chart &nbsp;/&nbsp; Flow chart &nbsp;/&nbsp; Histogram &nbsp;/&nbsp; Pie chart &nbsp;/&nbsp; Funnel chart &nbsp;/&nbsp; Line graph &nbsp;&nbsp;<em style="color:var(--dim)">(2 extra options)</em></p>
+        <div class="chart-grid">
+          <div class="chart-card">
+            <div class="chart-visual">
+              <div style="width:100%;display:flex;flex-direction:column;gap:4px;padding:4px;">
+                <div style="display:flex;align-items:center;gap:5px;font-size:.7rem;"><span style="color:var(--dim);width:30px">Jan</span><div style="height:10px;width:30%;background:var(--accent);border-radius:3px"></div></div>
+                <div style="display:flex;align-items:center;gap:5px;font-size:.7rem;"><span style="color:var(--dim);width:30px">Feb</span><div style="height:10px;width:55%;background:var(--accent);border-radius:3px"></div></div>
+                <div style="display:flex;align-items:center;gap:5px;font-size:.7rem;"><span style="color:var(--dim);width:30px">Mar</span><div style="height:10px;width:80%;background:var(--accent);border-radius:3px"></div></div>
+                <div style="display:flex;align-items:center;gap:5px;font-size:.7rem;"><span style="color:var(--dim);width:30px">Apr</span><div style="height:10px;width:45%;background:var(--accent);border-radius:3px"></div></div>
+              </div>
+            </div>
+            <div class="chart-label">Chart A</div>
+          </div>
+          <div class="chart-card">
+            <div class="chart-visual">
+              <svg width="70" height="70" viewBox="0 0 70 70">
+                <polyline points="5,55 20,35 35,45 50,15 65,25" fill="none" stroke="#00cec9" stroke-width="2.5"/>
+                <circle cx="5" cy="55" r="3" fill="#00cec9"/>
+                <circle cx="20" cy="35" r="3" fill="#00cec9"/>
+                <circle cx="35" cy="45" r="3" fill="#00cec9"/>
+                <circle cx="50" cy="15" r="3" fill="#00cec9"/>
+                <circle cx="65" cy="25" r="3" fill="#00cec9"/>
+              </svg>
+            </div>
+            <div class="chart-label">Chart B</div>
+          </div>
+          <div class="chart-card">
+            <div class="chart-visual funnel-viz">
+              <div class="fbar" style="width:95%;background:#6c5ce7;font-size:.6rem;">Awareness</div>
+              <div class="fbar" style="width:68%;background:#a29bfe;font-size:.6rem;">Interest</div>
+              <div class="fbar" style="width:42%;background:#d2cfff;font-size:.6rem;">Decision</div>
+              <div class="fbar" style="width:18%;background:#e8e6ff;font-size:.6rem;">Action</div>
+            </div>
+            <div class="chart-label">Chart C</div>
+          </div>
+          <div class="chart-card">
+            <div class="chart-visual flow-viz">
+              <div class="flow-box">Input</div>
+              <div class="flow-arrow">↓</div>
+              <div class="flow-box">Process?</div>
+              <div class="flow-arrow">↓ Yes &nbsp;&nbsp; ↓ No</div>
+              <div class="flow-box">Output</div>
+            </div>
+            <div class="chart-label">Chart D</div>
+          </div>
+        </div>
+        <span class="show-ans" onclick="togAns('e4q1')">Show answer ▾</span>
+        <div class="ans-box" id="e4q1">
+          <span class="ok-label">✅ A = Bar chart &nbsp;·&nbsp; B = Line graph &nbsp;·&nbsp; C = Funnel chart &nbsp;·&nbsp; D = Flow chart</span>
+        </div>
+      </div>
+
+      <div class="sim-q">
+        <div class="qlbl">Q2 · Match each idiomatic expression to its correct meaning — 2 extra options (4 pts)</div>
+        <div class="match-table">
+          <div class="match-row"><span class="match-num">1</span><span class="match-expr">"He ignored visa rules and tax obligations while working remotely, and now he's <strong>paying the piper</strong> after being fined and banned from re-entering the country."</span></div>
+          <div class="match-row"><span class="match-num">2</span><span class="match-expr">"She borrowed money from a close colleague to fund her project, never paid it back, and completely <strong>burned bridges</strong> when she stopped replying to messages."</span></div>
+          <div class="match-row"><span class="match-num">3</span><span class="match-expr">"Many professionals choose to leave their corporate jobs to break free from <strong>the rat race</strong> and find a more meaningful way of working."</span></div>
+          <div class="match-row"><span class="match-num">4</span><span class="match-expr">"When technical problems and flight delays happen during remote work, digital nomads must learn <strong>to roll with the punches</strong> and adapt without getting frustrated."</span></div>
+        </div>
+        <div class="options-list">
+          <div class="opt-item">A — To face the inevitable negative consequences of one's past decisions or actions.</div>
+          <div class="opt-item">B — To keep someone regularly updated and informed about progress.</div>
+          <div class="opt-item">C — To destroy a relationship or professional opportunity in a permanent, irreversible way.</div>
+          <div class="opt-item">D — To delay or avoid discussing an uncomfortable topic.</div>
+          <div class="opt-item">E — The exhausting, highly competitive routine of modern professional life.</div>
+          <div class="opt-item">F — To remain flexible and adapt positively when faced with difficulties or setbacks.</div>
+        </div>
+        <span class="show-ans" onclick="togAns('e4q2')">Show answer ▾</span>
+        <div class="ans-box" id="e4q2">
+          <span class="ok-label">✅ 1→A &nbsp;·&nbsp; 2→C &nbsp;·&nbsp; 3→E &nbsp;·&nbsp; 4→F</span><br>
+          <em style="color:var(--dim)">Unused: B and D</em>
+        </div>
+      </div>
+
+      <p class="sim-sub">Section B — Grammar <span class="pts">4 pts</span></p>
+
+      <div class="sim-q">
+        <div class="qlbl">Q1 · Present Perfect — Put the bracketed verbs in the correct form (2 pts)</div>
+        <div class="fill-list">
+          <div class="fill-item"><span class="fill-num">1.</span> The company __________ (successfully / implement) a new remote work policy for all employees.</div>
+          <div class="fill-item"><span class="fill-num">2.</span> Our HR team __________ (just / develop) a new onboarding programme for remote workers.</div>
+          <div class="fill-item"><span class="fill-num">3.</span> Digital communication tools __________ (completely / transform) the way modern teams collaborate.</div>
+        </div>
+        <span class="show-ans" onclick="togAns('e4q3')">Show answer ▾</span>
+        <div class="ans-box" id="e4q3">
+          <span class="ok-label">✅ 1. has successfully implemented &nbsp;·&nbsp; 2. has just developed &nbsp;·&nbsp; 3. have completely transformed</span>
+        </div>
+      </div>
+
+      <div class="sim-q">
+        <div class="qlbl">Q2 · Conditionals — Circle the correct answer (2 pts)</div>
+        <div class="mcq-list">
+          <div class="mcq-item">
+            <div class="mcq-q">1. If companies <strong>invest</strong> more in digital communication tools, remote teams __________ more efficiently.</div>
+            <div class="mcq-opts"><span class="mopt">A. Would collaborate</span><span class="mopt correct-opt">B. Will collaborate ✅</span><span class="mopt">C. Would have collaborated</span><span class="mopt">D. Are collaborating</span></div>
+          </div>
+          <div class="mcq-item">
+            <div class="mcq-q">2. If the manager __________ more transparent about expectations, the team would feel less stressed.</div>
+            <div class="mcq-opts"><span class="mopt">A. Is</span><span class="mopt correct-opt">B. Were ✅</span><span class="mopt">C. Had been</span><span class="mopt">D. Will be</span></div>
+          </div>
+          <div class="mcq-item">
+            <div class="mcq-q">3. If the company had adopted a hybrid model earlier, many talented employees __________ the organisation.</div>
+            <div class="mcq-opts"><span class="mopt">A. Would not leave</span><span class="mopt">B. Will not have left</span><span class="mopt correct-opt">C. Would not have left ✅</span><span class="mopt">D. Had not left</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PART 2 ESSAY -->
+    <div class="sim-section">
+      <h3>PART 2 — ESSAY <span class="pts">10 pts</span></h3>
+      <p style="color:var(--dim);font-size:.84rem;margin-bottom:14px;">Choose ONE topic. Write a full argumentative essay. Recommended time: 45 minutes.</p>
+
+      <div class="essay-choice">
+        <div class="ec-label">TOPIC 1</div>
+        <p class="essay-prompt">"Technology has transformed modern working life. While some argue it improves productivity and work-life balance, others believe it has made it harder to disconnect and has seriously damaged personal well-being. Discuss both views and illustrate with examples."</p>
+        <span class="show-ans" onclick="togAns('e4es1')">Show model essay ▾</span>
+        <div class="ans-box" id="e4es1">
+          <span class="ok-label">📝 Model Essay — Technology &amp; Work-Life Balance</span><br><br>
+          <div class="model-essay">
+<strong>Introduction:</strong>
+Technology has fundamentally transformed the modern workplace, offering levels of flexibility and efficiency that were unimaginable a generation ago. However, the question of whether it genuinely improves work-life balance — or actually makes it significantly worse — has become one of the most pressing debates of our era. This essay will examine both perspectives.
+
+<strong>Body Paragraph 1 — FOR Technology Improving Balance:</strong>
+On the one hand, technology has introduced considerable improvements to the way professionals manage their working lives. First and foremost, cloud-based tools and collaboration platforms allow employees to work remotely from anywhere in the world, saving valuable commuting time and offering much greater control over their personal schedules. Moreover, automation software handles repetitive, time-consuming tasks efficiently, freeing employees to complete meaningful work faster and leave the office on time more consistently. In addition, a wide range of well-being applications — including meditation tools, fitness trackers, and mental health platforms — are now readily available to support employee wellness in practical, accessible ways.
+
+<strong>Body Paragraph 2 — AGAINST Technology:</strong>
+On the other hand, the negative impact of technology on work-life balance is increasingly difficult to ignore. For instance, smartphones and instant messaging applications mean that employees routinely receive work notifications during evenings, weekends, and even holidays, making genuine disconnection from professional responsibilities nearly impossible. Furthermore, remote workers frequently find themselves working around the clock because the physical separation between their workspace and personal living space has completely disappeared, causing the work-life boundary to become dangerously blurry. Consequently, studies consistently link excessive screen time to significantly increased levels of stress, anxiety, and sleep disorders — all of which take a serious toll on long-term personal well-being.
+
+<strong>Conclusion:</strong>
+In conclusion, while technology offers extraordinary potential to improve professional efficiency and personal flexibility, its negative impact on work-life balance cannot be overlooked. The solution lies not in rejecting technology entirely, but in using it mindfully, establishing clear digital boundaries, and ensuring that organisations actively respect their employees' personal time outside working hours.
+          </div>
+          <div class="essay-score-breakdown">
+            <div class="esb-item"><span>Introduction</span><span class="esb-pts">1/1 ✅</span></div>
+            <div class="esb-item"><span>Body Paragraphs (FOR + AGAINST)</span><span class="esb-pts">2/2 ✅</span></div>
+            <div class="esb-item"><span>Conclusion</span><span class="esb-pts">1/1 ✅</span></div>
+            <div class="esb-item"><span>Vocabulary (blurry, automation, well-being, disconnect, connectivity...)</span><span class="esb-pts">1.5/1.5 ✅</span></div>
+            <div class="esb-item"><span>Linkers (On the one hand, Moreover, In addition, Furthermore, Consequently...)</span><span class="esb-pts">0.5/0.5 ✅</span></div>
+            <div class="esb-item"><span>Grammar &amp; Spelling</span><span class="esb-pts">1.5/1.5 ✅</span></div>
+            <div class="esb-item"><span>Layout</span><span class="esb-pts">0.5/0.5 ✅</span></div>
+            <div class="esb-item total-row"><span>TOTAL</span><span class="esb-pts">8/8 → 10/10</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="essay-choice">
+        <div class="ec-label">TOPIC 2</div>
+        <p class="essay-prompt">"Professional ghosting — the practice of cutting off communication without explanation — has become increasingly common in modern workplaces. Some see it as an understandable boundary, while others argue it is unprofessional and deeply harmful. Discuss both views."</p>
+        <span class="show-ans" onclick="togAns('e4es2')">Show model essay ▾</span>
+        <div class="ans-box" id="e4es2">
+          <span class="ok-label">📝 Model Essay — Professional Ghosting</span><br><br>
+          <div class="model-essay">
+<strong>Introduction:</strong>
+Professional ghosting — the act of abruptly ending all communication in a work context without providing any explanation — has emerged as a troubling trend in modern recruitment and workplace culture. While some argue it represents a legitimate personal boundary in an era of digital overload, others view it as deeply unprofessional and damaging to trust. This essay will explore both perspectives.
+
+<strong>Body Paragraph 1 — Understanding the Behaviour:</strong>
+On the one hand, there are understandable reasons why professional ghosting has become so widespread. First, some individuals lack the communication skills or emotional confidence to navigate difficult conversations such as rejection or resignation, and they resort to silence as a way of avoiding discomfort. Moreover, many candidates who ghost employers do so as a direct response to having experienced the same treatment themselves — companies that never responded to their applications effectively normalised this behaviour first. In addition, the increasingly informal and asynchronous nature of digital communication has blurred the traditional boundaries of professional courtesy across different generations.
+
+<strong>Body Paragraph 2 — The Negative Consequences:</strong>
+On the other hand, the damaging consequences of professional ghosting are significant and long-lasting. For instance, disappearing without explanation permanently burns bridges and destroys hard-earned professional trust — in a relatively small professional world, such reputational damage can be extremely difficult to recover from. Furthermore, candidates or colleagues who are left without any feedback or acknowledgement often experience serious anxiety, which takes a heavy toll on their mental health, confidence, and overall well-being. Consequently, when companies routinely ghost applicants, they signal a fundamental lack of respect that severely damages their employer brand and makes it significantly harder to attract top talent in the future.
+
+<strong>Conclusion:</strong>
+In conclusion, while the pressures and informality of modern professional life may help explain the rise of professional ghosting, they do not justify it in any meaningful way. Clear, honest, and respectful communication must remain the standard in all professional contexts. Ultimately, the ability to deliver difficult messages with empathy and transparency is a mark of genuine professionalism and strong character.
+          </div>
+          <div class="essay-score-breakdown">
+            <div class="esb-item"><span>Introduction</span><span class="esb-pts">1/1 ✅</span></div>
+            <div class="esb-item"><span>Body Paragraphs</span><span class="esb-pts">2/2 ✅</span></div>
+            <div class="esb-item"><span>Conclusion</span><span class="esb-pts">1/1 ✅</span></div>
+            <div class="esb-item"><span>Vocabulary (ghosting, employer brand, transparency, asynchronous, empathy...)</span><span class="esb-pts">1.5/1.5 ✅</span></div>
+            <div class="esb-item"><span>Linkers</span><span class="esb-pts">0.5/0.5 ✅</span></div>
+            <div class="esb-item total-row"><span>TOTAL</span><span class="esb-pts">8/8 → 10/10</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ====================================================== -->
+  <!-- EXAM 5 -->
+  <!-- ====================================================== -->
+  <div id="exam5" style="display:none;">
+
+    <div class="exam-title-bar">
+      <div>
+        <div class="exam-label">Simulation 5</div>
+        <h2 style="font-family:'DM Serif Display',serif;font-size:1.3rem;margin:4px 0;">Mixed Topics — Full Revision Paper</h2>
+        <p style="color:var(--dim);font-size:.83rem;">All grammar types combined · All vocabulary themes · Social media &amp; advertising essays</p>
+      </div>
+      <div class="exam-score-badge">20 pts</div>
+    </div>
+
+    <div class="sim-section">
+      <h3>PART 1 — LANGUAGE <span class="pts">10 pts</span></h3>
+      <p class="sim-sub">Section A — Vocabulary <span class="pts">6 pts</span></p>
+
+      <div class="sim-q">
+        <div class="qlbl">Q1 · Identify each chart from its visual description (2 pts)</div>
+        <p class="q-inst">Bar chart &nbsp;/&nbsp; Flow chart &nbsp;/&nbsp; Histogram &nbsp;/&nbsp; Pie chart &nbsp;/&nbsp; Funnel chart &nbsp;/&nbsp; Line graph &nbsp;&nbsp;<em style="color:var(--dim)">(2 extra options)</em></p>
+        <div class="chart-grid">
+          <div class="chart-card">
+            <div class="chart-visual pie-viz"><div class="pie-inner" style="background:conic-gradient(#e17055 0% 40%,#6c5ce7 40% 65%,#00cec9 65% 85%,#fdcb6e 85% 100%);"></div></div>
+            <div class="chart-label">Chart A</div>
+          </div>
+          <div class="chart-card">
+            <div class="chart-visual bar-viz">
+              <div style="display:flex;align-items:flex-end;gap:5px;height:70px">
+                <div class="bbar" style="height:60%;background:#e17055;width:16px;"></div>
+                <div class="bbar" style="height:90%;background:#e17055;width:16px;"></div>
+                <div class="bbar" style="height:45%;background:#e17055;width:16px;"></div>
+                <div class="bbar" style="height:75%;background:#e17055;width:16px;"></div>
+                <div class="bbar" style="height:30%;background:#e17055;width:16px;"></div>
+              </div>
+            </div>
+            <div class="chart-label">Chart B</div>
+          </div>
+          <div class="chart-card">
+            <div class="chart-visual">
+              <svg width="70" height="70" viewBox="0 0 70 70">
+                <polyline points="5,60 18,40 30,50 42,20 55,30 65,10" fill="none" stroke="#fd79a8" stroke-width="2.5"/>
+                <circle cx="5" cy="60" r="3" fill="#fd79a8"/>
+                <circle cx="18" cy="40" r="3" fill="#fd79a8"/>
+                <circle cx="30" cy="50" r="3" fill="#fd79a8"/>
+                <circle cx="42" cy="20" r="3" fill="#fd79a8"/>
+                <circle cx="55" cy="30" r="3" fill="#fd79a8"/>
+                <circle cx="65" cy="10" r="3" fill="#fd79a8"/>
+              </svg>
+            </div>
+            <div class="chart-label">Chart C</div>
+          </div>
+          <div class="chart-card">
+            <div class="chart-visual funnel-viz">
+              <div class="fbar" style="width:92%;background:#fd79a8;font-size:.6rem;">Stage 1</div>
+              <div class="fbar" style="width:65%;background:#ffb3cb;font-size:.6rem;">Stage 2</div>
+              <div class="fbar" style="width:38%;background:#ffd6e3;font-size:.6rem;">Stage 3</div>
+              <div class="fbar" style="width:15%;background:#fff0f5;font-size:.6rem;color:var(--dim);">Stage 4</div>
+            </div>
+            <div class="chart-label">Chart D</div>
+          </div>
+        </div>
+        <span class="show-ans" onclick="togAns('e5q1')">Show answer ▾</span>
+        <div class="ans-box" id="e5q1">
+          <span class="ok-label">✅ A = Pie chart &nbsp;·&nbsp; B = Bar chart &nbsp;·&nbsp; C = Line graph &nbsp;·&nbsp; D = Funnel chart</span>
+        </div>
+      </div>
+
+      <div class="sim-q">
+        <div class="qlbl">Q2 · Fill in the blanks with the correct word or expression from the box (4 pts)</div>
+        <div class="word-bank">
+          <span class="wb-word">scope creep</span>
+          <span class="wb-word">work around the clock</span>
+          <span class="wb-word">take a toll on</span>
+          <span class="wb-word">hear through the grapevine</span>
+          <span class="wb-word">tight deadline</span>
+          <span class="wb-word">lead by example</span>
+        </div>
+        <div class="fill-list">
+          <div class="fill-item"><span class="fill-num">A.</span> I __________ that the company is planning to relocate its offices to a new building next month, but no official announcement has been made yet.</div>
+          <div class="fill-item"><span class="fill-num">B.</span> The best managers don't just give orders — they __________ by arriving on time, meeting their own deadlines, and treating every team member with respect.</div>
+          <div class="fill-item"><span class="fill-num">C.</span> The original project was supposed to be a simple website redesign, but continuous additions caused __________ that tripled the team's workload within just two months.</div>
+          <div class="fill-item"><span class="fill-num">D.</span> Working excessive hours without adequate rest will eventually __________ your mental health, creativity, and overall professional performance.</div>
+        </div>
+        <span class="show-ans" onclick="togAns('e5q2')">Show answer ▾</span>
+        <div class="ans-box" id="e5q2">
+          <span class="ok-label">✅ A. heard through the grapevine &nbsp;·&nbsp; B. lead by example &nbsp;·&nbsp; C. scope creep &nbsp;·&nbsp; D. take a toll on</span>
+        </div>
+      </div>
+
+      <p class="sim-sub">Section B — Grammar <span class="pts">4 pts</span></p>
+
+      <div class="sim-q">
+        <div class="qlbl">Q1 · Mixed Grammar — Present Perfect AND Passive Voice (2 pts)</div>
+        <div class="fill-list">
+          <div class="fill-item"><span class="fill-num">1.</span> [Present Perfect] The marketing team __________ (recently / launch) a groundbreaking social media campaign.</div>
+          <div class="fill-item"><span class="fill-num">2.</span> [Passive — Past Simple] A new project management methodology __________ (adopt) by the engineering department last year.</div>
+          <div class="fill-item"><span class="fill-num">3.</span> [Present Perfect] Social media platforms __________ (completely / change) the way businesses communicate with their customers.</div>
+          <div class="fill-item"><span class="fill-num">4.</span> [Passive — Present Perfect] The final contract __________ (already / sign) by both parties.</div>
+        </div>
+        <span class="show-ans" onclick="togAns('e5q3')">Show answer ▾</span>
+        <div class="ans-box" id="e5q3">
+          <span class="ok-label">✅ 1. has recently launched &nbsp;·&nbsp; 2. was adopted &nbsp;·&nbsp; 3. have completely changed &nbsp;·&nbsp; 4. has already been signed</span>
+        </div>
+      </div>
+
+      <div class="sim-q">
+        <div class="qlbl">Q2 · Conditionals — Choose the correct answer (2 pts)</div>
+        <div class="mcq-list">
+          <div class="mcq-item">
+            <div class="mcq-q">1. If the advertising campaign <strong>targets</strong> the right demographic, sales __________ significantly within the first month.</div>
+            <div class="mcq-opts"><span class="mopt correct-opt">A. Will increase ✅</span><span class="mopt">B. Would increase</span><span class="mopt">C. Would have increased</span><span class="mopt">D. Increase</span></div>
+          </div>
+          <div class="mcq-item">
+            <div class="mcq-q">2. If companies __________ more ethically with consumer data, public trust in digital advertising would be much stronger.</div>
+            <div class="mcq-opts"><span class="mopt">A. Deal</span><span class="mopt correct-opt">B. Dealt ✅</span><span class="mopt">C. Had dealt</span><span class="mopt">D. Will deal</span></div>
+          </div>
+          <div class="mcq-item">
+            <div class="mcq-q">3. If social media platforms had introduced stronger privacy regulations earlier, many data scandals __________ entirely.</div>
+            <div class="mcq-opts"><span class="mopt">A. Would be avoided</span><span class="mopt">B. Will have been avoided</span><span class="mopt correct-opt">C. Would have been avoided ✅</span><span class="mopt">D. Were avoided</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PART 2 ESSAY -->
+    <div class="sim-section">
+      <h3>PART 2 — ESSAY <span class="pts">10 pts</span></h3>
+      <p style="color:var(--dim);font-size:.84rem;margin-bottom:14px;">Choose ONE topic. Write a full argumentative essay. Recommended time: 45 minutes.</p>
+
+      <div class="essay-choice">
+        <div class="ec-label">TOPIC 1</div>
+        <p class="essay-prompt">"Social media advertising has become one of the most powerful business tools of the modern era. While some argue it benefits both companies and consumers, others believe it manipulates behaviour and invades personal privacy. Discuss both views and support your arguments with relevant examples."</p>
+        <span class="show-ans" onclick="togAns('e5es1')">Show model essay ▾</span>
+        <div class="ans-box" id="e5es1">
+          <span class="ok-label">📝 Model Essay — Social Media &amp; Advertising</span><br><br>
+          <div class="model-essay">
+<strong>Introduction:</strong>
+Social media has fundamentally transformed the advertising industry, giving businesses of all sizes unprecedented access to precisely targeted audiences at a fraction of traditional advertising costs. While some argue that this development benefits both companies and consumers equally, critics warn that it raises serious ethical questions about psychological manipulation and personal data privacy. This essay will examine both sides of this important debate.
+
+<strong>Body Paragraph 1 — Benefits of Social Media Advertising:</strong>
+On the one hand, social media advertising offers compelling advantages for businesses and consumers alike. First and foremost, targeted advertising enables even small businesses to reach highly specific demographic groups cost-effectively, creating commercial opportunities that were previously accessible only to large corporations with substantial marketing budgets. Moreover, well-designed advertising campaigns can provide consumers with genuinely relevant and useful product information, improving their overall shopping experience and helping them make more informed purchasing decisions. In addition, the digital advertising industry now supports millions of jobs worldwide — from creative content producers and graphic designers to data scientists and digital marketing specialists.
+
+<strong>Body Paragraph 2 — Dangers of Social Media Advertising:</strong>
+On the other hand, the risks associated with social media advertising are increasingly significant and difficult to ignore. For instance, many advertising techniques are specifically designed to exploit psychological vulnerabilities, emotional triggers, and cognitive biases, effectively pushing consumers toward purchases they would not consciously choose to make. Furthermore, social media platforms routinely collect vast quantities of sensitive personal data — often without fully informed user consent — raising profound ethical and legal questions about privacy, transparency, and data security. Consequently, vulnerable groups such as children and teenagers are disproportionately exposed to advertising content that can promote unrealistic body standards, unhealthy lifestyles, and excessive consumerism.
+
+<strong>Conclusion:</strong>
+In conclusion, while social media advertising clearly offers genuine economic benefits and business opportunities, its capacity for psychological manipulation and its systematic invasion of personal privacy demand far stronger regulatory oversight and clearer ethical standards from the industry. Businesses must commit to transparent, responsible advertising practices if they are to maintain long-term consumer trust in an increasingly sceptical digital landscape.
+          </div>
+          <div class="essay-score-breakdown">
+            <div class="esb-item"><span>Introduction</span><span class="esb-pts">1/1 ✅</span></div>
+            <div class="esb-item"><span>Body Paragraphs (FOR + AGAINST)</span><span class="esb-pts">2/2 ✅</span></div>
+            <div class="esb-item"><span>Conclusion</span><span class="esb-pts">1/1 ✅</span></div>
+            <div class="esb-item"><span>Vocabulary (demographic, manipulation, transparency, data privacy, consumerism...)</span><span class="esb-pts">1.5/1.5 ✅</span></div>
+            <div class="esb-item"><span>Linkers (On the one hand, Moreover, In addition, Furthermore, Consequently...)</span><span class="esb-pts">0.5/0.5 ✅</span></div>
+            <div class="esb-item"><span>Grammar &amp; Spelling</span><span class="esb-pts">1.5/1.5 ✅</span></div>
+            <div class="esb-item"><span>Layout</span><span class="esb-pts">0.5/0.5 ✅</span></div>
+            <div class="esb-item total-row"><span>TOTAL</span><span class="esb-pts">8/8 → 10/10</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="essay-choice">
+        <div class="ec-label">TOPIC 2</div>
+        <p class="essay-prompt">"Some people believe that rigorous project management is the essential foundation of every successful project. Others argue that creativity and individual talent matter far more than structured methodologies and formal planning. Discuss both views."</p>
+        <span class="show-ans" onclick="togAns('e5es2')">Show model essay ▾</span>
+        <div class="ans-box" id="e5es2">
+          <span class="ok-label">📝 Model Essay — Project Management vs Creativity</span><br><br>
+          <div class="model-essay">
+<strong>Introduction:</strong>
+The question of whether formal project management or individual creativity and talent is the more important factor in delivering successful projects has been widely debated in professional and academic circles alike. While some argue that structured planning, clear methodologies, and rigorous risk management are absolutely indispensable, others believe that raw talent and adaptive thinking ultimately make the real difference. This essay will carefully examine both perspectives.
+
+<strong>Body Paragraph 1 — FOR Project Management:</strong>
+On the one hand, formal project management provides a critical foundation that significantly increases the likelihood of project success. First and foremost, setting clear objectives, establishing detailed timelines, and defining individual responsibilities from the outset minimises the risk of scope creep and ensures that every team member understands precisely what is expected of them at each stage. Moreover, effective budget management and systematic scheduling tools prevent costly budget overruns and help teams consistently meet even the tightest of deadlines. In addition, structured communication plans ensure that all stakeholders are kept regularly informed, which prevents dangerous misunderstandings and unnecessary delays that could derail even the most talented team.
+
+<strong>Body Paragraph 2 — FOR Creativity and Talent:</strong>
+On the other hand, there are compelling reasons to believe that creative thinking and individual talent can be equally — if not more — important than formal processes. For instance, many of the world's most iconic companies — including Apple, Spotify, and Airbnb — were built by small, highly talented and creative teams operating with minimal formal structure, driven by vision and agile thinking rather than rigid methodologies. Furthermore, overly prescriptive project management frameworks can stifle innovation by forcing teams into rigid processes that leave little room for experimentation, iteration, or creative problem-solving. Consequently, in rapidly evolving industries where adaptability is paramount, the ability to think outside the box and pivot quickly often determines success far more decisively than any formal planning tool.
+
+<strong>Conclusion:</strong>
+All things considered, both rigorous project management and creative talent play essential and complementary roles in delivering truly successful projects. Rather than treating them as opposing forces, the most effective professional teams are those that harness structured planning to provide direction and discipline, while actively nurturing the creative freedom that allows genuinely innovative ideas to flourish.
+          </div>
+          <div class="essay-score-breakdown">
+            <div class="esb-item"><span>Introduction</span><span class="esb-pts">1/1 ✅</span></div>
+            <div class="esb-item"><span>Body Paragraphs</span><span class="esb-pts">2/2 ✅</span></div>
+            <div class="esb-item"><span>Conclusion</span><span class="esb-pts">1/1 ✅</span></div>
+            <div class="esb-item"><span>Vocabulary (scope creep, stakeholders, agile, budget overrun, iteration...)</span><span class="esb-pts">1.5/1.5 ✅</span></div>
+            <div class="esb-item"><span>Linkers</span><span class="esb-pts">0.5/0.5 ✅</span></div>
+            <div class="esb-item total-row"><span>TOTAL</span><span class="esb-pts">8/8 → 10/10</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- ===================== QUIZ ===================== -->
+<div class="section" id="quiz">
+  <div class="card">
+    <h2>🎯 Interactive Quiz</h2>
+    <p style="color:var(--dim);font-size:.86rem;">24 questions covering all topics — Grammar · Idioms · Vocab · Essay. Click to check.</p>
+  </div>
+  <div id="qc"></div>
+</div>
+
+</div>
+
+<div class="scorebar" id="sb" style="display:none;">
+  <span class="st">Score: <span class="sn" id="sd">0</span> / <span id="td">24</span></span>
+</div>
+
+<script>
+// Navigation
+function go(id){
+  document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
+  document.querySelectorAll('.ntab').forEach(t=>t.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  const map=['pp','cond','emb','pass','idioms','vocab','eguide','earg','eop','sim','quiz'];
+  const tabs=document.querySelectorAll('.ntab');
+  const i=map.indexOf(id);
+  if(i>=0)tabs[i].classList.add('active');
+  document.getElementById('sb').style.display=(id==='quiz')?'flex':'none';
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+// Topic toggle
+function tog(id){
+  const b=document.getElementById(id);
+  const a=document.getElementById('ar-'+id);
+  b.classList.toggle('open');
+  if(a)a.classList.toggle('open');
+}
+
+// Answer reveal
+function togAns(id){
+  document.getElementById(id).classList.toggle('show');
+}
+
+// Quiz data
+const QD=[
+  {q:"Complete: Our team _____ (recently / develop) a new app.",ops:["has recently developed","have recently developed","has recent developed","recently has developed"],c:0,e:"'Team' = singular → has. 'Recently' goes between has and V3."},
+  {q:"Complete: The engineers _____ (create / successfully) a campaign.",ops:["has successfully created","have successfully created","have created successfully","successfully have created"],c:1,e:"'Engineers' = plural → have. 'Successfully' goes between have and V3."},
+  {q:"Complete: The company _____ (launch / just) a product.",ops:["has just launched","have just launch","has launched just","just has launched"],c:0,e:"'Company' = singular → has. 'Just' goes between has and V3."},
+  {q:"Which sentence is correct?",ops:["I have never been to Japan.","I never have been to Japan.","I have been never to Japan.","I been never have."],c:0,e:"'Never' goes between have and V3: have + never + been."},
+  {q:"She _____ her homework yet.",ops:["hasn't finished","haven't finished","has finished","didn't finish"],c:0,e:"'She' = singular → hasn't. 'Yet' at the END in negative sentences."},
+  {q:"1st Conditional: If you identify a need, the product _____.",ops:["would be successful","would have been successful","will be successful","is being successful"],c:2,e:"1st: If + present → will + V."},
+  {q:"2nd Conditional: If you _____ more resources, you would develop more.",ops:["had","have","had had","have had"],c:0,e:"2nd: If + past simple (had) → would + V."},
+  {q:"3rd Conditional: If the team had collaborated, the project _____.",ops:["would have faced delays","would not have faced delays","will not face delays","would not face delays"],c:1,e:"3rd: If + past perfect → would (not) have + V3."},
+  {q:"'If I were you, I would study harder.' — Which type?",ops:["1st Conditional","2nd Conditional","3rd Conditional","Zero Conditional"],c:1,e:"If + were → would + V = 2nd conditional. Imaginary present."},
+  {q:"'If she had taken the bus, she would have arrived.' — Which type?",ops:["1st","2nd","3rd","Mixed"],c:2,e:"If + had taken → would have arrived = 3rd conditional. Unreal past."},
+  {q:"'Where can I find Wi-Fi?' → Do you know _____ ?",ops:["where can I find Wi-Fi","where I can find Wi-Fi","where I find can Wi-Fi","where do I find Wi-Fi"],c:1,e:"Embedded = SVO order: 'where I can find' (not 'where can I find')."},
+  {q:"Which sentence is correct?",ops:["Can you tell me is it safe?","Can you tell me if it is safe?","Can you tell me it is safe?","Can you tell me if is it safe?"],c:1,e:"Yes/No embedded → if/whether + SVO order."},
+  {q:"Find the error: 'I wonder what the cost of living in Lisbon's.'",ops:["No 'if'","Contraction at end of clause","No question mark","Wrong word order"],c:1,e:"Never use a contraction at the end of an embedded clause: → ...Lisbon is."},
+  {q:"'She can't decide _____ stay in Bali or move.'",ops:["if she","whether to","if to","that she"],c:1,e:"Same subject → use infinitive: 'whether to stay'."},
+  {q:"Why is 'Do you think if they will come?' wrong?",ops:["Think is present tense","Never use if/whether after THINK","It is negative","Will is a modal"],c:1,e:"Exception: never use if/whether after THINK. Keep the direct order."},
+  {q:"'Rock the boat' means:",ops:["To travel by boat","To cause trouble in a stable situation","To work very hard","To hear rumours"],c:1,e:"Rock the boat = disturb a stable situation. ⭐ Resit Exam"},
+  {q:"'Hear through the grapevine' means:",ops:["To drink grape juice","To receive information informally / word of mouth","To work hard","To face consequences"],c:1,e:"Grapevine = informal network / word of mouth. ⭐ Resit Exam"},
+  {q:"'Take a heavy toll on' means:",ops:["To earn a lot","To travel far","To have significant negative consequences","To pay a tax"],c:2,e:"Take a toll = significant negative consequences. ⭐ Resit Exam"},
+  {q:"'Talking to a dead wall' means:",ops:["Speaking loudly","Trying to communicate with someone unresponsive","Repairing a wall","Working alone"],c:1,e:"Dead wall = someone unresponsive / not listening. ⭐ Resit Exam"},
+  {q:"Which chart shows percentages in a circle?",ops:["Bar chart","Line graph","Pie chart","Funnel chart"],c:2,e:"Pie chart = circle divided into proportional slices. ⭐ Resit Exam"},
+  {q:"Which chart shows a process with decisions?",ops:["Bar chart","Flow chart","Histogram","Line graph"],c:1,e:"Flow chart = boxes + arrows showing a process. ⭐ Resit Exam"},
+  {q:"'Scope creep' in project management means:",ops:["Staying within budget","Uncontrolled growth of the project scope","Finishing early","Reducing tasks"],c:1,e:"Scope creep = the project boundaries expand in an uncontrolled way."},
+  {q:"In an argumentative essay conclusion, you should:",ops:["Only present FOR arguments","Summarise both sides + give a final view","Copy the introduction","Ignore the topic"],c:1,e:"Argumentative conclusion: summarise both sides + optional personal view."},
+  {q:"'Pay the piper' means:",ops:["Pay a musician","Face the consequences of past actions","Earn money","Travel for free"],c:1,e:"Pay the piper = face the consequences of your own past actions."}
+];
+
+let sc=0;
+const qc=document.getElementById('qc');
+document.getElementById('td').textContent=QD.length;
+QD.forEach((it,i)=>{
+  const d=document.createElement('div');
+  d.className='qbox';
+  d.innerHTML=`<div class="qnum">Question ${i+1} / ${QD.length}</div><div class="qtxt">${it.q}</div><div class="qopts" id="o${i}">${it.ops.map((o,j)=>`<div class="qopt" onclick="chk(${i},${j})">${o}</div>`).join('')}</div><div class="qfb" id="f${i}"></div>`;
+  qc.appendChild(d);
+});
+
+function chk(q,o){
+  const opts=document.querySelectorAll(`#o${q} .qopt`);
+  if(opts[0].classList.contains('dis'))return;
+  opts.forEach(x=>x.classList.add('dis'));
+  opts[QD[q].c].classList.add('ca');
+  const fb=document.getElementById('f'+q);
+  if(o===QD[q].c){sc++;fb.className='qfb ok';fb.textContent='✅ Correct! '+QD[q].e;}
+  else{opts[o].classList.add('wa');fb.className='qfb nok';fb.textContent='❌ Incorrect. '+QD[q].e;}
+  document.getElementById('sd').textContent=sc;
+}
+
+function showExam(n){
+  [1,2,3,4,5].forEach(i=>{
+    const el=document.getElementById('exam'+i);
+    if(el) el.style.display = (i===n)?'block':'none';
+    const btn=document.getElementById('selbtn'+i);
+    if(btn) btn.classList.toggle('active', i===n);
+  });
+}
+
+</script>
+</body>
+</html>
